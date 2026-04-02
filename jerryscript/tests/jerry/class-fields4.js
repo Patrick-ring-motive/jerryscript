@@ -15,7 +15,7 @@
 try {
   {
     A;
-    class A { }
+    class A {}
   }
   assert(false)
 } catch (e) {
@@ -24,7 +24,9 @@ try {
 
 try {
   {
-    class A { [A] () {} }
+    class A {
+      [A]() {}
+    }
   }
   assert(false)
 } catch (e) {
@@ -33,7 +35,9 @@ try {
 
 try {
   {
-    var a = class A { [A] () {} }
+    var a = class A {
+      [A]() {}
+    }
   }
   assert(false)
 } catch (e) {
@@ -65,7 +69,9 @@ try {
 
 try {
   {
-    class C { static a = C = 5  }
+    class C {
+      static a = C = 5
+    }
   }
   assert(false)
 } catch (e) {
@@ -74,7 +80,9 @@ try {
 
 try {
   {
-    class C { static [C = 5] = 6 }
+    class C {
+      static[C = 5] = 6
+    }
   }
   assert(false)
 } catch (e) {
