@@ -12,12 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {a as aa, b as bb, early} from "module-circular-03.mjs"
+import {
+  a as aa,
+  b as bb,
+  early
+} from "module-circular-03.mjs"
 
 export var a = 5
 
-if (early != "Loaded")
-{
+if (early != "Loaded") {
   // The scope of module-circular-03.mjs is initialized and functions are usable
   // However, the module script has not been executed
 
