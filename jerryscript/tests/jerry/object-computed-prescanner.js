@@ -17,29 +17,27 @@ function member_str() {
 }
 
 switch (true) {
-default:
-  var obj = {
-    ["val" + "ue"]: 0,
-    set[member_str()](x) {
-      // Multiple statements.
-      this.value = x + 4;
-      this.value += 2;
-    },
-    get[member_str() ? member_str() : ""]() {
-      // Multiple statements.
-      this.value = this.value + 1;
-      return this.value;
-    },
-    get
-      [1 + 2]
-      ()
-    {
-      return 3;
-    },
-    [false ? member_str()
-           : ""]
-     :8
-  }
+  default:
+    var obj = {
+      ["val" + "ue"]: 0,
+      set [member_str()](x) {
+        // Multiple statements.
+        this.value = x + 4;
+        this.value += 2;
+      },
+      get [member_str() ? member_str() : ""]() {
+        // Multiple statements.
+        this.value = this.value + 1;
+        return this.value;
+      },
+      get [1 + 2]
+        () {
+          return 3;
+        },
+      [false ? member_str() :
+        ""
+      ]: 8
+    }
 }
 
 obj["member"] = 10;
