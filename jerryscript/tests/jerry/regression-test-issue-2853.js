@@ -17,7 +17,7 @@ map.set()
 map.set('bar')
 
 var count = 0
-map.forEach(function () {
+map.forEach(function() {
   if (count === 0) {
     map.delete('bar')
   }
