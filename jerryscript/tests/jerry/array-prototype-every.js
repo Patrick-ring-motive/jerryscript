@@ -37,8 +37,14 @@ var arr2 = [1, 1, 1, 1, 1, 1];
 assert(arr2.every(g) === true);
 
 // Checking behavior when unable to get length
-var obj = { every : Array.prototype.every };
-Object.defineProperty(obj, 'length', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  every: Array.prototype.every
+};
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.every(f);
@@ -49,8 +55,15 @@ try {
 }
 
 // Checking behavior when unable to get element
-var obj = { every : Array.prototype.every, length : 1};
-Object.defineProperty(obj, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  every: Array.prototype.every,
+  length: 1
+};
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.every(f);
