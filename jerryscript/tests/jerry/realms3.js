@@ -16,8 +16,7 @@
 
 var a = 4.5
 
-function f1()
-{
+function f1() {
   var realm = createRealm()
   var f = realm.eval("function g() { return a } g")
 
@@ -42,8 +41,7 @@ f1()
 
 var b = "S"
 
-function f2()
-{
+function f2() {
   function f(fun) {
     return fun() + b;
   }
@@ -62,11 +60,12 @@ f2()
 
 // Test3: built-in functions
 
-function f3()
-{
+function f3() {
   var realm = createRealm()
 
-  realm.f = function () { return eval("/a/") }
+  realm.f = function() {
+    return eval("/a/")
+  }
 
   var res = realm.eval("[f(), /a/, f(), /b/]")
 
@@ -75,7 +74,9 @@ function f3()
   assert(Object.getPrototypeOf(res[2]) === RegExp.prototype)
   assert(Object.getPrototypeOf(res[3]) === realm.RegExp.prototype)
 
-  realm.g = function () { return non_existent }
+  realm.g = function() {
+    return non_existent
+  }
 
   try {
     realm.eval("g()")
@@ -97,16 +98,14 @@ f3()
 
 // Test4: generator functions
 
-function f4()
-{
+function f4() {
   function f() {
     return b;
   }
 
   var realm = createRealm()
 
-  function check_gen_result(result, value, done)
-  {
+  function check_gen_result(result, value, done) {
     assert(Object.getPrototypeOf(result) === realm.Object.prototype)
     assert(result.value === value)
     assert(result.done === done)
@@ -128,13 +127,14 @@ f4()
 
 var successCount = 0
 
-function f5()
-{
+function f5() {
   function f() {
     return b;
   }
 
-  var r, p = new Promise(function(resolve, reject) { r = resolve })
+  var r, p = new Promise(function(resolve, reject) {
+    r = resolve
+  })
 
   var realm = createRealm()
 
@@ -155,18 +155,18 @@ f5()
 
 // Test6: async generator functions
 
-function f6()
-{
+function f6() {
   function f() {
     return b;
   }
 
-  var r, p = new Promise(function(resolve, reject) { r = resolve })
+  var r, p = new Promise(function(resolve, reject) {
+    r = resolve
+  })
 
   var realm = createRealm()
 
-  function check_fulfilled(p, value, done)
-  {
+  function check_fulfilled(p, value, done) {
     assert(p instanceof realm.Promise)
 
     p.then(function(v) {
