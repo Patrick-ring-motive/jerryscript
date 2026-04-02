@@ -13,17 +13,16 @@
 // limitations under the License.
 
 // helper function - simple implementation
-Array.prototype.equals = function (array) {
+Array.prototype.equals = function(array) {
   if (this.length != array.length)
     return false;
 
   for (var i = 0; i < this.length; i++) {
     if (this[i] instanceof Array && array[i] instanceof Array) {
-      if (!this[i].equals (array[i]))
+      if (!this[i].equals(array[i]))
         return false;
-      }
-      else if (this[i] != array[i]) {
-        return false;
+    } else if (this[i] != array[i]) {
+      return false;
     }
   }
 
@@ -31,66 +30,83 @@ Array.prototype.equals = function (array) {
 }
 
 // converting map to object
-const map = new Map ([ ['foo', 'bar'], ['baz', 42] ]);
-const obj_map = Object.fromEntries (map);
-assert (Object.values (obj_map).equals (["bar", 42]));
-assert (Object.keys (obj_map).equals (["foo", 'baz']));
+const map = new Map([
+  ['foo', 'bar'],
+  ['baz', 42]
+]);
+const obj_map = Object.fromEntries(map);
+assert(Object.values(obj_map).equals(["bar", 42]));
+assert(Object.keys(obj_map).equals(["foo", 'baz']));
 
 // converting array to object
-const arr = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];
-const obj_arr = Object.fromEntries (arr);
-assert (Object.values (obj_arr).equals (["a", "b", "c"]));
-assert (Object.keys (obj_arr).equals (["0", '1', '2']));
+const arr = [
+  ['0', 'a'],
+  ['1', 'b'],
+  ['2', 'c']
+];
+const obj_arr = Object.fromEntries(arr);
+assert(Object.values(obj_arr).equals(["a", "b", "c"]));
+assert(Object.keys(obj_arr).equals(["0", '1', '2']));
 
 // transfrom object to other object
-const object1 = { a: 1, b: 2, c: 3 };
-const object2 = Object.fromEntries (
-  Object.entries (object1)
-  .map (([ key, val ]) => [ key, val * 2 ])
+const object1 = {
+  a: 1,
+  b: 2,
+  c: 3
+};
+const object2 = Object.fromEntries(
+  Object.entries(object1)
+  .map(([key, val]) => [key, val * 2])
 );
-assert (Object.keys (object2).equals (["a", "b", "c"]));
-assert (Object.values (object2).equals ([2, 4, 6]));
+assert(Object.keys(object2).equals(["a", "b", "c"]));
+assert(Object.values(object2).equals([2, 4, 6]));
 
 // map with undefined or null member
-const map2 = new Map ([ ['foo', undefined], ['baz', null] ]);
-const obj_map2 = Object.fromEntries (map2);
-assert (Object.values (obj_map2).equals ([undefined, null]));
-assert (Object.keys(obj_map2).equals (["foo", 'baz']))
+const map2 = new Map([
+  ['foo', undefined],
+  ['baz', null]
+]);
+const obj_map2 = Object.fromEntries(map2);
+assert(Object.values(obj_map2).equals([undefined, null]));
+assert(Object.keys(obj_map2).equals(["foo", 'baz']))
 
 // don't have a value
-const map3 = new Map ([ ['foo'], ['baz'] ]);
-const obj_map3 = Object.fromEntries (map3);
-assert (Object.values(obj_map3).equals ([undefined, undefined]));
-assert (Object.keys(obj_map3).equals (["foo", 'baz']));
+const map3 = new Map([
+  ['foo'],
+  ['baz']
+]);
+const obj_map3 = Object.fromEntries(map3);
+assert(Object.values(obj_map3).equals([undefined, undefined]));
+assert(Object.keys(obj_map3).equals(["foo", 'baz']));
 
 // empty map
-const map4 = new Map ([]);
-const obj_map4 = Object.fromEntries (map4);
-assert (Object.values(obj_map4).equals ([]));
-assert (Object.keys(obj_map4).equals ([]));
+const map4 = new Map([]);
+const obj_map4 = Object.fromEntries(map4);
+assert(Object.values(obj_map4).equals([]));
+assert(Object.keys(obj_map4).equals([]));
 
 // few invalid argument
-function check_iterator (iterator) {
+function check_iterator(iterator) {
   try {
-    Object.fromEntries (iterator);
-    assert (false);
+    Object.fromEntries(iterator);
+    assert(false);
   } catch (e) {
-    assert (e instanceof TypeError);
+    assert(e instanceof TypeError);
   }
 }
 
-check_iterator (null);
-check_iterator (undefined);
-check_iterator (5);
-check_iterator ()
+check_iterator(null);
+check_iterator(undefined);
+check_iterator(5);
+check_iterator()
 
 // closed iterator
 var returned = false;
 var closed_iterable = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     var advanced = false;
     return {
-      next: function () {
+      next: function() {
         if (advanced) {
           throw 42 // meaning of life;
         }
@@ -100,7 +116,7 @@ var closed_iterable = {
           value: 'ab',
         };
       },
-      return: function () {
+      return: function() {
         if (returned) {
           throw 42 // meaning of life;
         }
@@ -110,45 +126,45 @@ var closed_iterable = {
   },
 };
 
-check_iterator (closed_iterable)
-assert (returned);
+check_iterator(closed_iterable)
+assert(returned);
 
 var next_iterable = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     return {
-      next: function () {
+      next: function() {
         return null;
       },
-      return: function () {
+      return: function() {
         throw 42 // meaning of life;
       },
     };
   },
 };
 
-check_iterator (next_iterable)
+check_iterator(next_iterable)
 
 // uncallable next
 var next_iterable_2 = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     return {
       next: null,
-      return: function () {
+      return: function() {
         throw 42 // meaning of life;
       },
     };
   },
 };
 
-check_iterator (next_iterable_2)
+check_iterator(next_iterable_2)
 
 // get '0' error
 returned = false;
 var iterable_0 = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     var advanced = false;
     return {
-      next: function () {
+      next: function() {
         if (advanced) {
           throw 42 // meaning of life;
         }
@@ -156,16 +172,16 @@ var iterable_0 = {
         return {
           done: false,
           value: {
-            get '0' () {
-              throw new TypeError ();
+            get '0'() {
+              throw new TypeError();
             },
-            get '1' () {
+            get '1'() {
               return "value";
             },
           },
         };
       },
-      return: function () {
+      return: function() {
         if (returned) {
           throw 42 // meaning of life;
         }
@@ -175,16 +191,16 @@ var iterable_0 = {
   },
 };
 
-check_iterator (iterable_0)
-assert (returned);
+check_iterator(iterable_0)
+assert(returned);
 
 // error in toPropertyKey
 returned = false;
 var iterable = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     var advanced = false;
     return {
-      next: function () {
+      next: function() {
         if (advanced) {
           throw 42 // meaning of life;
         }
@@ -193,15 +209,17 @@ var iterable = {
           done: false,
           value: {
             0: {
-              get toString () { throw new TypeError }
+              get toString() {
+                throw new TypeError
+              }
             },
-            get '1' () {
+            get '1'() {
               return "value";
             },
           },
         };
       },
-      return: function () {
+      return: function() {
         if (returned) {
           throw 42 // meaning of life;
         }
@@ -211,16 +229,16 @@ var iterable = {
   },
 };
 
-check_iterator (iterable)
-assert (returned);
+check_iterator(iterable)
+assert(returned);
 
 // get '1' error
 returned = false;
 var iterable = {
-  [Symbol.iterator]: function () {
+  [Symbol.iterator]: function() {
     var advanced = false;
     return {
-      next: function () {
+      next: function() {
         if (advanced) {
           throw 42 // meaning of life;
         }
@@ -228,16 +246,16 @@ var iterable = {
         return {
           done: false,
           value: {
-            get '0' () {
+            get '0'() {
               return 'key';
             },
-            get '1' () {
+            get '1'() {
               throw new TypeError;
             },
           },
         };
       },
-      return: function () {
+      return: function() {
         if (returned) {
           throw 42 // meaning of life;
         }
@@ -247,21 +265,22 @@ var iterable = {
   },
 };
 
-check_iterator (iterable)
-assert (returned);
+check_iterator(iterable)
+assert(returned);
 
 // next value is error
 var iterable = {
-  [Symbol.iterator] () {
+  [Symbol.iterator]() {
     return {
-      next () {
+      next() {
         return {
-          get value () {
-            throw new TypeError }
+          get value() {
+            throw new TypeError
           }
         }
       }
     }
   }
+}
 
-check_iterator (iterable)
+check_iterator(iterable)
