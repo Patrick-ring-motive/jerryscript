@@ -15,7 +15,7 @@
 
 var counter = 0;
 
-function f() { }
+function f() {}
 
 f.then = function(resolve) {
   if (++counter < 10) {
