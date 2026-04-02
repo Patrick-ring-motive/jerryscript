@@ -18,8 +18,12 @@
 var found = [];
 
 var target = {
-  toString: function() { return "TARGET_toString"; },
-  toISOString: function() { return "TARGET_toISOString"; }
+  toString: function() {
+    return "TARGET_toString";
+  },
+  toISOString: function() {
+    return "TARGET_toISOString";
+  }
 };
 
 var prox = new Proxy(target, {
