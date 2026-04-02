@@ -12,20 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function check_syntax_error (code)
-{
+function check_syntax_error(code) {
   try {
-    eval (code);
-    assert (false);
+    eval(code);
+    assert(false);
   } catch (e) {
-    assert (e instanceof SyntaxError);
+    assert(e instanceof SyntaxError);
   }
 }
 
-check_syntax_error ("for await (a of b)");
-check_syntax_error ("async function f() { for await (a in b) ; }");
-check_syntax_error ("async function f() { for await ( ; ; ) ; }");
-check_syntax_error ("async function f() { for await (let a = 0; a < 4; a++) ; }");
+check_syntax_error("for await (a of b)");
+check_syntax_error("async function f() { for await (a in b) ; }");
+check_syntax_error("async function f() { for await ( ; ; ) ; }");
+check_syntax_error("async function f() { for await (let a = 0; a < 4; a++) ; }");
 
 var successCount = 0;
 
@@ -40,22 +39,35 @@ var asyncIter1 = {
     function next() {
       idx++;
       if (idx == 1) {
-        return { value:"Val", done: false }
+        return {
+          value: "Val",
+          done: false
+        }
       } else if (idx == 2) {
-        return { value:promise1, done: false }
+        return {
+          value: promise1,
+          done: false
+        }
       } else if (idx == 3) {
-        return { value:4.5, done: false }
+        return {
+          value: 4.5,
+          done: false
+        }
       }
-      return { value:promise1, done: true }
+      return {
+        value: promise1,
+        done: true
+      }
     }
 
     successCount++
-    return { next }
+    return {
+      next
+    }
   }
 }
 
-function checkAsyncIter1(v, idx)
-{
+function checkAsyncIter1(v, idx) {
   if (idx === 1) {
     assert(v === "Val")
   } else if (idx === 2) {
@@ -91,7 +103,7 @@ async function f1b() {
 
 f1b()
 
-async function *f1c() {
+async function* f1c() {
   var idx = 0;
   for await (var v of asyncIter1) {
     checkAsyncIter1(v, ++idx);
@@ -102,7 +114,7 @@ async function *f1c() {
 
 f1c().next()
 
-async function *f1d() {
+async function* f1d() {
   await promise1
 
   var idx = 0;
@@ -129,25 +141,38 @@ var asyncIter2 = {
       idx++;
       if (idx == 1) {
         assert(++state2 === 2)
-        return { value:"Str", done: false }
+        return {
+          value: "Str",
+          done: false
+        }
       } else if (idx == 2) {
         assert(++state2 === 4)
-        return { value:promise2, done: false }
+        return {
+          value: promise2,
+          done: false
+        }
       } else if (idx == 3) {
         assert(++state2 === 6)
-        return { value:-3.5, done: false }
+        return {
+          value: -3.5,
+          done: false
+        }
       }
       assert(++state2 === 8)
-      return { value:promise2, done: true }
+      return {
+        value: promise2,
+        done: true
+      }
     }
 
     successCount++
-    return { next }
+    return {
+      next
+    }
   }
 }
 
-function checkAsyncIter2(v, idx)
-{
+function checkAsyncIter2(v, idx) {
   if (idx === 1) {
     assert(v === "Str")
   } else if (idx === 2) {
@@ -159,7 +184,7 @@ function checkAsyncIter2(v, idx)
   }
 }
 
-async function *f2a() {
+async function* f2a() {
   var idx = 0;
   for await (var v of asyncIter2) {
     checkAsyncIter2(v, ++idx)
@@ -181,7 +206,7 @@ async function f2b() {
     }
 
     checkAsyncIter2(v.value, ++idx)
-    ++state2
+      ++state2
     assert(state2 === 3 || state2 === 5 || state2 === 7)
   }
 
@@ -193,26 +218,20 @@ f2b();
 // Test 3
 
 var o3 = {}
-async function* gen3()
-{
+async function* gen3() {
   yield o3
   yield "Res"
 }
 
-async function f3()
-{
+async function f3() {
   var idx = 0
 
-  for await (var v of gen3())
-  {
+  for await (var v of gen3()) {
     idx++
 
-    if (idx === 1)
-    {
+    if (idx === 1) {
       assert(v === o3)
-    }
-    else
-    {
+    } else {
       assert(idx === 2)
       assert(v === "Res")
     }
