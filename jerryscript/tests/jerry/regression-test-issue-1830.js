@@ -14,4 +14,4 @@
 
 /[\꧿]ౘ/
 
-var r = new RegExp ("[\꧿]ౘ");
+var r = new RegExp("[\꧿]ౘ");
