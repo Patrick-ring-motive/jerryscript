@@ -24,14 +24,12 @@ function bar(y) {
   finish(y + "-bar");
 }
 
-function foo(x)
-{
+function foo(x) {
   print("function foo");
   bar(x + "-foo");
 }
 
-function test()
-{
+function test() {
   print("function test");
   var x = "test";
   foo(x);
