@@ -14,7 +14,7 @@
  */
 
 function createIterable(arr, methods = {}) {
-  let iterable = function *() {
+  let iterable = function*() {
     let idx = 0;
     while (idx < arr.length) {
       yield arr[idx];
@@ -29,7 +29,13 @@ function createIterable(arr, methods = {}) {
 
 // iterator next
 Promise.allSettled({
-  [Symbol.iterator]() { return {get next() { throw 5; }}}
+  [Symbol.iterator]() {
+    return {
+      get next() {
+        throw 5;
+      }
+    }
+  }
 }).then(onfullfilled => {
   // If this is not called, the promise has failed, and catch must be called.
   assert(false);
@@ -39,7 +45,17 @@ Promise.allSettled({
 
 // iterator value
 Promise.allSettled({
-  [Symbol.iterator] () { return { next () { return { get value () { throw 5 }}}}}
+  [Symbol.iterator]() {
+    return {
+      next() {
+        return {
+          get value() {
+            throw 5
+          }
+        }
+      }
+    }
+  }
 }).then(onfullfilled => {
   // If this is not called, the promise has failed, and catch must be called.
   assert(false);
@@ -49,7 +65,17 @@ Promise.allSettled({
 
 // iterator done
 Promise.allSettled({
-  [Symbol.iterator] () { return { next () { return { get done () { throw 5 }}}}}
+  [Symbol.iterator]() {
+    return {
+      next() {
+        return {
+          get done() {
+            throw 5
+          }
+        }
+      }
+    }
+  }
 }).then(onfullfilled => {
   // If this is not called, the promise has failed, and catch must be called.
   assert(false);
@@ -59,7 +85,9 @@ Promise.allSettled({
 
 // iterator get
 Promise.allSettled({
-  get [Symbol.iterator] () { throw 5 }
+  get [Symbol.iterator]() {
+    throw 5
+  }
 }).then(onfullfilled => {
   // If this is not called, the promise has failed, and catch must be called.
   assert(false);
@@ -68,12 +96,20 @@ Promise.allSettled({
 });
 
 var fulfills = Promise.allSettled(createIterable([
-  new Promise(resolve => { resolve("foo"); }),
-  new Promise(resolve => { resolve("bar"); }),
+  new Promise(resolve => {
+    resolve("foo");
+  }),
+  new Promise(resolve => {
+    resolve("bar");
+  }),
 ]));
 var rejects = Promise.allSettled(createIterable([
-  new Promise((_, reject) => { reject("baz"); }),
-  new Promise((_, reject) => { reject("qux"); }),
+  new Promise((_, reject) => {
+    reject("baz");
+  }),
+  new Promise((_, reject) => {
+    reject("qux");
+  }),
 ]));
 
 fulfills.then(result => {
@@ -99,17 +135,27 @@ rejects.then(result => {
 
 var closed = true;
 delete Promise.resolve;
-Promise.allSettled(createIterable([1,2,3], {'return': function () { closed = false; }}));
-assert (!closed);
+Promise.allSettled(createIterable([1, 2, 3], {
+  'return': function() {
+    closed = false;
+  }
+}));
+assert(!closed);
 
 var arr = [];
-Object.defineProperty(arr, Symbol.species, { get: function () { assert(false) }});
+Object.defineProperty(arr, Symbol.species, {
+  get: function() {
+    assert(false)
+  }
+});
 Promise.allSettled(arr);
 
-Promise.resolve = function () {
-  return { then(resolve,reject) {
-    assert(resolve !== reject)
-  }};
+Promise.resolve = function() {
+  return {
+    then(resolve, reject) {
+      assert(resolve !== reject)
+    }
+  };
 }
 
-Promise.allSettled([1,2])
+Promise.allSettled([1, 2])
