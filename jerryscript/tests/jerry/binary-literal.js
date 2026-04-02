@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-function checkSyntaxError (str) {
+function checkSyntaxError(str) {
   try {
     eval(str);
     assert(false);
@@ -42,11 +42,11 @@ assert(0b111110111 === 503);
 assert(0b111101010101 === 3925);
 assert(0b00000000000001 === 1);
 assert(0b00000000000000 === 0);
-assert(0b1101001 === parseInt ("1101001", 2));
+assert(0b1101001 === parseInt("1101001", 2));
 
 assert(0B111 === 7);
 assert(0B111110111 === 503);
 assert(0B111101010101 === 3925);
 assert(0B00000000000001 === 1);
 assert(0B00000000000000 === 0);
-assert(0B1101001 === parseInt ("1101001", 2));
+assert(0B1101001 === parseInt("1101001", 2));
