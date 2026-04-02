@@ -54,7 +54,6 @@ check_syntax_error("class A { async *#bar(x) { } #bar }");
 check_syntax_error("class A { async #bar(x) { } #bar }");
 check_syntax_error("class A { *#bar(x) { } #bar }");
 
-
 class A {
   #a = 1;
   static #k = 12;
@@ -191,7 +190,7 @@ assert(var10.d() == 6);
 
 // Private field is defined without a getter
 class G {
-  set #a(o) { }
+  set #a(o) {}
   b() {
     return this.#a;
   }
@@ -227,9 +226,9 @@ try {
 
 // Private method is not writable
 class I {
-  #a() { }
+  #a() {}
   b() {
-    this.#a = function () { }
+    this.#a = function() {}
   }
 }
 
@@ -293,7 +292,9 @@ class N {
     return this.#a;
   }
   static b = class {
-    set #a(v) { this._v = v; }
+    set #a(v) {
+      this._v = v;
+    }
     static access(o) {
       o.#a = 2;
     }
