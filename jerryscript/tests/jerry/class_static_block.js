@@ -56,7 +56,7 @@ class Parent {
   static fieldP = 'fieldP'
 }
 
-class C1 extends Parent{
+class C1 extends Parent {
   static a = 0;
   static #privateField = 1;
 
@@ -87,7 +87,7 @@ class C1 extends Parent{
     }
 
     let a = 11
-    assert (this.a !== a)
+    assert(this.a !== a)
   }
 
 }
