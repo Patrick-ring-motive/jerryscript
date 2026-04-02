@@ -52,7 +52,9 @@ a = 0xffffffffn
 assert(++a === 0x100000000n)
 assert(a === 0x100000000n)
 
-a = { b:0xffffffffffffffffn }
+a = {
+  b: 0xffffffffffffffffn
+}
 assert(++a.b === 0x10000000000000000n)
 assert(a.b === 0x10000000000000000n)
 
@@ -60,16 +62,20 @@ a = 0xffffffffffffffffffffffffffffffffn
 assert(a++ === 0xffffffffffffffffffffffffffffffffn)
 assert(a === 0x100000000000000000000000000000000n)
 
-a = { b:0x100000000000000ffffffffffffffffffn }
+a = {
+  b: 0x100000000000000ffffffffffffffffffn
+}
 assert(a.b++ === 0x100000000000000ffffffffffffffffffn)
 assert(a.b === 0x100000000000001000000000000000000n)
 
 a = -0x10000000000000001n;
-for (var i = 0; i < 1; i++, a++) ;
+for (var i = 0; i < 1; i++, a++);
 assert(a === -0x10000000000000000n)
 
-a = { b:-0x100000000000001000000000000000000n }
-for (var i = 0; i < 1; i++, ++a.b) ;
+a = {
+  b: -0x100000000000001000000000000000000n
+}
+for (var i = 0; i < 1; i++, ++a.b);
 assert(a.b === -0x100000000000000ffffffffffffffffffn)
 
 // Decrease
@@ -94,7 +100,9 @@ a = -0xffffffffffffffffn
 assert(a-- === -0xffffffffffffffffn)
 assert(a === -0x10000000000000000n)
 
-a = { b:0x10000000000000000n }
+a = {
+  b: 0x10000000000000000n
+}
 assert(--a.b === 0xffffffffffffffffn)
 assert(a.b === 0xffffffffffffffffn)
 
@@ -102,14 +110,18 @@ a = 0x100000000000000000000000000000000n
 assert(a-- === 0x100000000000000000000000000000000n)
 assert(a === 0xffffffffffffffffffffffffffffffffn)
 
-a = { b:0x100000000000001000000000000000000n }
+a = {
+  b: 0x100000000000001000000000000000000n
+}
 assert(a.b-- === 0x100000000000001000000000000000000n)
 assert(a.b === 0x100000000000000ffffffffffffffffffn)
 
 a = 0x10000000000000001n;
-for (var i = 0; i < 1; i++, a--) ;
+for (var i = 0; i < 1; i++, a--);
 assert(a === 0x10000000000000000n)
 
-a = { b:-0x100000000000000ffffffffffffffffffn }
-for (var i = 0; i < 1; i++, --a.b) ;
+a = {
+  b: -0x100000000000000ffffffffffffffffffn
+}
+for (var i = 0; i < 1; i++, --a.b);
 assert(a.b === -0x100000000000001000000000000000000n)
