@@ -135,9 +135,8 @@ var tests = [
   'function a(prop){return prop}; var b = a(12); +b = 42',
   'function a(prop){return prop}; var b = a(12); -b = 42',
 ];
-  
-for (var i = 0; i < tests.length; i++)
-{
+
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
@@ -145,4 +144,3 @@ for (var i = 0; i < tests.length; i++)
     assert(e instanceof SyntaxError);
   }
 }
-  
