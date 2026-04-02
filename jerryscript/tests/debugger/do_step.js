@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function f1()
-{
-  function g()
-  {
+function f1() {
+  function g() {
     return 6;
   }
 
@@ -23,8 +21,7 @@ function f1()
   g();
 }
 
-function f2()
-{
+function f2() {
   f1();
   return 7;
 }
