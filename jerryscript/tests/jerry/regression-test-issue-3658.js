@@ -14,10 +14,9 @@
 
 function g({
   ["y"]: {
-      a
+    a
   }
-})
-{
+}) {
   {
     function a() {}
   }
