@@ -12,4 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export {a as b} from "./module-circular-06.mjs"
+export {
+  a as b
+}
+from "./module-circular-06.mjs"
