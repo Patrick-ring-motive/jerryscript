@@ -12,5 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {a} from "./module-circular-06.mjs"
+import {
+  a
+} from "./module-circular-06.mjs"
 assert(a === 6.5)
