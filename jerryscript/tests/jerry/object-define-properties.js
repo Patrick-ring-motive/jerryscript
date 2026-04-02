@@ -27,34 +27,34 @@ Object.defineProperties(obj, {
     writable: false
   },
   "inner_object": {
-    value : {
-      "a" : 1,
-      "b" : {
+    value: {
+      "a": 1,
+      "b": {
         value: "foo"
       }
     }
   }
 });
 
-assert (obj.foo === true);
-assert (obj.bar === "baz");
-assert (obj.Hello === "world");
-assert (obj.inner_object.a === 1);
-assert (obj.inner_object.b.value === "foo");
+assert(obj.foo === true);
+assert(obj.bar === "baz");
+assert(obj.Hello === "world");
+assert(obj.inner_object.a === 1);
+assert(obj.inner_object.b.value === "foo");
 
 // These cases should throw TypeError
 try {
   Object.defineProperties(obj, undefined);
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
   Object.defineProperties(obj, null);
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
@@ -64,17 +64,17 @@ try {
       writable: true
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 // Check for internal assert, see issue #131.
 try {
   Object.defineProperties([], undefined);
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 // If one of the properties is wrong than it shouldn't update the object.
@@ -96,13 +96,13 @@ try {
       writable: false
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
-  assert (obj2.foo === undefined);
-  assert (obj2.set === undefined);
-  assert (obj2.Hello === undefined);
-  assert (obj2.a === 5);
+  assert(e instanceof TypeError);
+  assert(obj2.foo === undefined);
+  assert(obj2.set === undefined);
+  assert(obj2.Hello === undefined);
+  assert(obj2.a === 5);
 }
 
 // Define accessors
@@ -113,14 +113,18 @@ Object.defineProperties(obj, {
     writable: true,
   },
   "bar": {
-    get: function() { return this.foo },
-    set: function(v) { this.foo = v }
+    get: function() {
+      return this.foo
+    },
+    set: function(v) {
+      this.foo = v
+    }
   }
 });
 
-assert (obj.bar === 42);
+assert(obj.bar === 42);
 obj.bar = "baz";
-assert (obj.foo === "baz");
+assert(obj.foo === "baz");
 
 // Define get method which throws error
 var obj = {};
@@ -131,7 +135,10 @@ var props = {
   },
   get bar() {
     throw new TypeError("foo");
-    return { value : 2, writable : true };
+    return {
+      value: 2,
+      writable: true
+    };
   },
   prop2: {
     value: 3,
@@ -145,10 +152,10 @@ var props = {
 
 try {
   Object.defineProperties(obj, props);
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
-  assert (e.message === "foo");
+  assert(e instanceof TypeError);
+  assert(e.message === "foo");
 }
 
 // Define get method which deletes a property
@@ -170,9 +177,9 @@ Object.defineProperties(obj, {
   }
 });
 
-assert (obj.a === "b");
-assert (obj.bar === 42);
-assert (obj.a === undefined);
+assert(obj.a === "b");
+assert(obj.bar === 42);
+assert(obj.a === undefined);
 
 var obj = {};
 var props = {
@@ -183,7 +190,10 @@ var props = {
   get bar() {
     delete props.prop1;
     delete props.prop2;
-    return { value : 2, writable : true };
+    return {
+      value: 2,
+      writable: true
+    };
   },
   prop2: {
     value: 3,
@@ -222,8 +232,8 @@ Object.defineProperties(object, {
   }
 });
 
-assert (object.foo === true);
-assert (object[symbol] === "a symbol");
+assert(object.foo === true);
+assert(object[symbol] === "a symbol");
 
 try {
   Object.defineProperties(undefined, {
@@ -232,9 +242,9 @@ try {
       writable: true
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 // If one of the properties is wrong than it shouldn't update the object.
@@ -252,12 +262,12 @@ try {
       set: 3
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
-  assert (obj2.foo === undefined);
-  assert (obj2[symbol] === undefined);
-  assert (obj2.a === 5);
+  assert(e instanceof TypeError);
+  assert(obj2.foo === undefined);
+  assert(obj2[symbol] === undefined);
+  assert(obj2.a === 5);
 }
 
 // Define accessors
@@ -268,14 +278,18 @@ Object.defineProperties(object, {
     writable: true,
   },
   [symbol]: {
-    get: function() { return this.foo },
-    set: function(v) { this.foo = v }
+    get: function() {
+      return this.foo
+    },
+    set: function(v) {
+      this.foo = v
+    }
   }
 });
 
-assert (object[symbol] === 42);
+assert(object[symbol] === 42);
 object[symbol] = "baz";
-assert (object[symbol] === "baz");
+assert(object[symbol] === "baz");
 
 // Define get method which throws error
 var object = {};
@@ -286,16 +300,19 @@ var props = {
   },
   get bar() {
     throw new TypeError("foo");
-    return { value : 2, writable : true };
+    return {
+      value: 2,
+      writable: true
+    };
   },
 };
 
 try {
   Object.defineProperties(object, props);
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
-  assert (e.message === "foo");
+  assert(e instanceof TypeError);
+  assert(e.message === "foo");
 }
 // Define get method which deletes a property
 var object = {};
@@ -316,9 +333,9 @@ Object.defineProperties(object, {
   }
 });
 
-assert (object[symbol] === "a symbol");
-assert (object.bar === 42);
-assert (object[symbol] === undefined);
+assert(object[symbol] === "a symbol");
+assert(object.bar === 42);
+assert(object[symbol] === undefined);
 
 var object = {};
 var props = {
@@ -329,7 +346,10 @@ var props = {
   get bar() {
     delete props[symbol];
     delete props.prop1;
-    return { value : 2, writable : true };
+    return {
+      value: 2,
+      writable: true
+    };
   },
   prop1: {
     value: 3,
