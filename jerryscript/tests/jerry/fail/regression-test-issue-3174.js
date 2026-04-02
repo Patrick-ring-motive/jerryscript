@@ -13,5 +13,6 @@
 // limitations under the License.
 
 if ($)
-    function $ ( ) { };
-else if ( b ) c
+
+function $() {};
+else if (b) c
