@@ -14,4 +14,6 @@
 
 "use strict"
 
-var a = { set a(arguments) {} };
+var a = {
+  set a(arguments) {}
+};
