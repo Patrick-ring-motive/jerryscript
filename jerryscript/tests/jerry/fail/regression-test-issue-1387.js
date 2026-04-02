@@ -13,4 +13,5 @@
 // limitations under the License.
 
 'use strict'
-function undefined () {}
+
+function undefined() {}
