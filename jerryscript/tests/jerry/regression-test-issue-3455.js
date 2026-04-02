@@ -19,7 +19,17 @@ try {
   assert(e instanceof TypeError);
 }
 
-var o = { a : { b : { c : { d: { e : { } } } } } };
+var o = {
+  a: {
+    b: {
+      c: {
+        d: {
+          e: {}
+        }
+      }
+    }
+  }
+};
 
 [...o.a.b.c.d.e] = "foo";
 
