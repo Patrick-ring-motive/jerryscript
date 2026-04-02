@@ -13,19 +13,19 @@
 // limitations under the License.
 
 try {
-  Reflect.construct (Boolean, true);
-  assert (false);
+  Reflect.construct(Boolean, true);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  Reflect.construct (Boolean, false);
-  assert (false);
+  Reflect.construct(Boolean, false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 class MyBoolean extends Boolean {};
-var b1= new MyBoolean();
+var b1 = new MyBoolean();
 assert(Object.getPrototypeOf(b1) == MyBoolean.prototype)
