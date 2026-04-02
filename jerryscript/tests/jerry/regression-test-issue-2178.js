@@ -20,6 +20,6 @@ assert(!!good.match(r) && !!bad.match(r));
 
 // Similar testcases.
 var regexPatternCharacters = ['^', '$', '\\', '.', '*', '+', '?', '(', ')', '[', ']', '{', '}'];
-regexPatternCharacters.forEach(function (str) {
+regexPatternCharacters.forEach(function(str) {
   assert(str.match(/[^>]/) == str);
 })
