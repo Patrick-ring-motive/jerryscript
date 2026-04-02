@@ -15,14 +15,15 @@
 
 /* This file checks core generator operations. */
 
-function check_result(result, value, done)
-{
+function check_result(result, value, done) {
   assert(result.value === value)
   assert(result.done === done)
 }
 
-function * gen1(a = (t = 8)) {
-  var o = { p: 2 }
+function* gen1(a = (t = 8)) {
+  var o = {
+    p: 2
+  }
   var x = 3.25
 
   assert((o.p + (yield 10)) === 23)
@@ -55,13 +56,16 @@ assert(t === 8)
 
 check_result(g.next(20), 10, false)
 
-function * gen2() {
-  for (i in { x:0, y:1, z:2 })
-  {
+function* gen2() {
+  for (i in {
+      x: 0,
+      y: 1,
+      z: 2
+    }) {
     let a = eval("'s'")
 
     var b = yield a + i
-    assert (b === ++t)
+    assert(b === ++t)
   }
 }
 
@@ -81,9 +85,9 @@ f = gen2()
 t = 0
 check_result(f.next(0), "sx", false)
 
-function *gen3() {
+function* gen3() {
   function f(yield) {
-    return -yield * 2
+    return -yield* 2
   }
 
   var g = (v) => {
@@ -110,18 +114,20 @@ f = gen3()
 check_result(f.next(0), -2, false)
 
 function
-      /* generator: */ *
-      /* name: */ gen4() {
+/* generator: */
+*
+/* name: */
+gen4() {
 
   let a = eval("5")
-  with ({a})
-  {
+  with({
+    a
+  }) {
     let a = eval("6")
 
-    for (let a = 10; a < 11; a++)
-    {
+    for (let a = 10; a < 11; a++) {
       let a = eval("7")
-      yield (a)
+      yield(a)
     }
 
     yield a, !assert(a === 6)
@@ -142,7 +148,7 @@ f = gen4()
 
 check_result(f.next(), 7, false)
 
-function*gen5(a,b,c,d) {
+function* gen5(a, b, c, d) {
   yield a
   yield b
   yield c
@@ -151,7 +157,7 @@ function*gen5(a,b,c,d) {
 
 /* Fully read values. */
 t = []
-for(let i of gen5(1,3,5,7)) {
+for (let i of gen5(1, 3, 5, 7)) {
   t.push(i)
 }
 
@@ -163,7 +169,7 @@ assert(t[3] === 7)
 
 /* Partly read values (gc needs to free a suspended generator). */
 t = []
-for(let i of gen5(1,3,5,7)) {
+for (let i of gen5(1, 3, 5, 7)) {
   t.push(i)
   if (i === 3) {
     break
@@ -175,7 +181,7 @@ assert(t[0] === 1)
 assert(t[1] === 3)
 
 /* Recursive generator call. */
-function* gen6(a,b,c,d) {
+function* gen6(a, b, c, d) {
   yield f.next()
 }
 
@@ -196,4 +202,3 @@ function* gen7() {
 f = gen7()
 check_result(f.next(), undefined, false)
 check_result(f.next(), undefined, true)
-
