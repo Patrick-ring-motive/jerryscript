@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { preventExtensions (target) {
-  throw 42;
-}};
+var handler = {
+  preventExtensions(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -52,7 +54,9 @@ assert(Object.isExtensible(proxy) === false);
 
 // test with "undefined" trap
 var target = {};
-var handler = { preventExtensions: null };
+var handler = {
+  preventExtensions: null
+};
 var proxy = new Proxy(target, handler);
 
 assert(Object.isExtensible(target) === true);
@@ -63,7 +67,9 @@ assert(Object.isExtensible(proxy) === false);
 
 // test with invalid trap
 var target = {};
-var handler = { preventExtensions: 42 };
+var handler = {
+  preventExtensions: 42
+};
 var proxy = new Proxy(target, handler);
 
 try {
@@ -74,7 +80,9 @@ try {
 }
 
 // test with valid trap
-var target = { foo: "bar" };
+var target = {
+  foo: "bar"
+};
 var handler = {
   preventExtensions(target) {
     target.foo = "foo"
