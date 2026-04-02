@@ -12,8 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Object.defineProperties(constructor, { $: Object })
-JSON.parse('{"a":1}', function (k) {
-  if (k) { $ *= $ }
+Object.defineProperties(constructor, {
+  $: Object
+})
+JSON.parse('{"a":1}', function(k) {
+  if (k) {
+    $ *= $
+  }
 })
 var $ = Object.freeze(RegExp($, 'g')).exec()
