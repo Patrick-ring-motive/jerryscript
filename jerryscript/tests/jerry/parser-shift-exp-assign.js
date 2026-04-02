@@ -181,8 +181,7 @@ var tests = [
   'var a = [1,2,3]; a[2] << !a[0] % /[A]/ - delete 12 = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
