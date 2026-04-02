@@ -18,7 +18,7 @@ var dateNaN = new Date(NaN);
 
 // Test with default hint
 var result = dateObj[Symbol.toPrimitive]("default");
-assert(result.toString().substring(0,15) === "Thu Apr 10 1997");
+assert(result.toString().substring(0, 15) === "Thu Apr 10 1997");
 result = dateNaN[Symbol.toPrimitive]("default");
 assert(dateNaN == "Invalid Date");
 
@@ -30,7 +30,7 @@ assert(isNaN(result) === true);
 
 // Test with string hint
 result = dateObj[Symbol.toPrimitive]("string");
-assert(result.toString().substring(0,15) === "Thu Apr 10 1997");
+assert(result.toString().substring(0, 15) === "Thu Apr 10 1997");
 result = dateNaN[Symbol.toPrimitive]("string");
 assert(result == "Invalid Date");
 
