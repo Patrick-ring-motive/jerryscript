@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-for (; []; [//])
-function f14(v33, v34) {
-switch (!0x13) {}
- }
+for (;
+  [];
+  [ //])
+    function f14(v33, v34) {
+      switch (!0x13) {}
+    }
