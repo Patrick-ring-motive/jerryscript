@@ -12,25 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getProperties(obj)
-{
+function getProperties(obj) {
   var str = "";
-  for (name in obj)
-  {
-    if (str)
-    {
+  for (name in obj) {
+    if (str) {
       str += " " + name;
-    }
-    else
-    {
+    } else {
       str = name;
     }
   }
   return str;
 }
 
-var prototype_obj = { dummy:1, length:1, caller:null,
-                      arguments:null, prototype:null };
+var prototype_obj = {
+  dummy: 1,
+  length: 1,
+  caller: null,
+  arguments: null,
+  prototype: null
+};
 
 var func = function() {};
 
