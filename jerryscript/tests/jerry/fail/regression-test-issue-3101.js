@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-for ( ; ; ( ) => 0) {
-    for ( ; $; $) ;
+for (;;
+  () => 0) {
+  for (; $; $);
 }
