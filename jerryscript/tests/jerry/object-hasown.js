@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var obj = { "foo": 5 };
+var obj = {
+  "foo": 5
+};
 
 assert(Object.hasOwn(obj, "foo") == true);
 assert(Object.hasOwn(obj, "bar") == false);
@@ -20,13 +22,17 @@ assert(Object.hasOwn(obj, "bar") == false);
 const handler1 = {};
 
 const handler2 = {
-    getOwnPropertyDescriptor(target, prop, receiver) {
-        return { configurable: true, enumerable: true, value: true };
-    }
+  getOwnPropertyDescriptor(target, prop, receiver) {
+    return {
+      configurable: true,
+      enumerable: true,
+      value: true
+    };
+  }
 };
 
 const handler3 = {
-    getOwnPropertyDescriptor(target, prop, receiver) { }
+  getOwnPropertyDescriptor(target, prop, receiver) {}
 };
 
 const proxy1 = new Proxy(obj, handler1);
@@ -43,14 +49,18 @@ assert(Object.hasOwn(proxy3, "foo") == false);
 assert(Object.hasOwn(proxy3, "bar") == false);
 
 try {
-    Object.hasOwn({}, { get toString() { throw "foo" } });
+  Object.hasOwn({}, {
+    get toString() {
+      throw "foo"
+    }
+  });
 } catch (e) {
-    assert(e === "foo");
+  assert(e === "foo");
 }
 
 try {
-    Object.hasOwn(undefined);
-    assert(false);
+  Object.hasOwn(undefined);
+  assert(false);
 } catch (e) {
-    assert(e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
