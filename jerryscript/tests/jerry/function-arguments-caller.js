@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function f_simple () {
-}
+function f_simple() {}
 
-function f_strict () {
+function f_strict() {
   "use strict";
 }
 
