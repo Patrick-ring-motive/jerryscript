@@ -40,7 +40,9 @@ proxy.foo = "bar";
 assert(monster.eyeCount === 1);
 assert(monster.foo === "foo");
 
-var target = { foo: "foo"};
+var target = {
+  foo: "foo"
+};
 var handler = {
   set: function(obj, prop, value) {
     obj[prop] = "";
@@ -51,7 +53,11 @@ var proxy = new Proxy(target, handler);
 proxy.foo = 12;
 assert(target.foo === "");
 
-var properties = ["bla", "0", 1, Symbol(), {[Symbol.toPrimitive]() {return "a"}}];
+var properties = ["bla", "0", 1, Symbol(), {
+  [Symbol.toPrimitive]() {
+    return "a"
+  }
+}];
 
 var target = {};
 var handler = {};
@@ -98,7 +104,7 @@ var handler = {
   }
 };
 
-var revocable = Proxy.revocable (target, {});
+var revocable = Proxy.revocable(target, {});
 var proxy = revocable.proxy;
 revocable.revoke();
 
@@ -111,7 +117,11 @@ try {
 
 // test when invariants gets violated
 var target = {};
-var handler = { set() {return 42} };
+var handler = {
+  set() {
+    return 42
+  }
+};
 var proxy = new Proxy(target, handler);
 
 Object.defineProperty(target, "key", {
