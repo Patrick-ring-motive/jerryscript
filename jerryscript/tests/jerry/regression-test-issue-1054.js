@@ -14,6 +14,6 @@
 
 try {
   new String(Number.MAX_VALUE)
-} catch(e) {
+} catch (e) {
   assert(false);
 }
