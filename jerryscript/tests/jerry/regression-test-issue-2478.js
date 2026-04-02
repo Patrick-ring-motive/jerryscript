@@ -14,7 +14,9 @@
  */
 function fn(x) {
   switch (x) {
-    case 1: { return }
+    case 1: {
+      return
+    }
   }
 }
 
