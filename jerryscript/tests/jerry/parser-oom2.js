@@ -24,16 +24,12 @@ str = "(function() { return " + str + "1 })";
 /* Eat memory. */
 var array = [];
 
-try
-{
-  for (var i = 0; i < 90; i++)
-  {
+try {
+  for (var i = 0; i < 90; i++) {
     array[i] = eval(str);
   }
-  assert (false);
-}
-catch (err)
-{
+  assert(false);
+} catch (err) {
   array = null;
-  assert (err === null);
+  assert(err === null);
 }
