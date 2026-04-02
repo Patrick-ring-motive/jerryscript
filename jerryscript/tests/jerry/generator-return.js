@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-function check_result(result, value, done)
-{
+function check_result(result, value, done) {
   assert(result.value === value)
   assert(result.done === done)
 }
 
-function * gen1(a) {
+function* gen1(a) {
   return "a: " + (yield a.p)
 }
 
@@ -27,20 +26,26 @@ var f = gen1({})
 check_result(f.return(4), 4, true)
 check_result(f.next(), undefined, true)
 
-f = gen1({ p:"x" })
+f = gen1({
+  p: "x"
+})
 check_result(f.next(), "x", false)
 check_result(f.return(10), 10, true)
 check_result(f.next(), undefined, true)
 
-f = gen1({ p:"b" })
+f = gen1({
+  p: "b"
+})
 check_result(f.next(), "b", false)
 check_result(f.next(), "a: undefined", true)
 check_result(f.next(), undefined, true)
 
-function*gen2() {
+function* gen2() {
   try {
-    for (let i in { x:1, y:2 })
-    {
+    for (let i in {
+        x: 1,
+        y: 2
+      }) {
       assert((yield i) === "33")
     }
     assert(false)
