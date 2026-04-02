@@ -14,8 +14,7 @@
 
 var successCount = 0
 
-function check_fulfilled(p, value, done)
-{
+function check_fulfilled(p, value, done) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -27,8 +26,7 @@ function check_fulfilled(p, value, done)
   })
 }
 
-function check_rejected(p, value)
-{
+function check_rejected(p, value) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -47,9 +45,12 @@ var async1 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:0, done:false }
+        return {
+          value: 0,
+          done: false
+        }
       },
-      throw(v) {
+      throw (v) {
         assert(v === "Except")
         /* Failed result result. */
         throw o1
@@ -58,11 +59,11 @@ var async1 = {
   }
 }
 
-async function *f1() {
+async function* f1() {
   successCount++
   try {
     try {
-      yield *async1
+      yield* async1
       assert(false)
     } finally {
       successCount++
@@ -88,21 +89,27 @@ var async2 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:1, done:false }
+        return {
+          value: 1,
+          done: false
+        }
       },
-      throw(v) {
+      throw (v) {
         assert(v === o2)
         /* Successful result. */
-        return { value:o2, done:false }
+        return {
+          value: o2,
+          done: false
+        }
       }
     }
   }
 }
 
-async function *f2() {
+async function* f2() {
   successCount++
   try {
-    yield *async2
+    yield* async2
   } finally {
     /* Never completes. */
     assert(false)
@@ -121,20 +128,26 @@ var async3 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:2, done:false }
+        return {
+          value: 2,
+          done: false
+        }
       },
-      throw(v) {
+      throw (v) {
         assert(v === -2.5)
         /* Successful result. */
-        return { value:o3, done:true }
+        return {
+          value: o3,
+          done: true
+        }
       }
     }
   }
 }
 
-async function *f3() {
+async function* f3() {
   successCount++
-  assert((yield *async3) === o3)
+  assert((yield* async3) === o3)
   successCount++
   return -4.25
 }
@@ -150,16 +163,19 @@ var async4 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:3, done:false }
+        return {
+          value: 3,
+          done: false
+        }
       }
     }
   }
 }
 
-async function *f4() {
+async function* f4() {
   successCount++
   try {
-    yield *async4
+    yield* async4
     assert(false)
   } catch (e) {
     assert(e instanceof TypeError)
@@ -178,9 +194,12 @@ var async5 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:4, done:false }
+        return {
+          value: 4,
+          done: false
+        }
       },
-      return(v) {
+      return (v) {
         assert(v === undefined)
         throw "Close!"
       }
@@ -188,10 +207,10 @@ var async5 = {
   }
 }
 
-async function *f5() {
+async function* f5() {
   successCount++
   try {
-    yield *async5
+    yield* async5
     assert(false)
   } catch (e) {
     assert(e === "Close!")
@@ -211,16 +230,19 @@ var async6 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:5, done:false }
+        return {
+          value: 5,
+          done: false
+        }
       }
     }
   }
 }
 
-async function *f6() {
+async function* f6() {
   successCount++
   try {
-    yield *async6
+    yield* async6
     assert(false)
   } finally {
     successCount++
@@ -240,21 +262,27 @@ var async7 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:6, done:false }
+        return {
+          value: 6,
+          done: false
+        }
       },
-      return(v) {
+      return (v) {
         assert(v === arr)
         /* Successful result. */
-        return { value:o7, done:false }
+        return {
+          value: o7,
+          done: false
+        }
       }
     }
   }
 }
 
-async function *f7() {
+async function* f7() {
   successCount++
   try {
-    yield *async7
+    yield* async7
   } finally {
     /* Never completes. */
     assert(false)
@@ -273,21 +301,27 @@ var async8 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:7, done:false }
+        return {
+          value: 7,
+          done: false
+        }
       },
-      return(v) {
+      return (v) {
         assert(v === 6.75)
         /* Successful result. */
-        return { value:o8, done:true }
+        return {
+          value: o8,
+          done: true
+        }
       }
     }
   }
 }
 
-async function *f8() {
+async function* f8() {
   successCount++
   try {
-    yield *async8
+    yield* async8
   } finally {
     successCount++
   }
@@ -307,9 +341,12 @@ var async9 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:8, done:false }
+        return {
+          value: 8,
+          done: false
+        }
       },
-      throw(v) {
+      throw (v) {
         assert(v === "reject")
         throw "End"
       },
@@ -320,10 +357,10 @@ var async9 = {
   }
 }
 
-async function *f9() {
+async function* f9() {
   successCount++
   try {
-    yield *async9
+    yield* async9
   } catch (e) {
     successCount++
     assert(e === "End")
@@ -345,7 +382,10 @@ var async10 = {
     return {
       next(v) {
         assert(v === undefined)
-        return { value:9, done:false }
+        return {
+          value: 9,
+          done: false
+        }
       },
       get return() {
         successCount++
@@ -359,10 +399,10 @@ var async10 = {
   }
 }
 
-async function *f10() {
+async function* f10() {
   successCount++
   try {
-    yield *async10
+    yield* async10
   } catch (e) {
     successCount++
     assert(e instanceof TypeError)
