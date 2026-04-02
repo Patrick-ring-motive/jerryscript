@@ -14,4 +14,6 @@
  */
 
 let a;
-import { a } from "../module-export-fail-test.mjs";
+import {
+  a
+} from "../module-export-fail-test.mjs";
