@@ -47,14 +47,15 @@ assert(array5[0][1] === 1);
 assert(array5[2] === 3);
 
 // Test with array holes
-var array6 = Array.of.apply(null, [,,undefined]);
+var array6 = Array.of.apply(null, [, , undefined]);
 assert(array6.length === 3);
 assert(array6[0] === undefined);
 
 // Test with another class
 var hits = 0;
+
 function Test() {
-    hits++;
+  hits++;
 }
 Test.of = Array.of;
 
