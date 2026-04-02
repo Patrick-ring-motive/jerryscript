@@ -25,16 +25,16 @@ var tcs = [
 
 for (let e of tcs) {
   try {
-    eval (e);
-    assert (false);
+    eval(e);
+    assert(false);
   } catch (e) {
-    assert (e instanceof SyntaxError);
+    assert(e instanceof SyntaxError);
   }
 
   try {
-    eval (e + " {}");
-    assert (false);
+    eval(e + " {}");
+    assert(false);
   } catch (e) {
-    assert (e instanceof ReferenceError);
+    assert(e instanceof ReferenceError);
   }
 }
