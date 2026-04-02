@@ -29,9 +29,11 @@ assert(Array.isArray('Array') === false);
 assert(Array.isArray(true) === false);
 assert(Array.isArray(false) === false);
 assert(Array.isArray(new Uint8Array(32)) === false);
-assert(Array.isArray({ __proto__: Array.prototype }) === false);
+assert(Array.isArray({
+  __proto__: Array.prototype
+}) === false);
 
-var revocable = Proxy.revocable ({}, {});
+var revocable = Proxy.revocable({}, {});
 var proxy = revocable.proxy;
 revocable.revoke();
 
@@ -42,7 +44,7 @@ try {
   assert(e instanceof TypeError);
 }
 
-var revocable = Proxy.revocable ([], {});
+var revocable = Proxy.revocable([], {});
 var proxy = revocable.proxy;
 
 assert(Array.isArray(proxy) === true);
