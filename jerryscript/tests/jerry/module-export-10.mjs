@@ -14,18 +14,20 @@
  */
 
 /* Export the same namespace using two names */
-export
-  * as ns1 from
+export *
+as ns1 from
   "./module-export-04.mjs"
 export * as
-  ns2
-  from "./module-export-04.mjs"
+ns2
+from "./module-export-04.mjs"
 export *
-  as ns3 from "./module-export-04.mjs"
+as ns3 from "./module-export-04.mjs"
 
 /* Local bindings can have the same names as exports. */
-import ns1, {x as ns2}
-  from "./module-export-04.mjs"
+import ns1, {
+  x as ns2
+}
+from "./module-export-04.mjs"
 let ns3 = 9.5
 
 assert(ns1 === "str")
