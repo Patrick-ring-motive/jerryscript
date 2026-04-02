@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function check_property(obj, name, value)
-{
+function check_property(obj, name, value) {
   property = Object.getOwnPropertyDescriptor(obj, name)
   assert(typeof property === "object")
   assert(property.value === value)
@@ -30,17 +29,17 @@ function f1() {
 
 class C1 {
   static
-    v\u0061r
+  v\u0061r
   static Prop =
-    res
-    =
+    res =
     "msg"
   static
-    Prop
+  Prop
     =
     f1()
-  static [name + "p"] = (f1(), o)
-  static 22 = 3 * 4  ;static 23 = 5 + 6
+  static[name + "p"] = (f1(), o)
+  static 22 = 3 * 4;
+  static 23 = 5 + 6
   static 'a b'
 }
 
@@ -55,11 +54,12 @@ assert(counter === 2)
 counter = 0
 class C2 {
   static a = (assert(++counter === 6), "x")
-  static [(assert(++counter === 1), "b")]
-  static [(assert(++counter === 2), "f")]() {}
-  static [(assert(++counter === 3), "c")] = (assert(++counter === 7), this);
+  static[(assert(++counter === 1), "b")]
+  static[(assert(++counter === 2), "f")]() {}
+  static[(assert(++counter === 3), "c")] = (assert(++counter === 7), this);
   [(assert(++counter === 4), "a")]
-  static [(assert(++counter === 5), "d")];static e = (assert(++counter === 8), C2)
+  static[(assert(++counter === 5), "d")];
+  static e = (assert(++counter === 8), C2)
 }
 
 assert(counter === 8)
