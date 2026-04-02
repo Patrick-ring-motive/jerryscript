@@ -37,19 +37,20 @@ assert(c == 21);
 c = a--;
 assert(c == 22);
 
-var o = { p : 1 };
+var o = {
+  p: 1
+};
 
-assert (++o.p === 2);
-assert (o.p === 2);
-assert (--o.p === 1);
-assert (o.p === 1);
+assert(++o.p === 2);
+assert(o.p === 2);
+assert(--o.p === 1);
+assert(o.p === 1);
 
 try {
-  eval ('++ ++ a');
-  assert (false);
-}
-catch (e) {
-  assert (e instanceof SyntaxError);
+  eval('++ ++ a');
+  assert(false);
+} catch (e) {
+  assert(e instanceof SyntaxError);
 }
 
-assert (0.1 + 0.2 != 0.3);
+assert(0.1 + 0.2 != 0.3);
