@@ -14,4 +14,6 @@
 
 "use strict"
 
-var a = { set a(eval) {} };
+var a = {
+  set a(eval) {}
+};
