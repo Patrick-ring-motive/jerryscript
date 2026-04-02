@@ -13,8 +13,13 @@
 // limitations under the License.
 
 switch ($) {
-  case $: class $ {;}
-  case $$: class $$ {; ; ; ; ;;;; ;}
+  case $:
+    class $ {
+      ;
+    }
+  case $$:
+    class $$ {
+      ;;;;;;;;;
+    }
   case 6:
 }
-
