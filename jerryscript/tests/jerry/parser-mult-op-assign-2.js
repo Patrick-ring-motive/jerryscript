@@ -113,8 +113,7 @@ var tests = [
   'var a = [1]; var b = {"foo" : function(){}}; ++a[0] / void b.foo() = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
@@ -122,4 +121,3 @@ for (var i = 0; i < tests.length; i++)
     assert(e instanceof SyntaxError);
   }
 }
-    
