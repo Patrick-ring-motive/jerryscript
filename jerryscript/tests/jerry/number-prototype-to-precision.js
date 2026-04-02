@@ -47,19 +47,18 @@ assert(Number(1499).toPrecision(1) === "1e+3");
 assert(Number(1500).toPrecision(1) === "2e+3");
 
 try {
-    (12).toPrecision(0);
-    assert(false);
+  (12).toPrecision(0);
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError)
+  assert(e instanceof RangeError)
 }
 
 try {
-    Number.prototype.toExponential.call(new Object());
-    assert(false);
+  Number.prototype.toExponential.call(new Object());
+  assert(false);
 } catch (e) {
-    assert(e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
-
 
 assert((+Infinity).toPrecision(1000) === "Infinity");
 var n = new Number(+Infinity);
@@ -70,13 +69,13 @@ var n = new Number(-Infinity);
 assert(n.toPrecision(1000) === "-Infinity");
 
 assert(NaN.toPrecision(undefined) === "NaN");
-  
+
 var calls = 0;
 
 var p = {
   valueOf: function() {
     calls++;
-	return Infinity;
+    return Infinity;
   }
 };
 
