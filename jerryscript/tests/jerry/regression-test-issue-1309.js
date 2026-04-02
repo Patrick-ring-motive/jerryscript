@@ -15,7 +15,7 @@
 var errorMessage = "toStringThrows"
 
 var toStringThrows = {
-  toString : function() {
+  toString: function() {
     throw new Error(errorMessage);
   }
 }
@@ -27,4 +27,3 @@ try {
 } catch (e) {
   assert(e.message == errorMessage);
 }
-
