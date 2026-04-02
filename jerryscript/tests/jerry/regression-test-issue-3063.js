@@ -18,5 +18,5 @@ try {
   str.repeat([1073741823]);
   assert(false);
 } catch (e) {
-  assert (e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
