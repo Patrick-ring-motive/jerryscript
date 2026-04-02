@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-with ({}) {
-  a = function (b)
-  {
+with({}) {
+  a = function(b) {
     var init;
     init();
   }
