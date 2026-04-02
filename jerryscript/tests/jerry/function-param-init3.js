@@ -13,8 +13,10 @@
 // limitations under the License.
 
 var d = 1
-function f(a = function () { return d })
-{
+
+function f(a = function() {
+  return d
+}) {
   var d = 2
   assert(d === 2)
   assert(a() === 1)
@@ -28,23 +30,27 @@ var g = (a = () => d) => {
 }
 g()
 
-var h = ([{a}] = [{a: function () { return d }}]) => {
+var h = ([{
+  a
+}] = [{
+  a: function() {
+    return d
+  }
+}]) => {
   var d = 2
   assert(d === 2)
   assert(a() === 1)
 }
 h()
 
-function i(a = ((eval))("(function () { return d })"))
-{
+function i(a = ((eval))("(function () { return d })")) {
   var d = 2
   assert(d === 2)
   assert(a() === 1)
 }
 i()
 
-function j(a = (([1, ((() => d))])[1]))
-{
+function j(a = (([1, ((() => d))])[1])) {
   var d = 2
   assert(d === 2)
   assert(a() === 1)
@@ -52,14 +58,13 @@ function j(a = (([1, ((() => d))])[1]))
 j()
 
 var m = 0
-function l(a)
-{
+
+function l(a) {
   m = a
   return m
 }
 
-function k(a = l(() => d))
-{
+function k(a = l(() => d)) {
   var d = 2
   assert(d === 2)
   assert(a() === 1)
