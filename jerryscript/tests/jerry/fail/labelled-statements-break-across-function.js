@@ -12,15 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-a: for (var i = 0; i < 10; i++)
-{
-  function f ()
-  {
-    for (var j = 0; n < 10; j++)
-    {
+a: for (var i = 0; i < 10; i++) {
+  function f() {
+    for (var j = 0; n < 10; j++) {
       break a;
     }
   }
 
-  f ();
+  f();
 }
