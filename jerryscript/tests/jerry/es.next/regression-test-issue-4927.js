@@ -12,9 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-class C1 { async }
-class C2 { async; constructor() {} }
-class C3 { async = 5.1; constructor() {} }
+class C1 {
+  async
+}
+class C2 {
+  async;
+  constructor() {}
+}
+class C3 {
+  async = 5.1;
+  constructor() {}
+}
 
 assert((new C1).async === undefined);
 assert((new C2).async === undefined);
@@ -26,4 +34,3 @@ try {
 } catch (e) {
   assert(e instanceof SyntaxError);
 }
-
