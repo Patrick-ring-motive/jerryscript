@@ -14,4 +14,6 @@
  */
 
 /* A string literal must always follow the 'from' keyword. */
-import { b } from 3
+import {
+  b
+} from 3
