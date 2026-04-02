@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { getPrototypeOf (target) {
-  throw 42;
-}};
+var handler = {
+  getPrototypeOf(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -39,10 +41,12 @@ try {
   assert(e === 42);
 }
 
-(function () {
+(function() {
   class e extends Array {};
-  function f () {};
-  function g () {};
+
+  function f() {};
+
+  function g() {};
 
   Object.setPrototypeOf(g, proxy);
 
@@ -105,14 +109,18 @@ assert(Object.getPrototypeOf(proxy) === Object.prototype);
 
 // test with "undefined" trap
 var target = {};
-var handler = { getPrototypeOf: null };
+var handler = {
+  getPrototypeOf: null
+};
 var proxy = new Proxy(target, handler);
 
 assert(Object.getPrototypeOf(proxy) === Object.prototype);
 
 // test with invalid trap
 var target = {};
-var handler = { getPrototypeOf: 42 };
+var handler = {
+  getPrototypeOf: 42
+};
 var proxy = new Proxy(target, handler);
 
 try {
@@ -129,7 +137,7 @@ var proxy = new Proxy(target, handler);
 
 var target_prototype = {};
 handler.getPrototypeOf = function() {
-  return target_prototype ;
+  return target_prototype;
 }
 
 var proxy2 = new Proxy(proxy, handler);
