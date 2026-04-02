@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-var func = function () {
+var func = function() {
   foo.prototype = new Array(1, 2, 3);
+
   function foo() {}
   var f = new foo();
   f.length = f;
