@@ -14,31 +14,34 @@
 
 var cars = ["Saab", "Volvo", "BMW"];
 
-assert (cars[0] === "Saab");
-assert (cars[1] === "Volvo");
-assert (cars[2] === "BMW");
+assert(cars[0] === "Saab");
+assert(cars[1] === "Volvo");
+assert(cars[2] === "BMW");
 
 var cars1 = new Array("Saab", "Volvo", "BMW");
-assert (cars[0] === cars1[0]);
-assert (cars[1] === cars1[1]);
-assert (cars[2] === cars1[2]);
+assert(cars[0] === cars1[0]);
+assert(cars[1] === cars1[1]);
+assert(cars[2] === cars1[2]);
 
 var a = new Array();
-assert (typeof (a) === "object");
-assert (Array.isArray (a));
-assert (Array.isArray ([1, 2, 3]));
+assert(typeof(a) === "object");
+assert(Array.isArray(a));
+assert(Array.isArray([1, 2, 3]));
 
-var b = new Array (30000);
+var b = new Array(30000);
 assert(b.length === 30000);
-assert (b[20000] === undefined);
+assert(b[20000] === undefined);
 b[20000] = 1;
-assert (b[20000] === 1);
+assert(b[20000] === 1);
 b[20000] = 10;
-assert (b[20000] === 10);
+assert(b[20000] === 10);
 
 assert(b.length === 30000);
 assert(b[10000] === undefined);
-Object.defineProperty (b, '10000', {value : 25, writable : false});
+Object.defineProperty(b, '10000', {
+  value: 25,
+  writable: false
+});
 assert(b[10000] === 25);
 b[10000] = 30;
 assert(b[10000] === 25);
@@ -51,12 +54,16 @@ assert(b.length === 50001);
 assert(b[50000] === 5);
 b[50000] = 10;
 assert(b[50000] === 10);
-Object.defineProperty (b, '50000', {writable : false});
+Object.defineProperty(b, '50000', {
+  writable: false
+});
 assert(b[50000] === 10);
 b[50000] = 20;
 assert(b[50000] === 10);
 
-Object.defineProperty (b, '50000', {writable : true});
+Object.defineProperty(b, '50000', {
+  writable: true
+});
 assert(b[50000] === 10);
 b[50000] = 30;
 assert(b[50000] === 30);
@@ -72,15 +79,15 @@ Array.prototype[0] = 'string value';
 assert(Array.prototype.length === 1);
 assert(Array.prototype[0] === 'string value');
 
-var c = [0,,,'3'];
-assert (c[0] === 0);
-assert (c[1] === undefined);
-assert (c[2] === undefined);
-assert (c[3] === '3');
+var c = [0, , , '3'];
+assert(c[0] === 0);
+assert(c[1] === undefined);
+assert(c[2] === undefined);
+assert(c[3] === '3');
 
 b[0] = 1;
 c[0] += b[0];
-assert (c[0] == 1);
+assert(c[0] == 1);
 
 var arr = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
@@ -146,25 +153,28 @@ var arr = [
   961, 962, 963, 964, 965, 966, 967, 968, 969, 970, 971, 972, 973, 974, 975, 976,
   977, 978, 979, 980, 981, 982, 983, 984, 985, 986, 987, 988, 989, 990, 991, 992,
   993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008,
-  1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024 ];
+  1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024
+];
 
-for (i = 0; i < 1024; i++)
-{
-  assert (arr[i] === i + 1);
+for (i = 0; i < 1024; i++) {
+  assert(arr[i] === i + 1);
 }
 
-var elision = [0,,2 ,3];
-assert (elision.hasOwnProperty(1) == false);
+var elision = [0, , 2, 3];
+assert(elision.hasOwnProperty(1) == false);
 
-(function () {
+(function() {
   "use strict";
   var arr = [1];
-  Object.defineProperty (arr, "length", {value: 1, writable: false});
+  Object.defineProperty(arr, "length", {
+    value: 1,
+    writable: false
+  });
 
   try {
     arr[2] = 5;
-    assert (false);
+    assert(false);
   } catch (e) {
-    assert (e instanceof TypeError);
+    assert(e instanceof TypeError);
   }
-}) ();
+})();
