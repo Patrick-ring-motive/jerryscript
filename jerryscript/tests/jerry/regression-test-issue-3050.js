@@ -16,7 +16,8 @@ var counter = 0;
 var expected = [0];
 
 var b = [$];
-function dConstr () { }
+
+function dConstr() {}
 dConstr.prototype = b;
 var d = new dConstr()
 for (var $ in d) {
