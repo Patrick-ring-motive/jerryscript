@@ -12,5 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export default function f() { return 1.5 }
-export function g(v) { f = v; return "X" }
+export default function f() {
+  return 1.5
+}
+export function g(v) {
+  f = v;
+  return "X"
+}
