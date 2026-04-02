@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-label_0: 
-    if (false)
-        do  {
-            continue label_0;
-        } while (false);
+label_0:
+  if (false)
+    do {
+      continue label_0;
+    } while (false);
