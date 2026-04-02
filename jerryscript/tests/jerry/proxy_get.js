@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { get (target) {
-  throw 42;
-}};
+var handler = {
+  get(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -53,20 +55,28 @@ var target = {
   prop: "value"
 };
 
-var handler = {handler: 1};
+var handler = {
+  handler: 1
+};
 var proxy = new Proxy(target, handler);
 
 assert(proxy.prop === "value");
 assert(proxy.nothing === undefined);
 assert(proxy.handler === undefined);
 
-handler.get = function () {return "value 2"};
+handler.get = function() {
+  return "value 2"
+};
 
 assert(proxy.prop === "value 2");
 assert(proxy.nothing === "value 2");
 assert(proxy.handler === "value 2");
 
-var handler2 = new Proxy({get: function() {return "value 3"}}, {});
+var handler2 = new Proxy({
+  get: function() {
+    return "value 3"
+  }
+}, {});
 var proxy2 = new Proxy(target, handler2);
 
 assert(proxy2.prop === "value 3");
@@ -74,14 +84,23 @@ assert(proxy2.nothing === "value 3");
 assert(proxy2.handler === "value 3");
 
 var get = [];
-var p = new Proxy([0,,2,,4,,], { get: function(o, k) { get.push(k); return o[k]; }});
+var p = new Proxy([0, , 2, , 4, , ], {
+  get: function(o, k) {
+    get.push(k);
+    return o[k];
+  }
+});
 Array.prototype.reverse.call(p);
 
 assert(get + '' === "length,0,4,2");
 
 // test when get throws an error
-var handler = new Proxy({}, {get: function() {throw 42;}});
-var proxy = new Proxy ({}, handler);
+var handler = new Proxy({}, {
+  get: function() {
+    throw 42;
+  }
+});
+var proxy = new Proxy({}, handler);
 
 try {
   proxy.prop;
@@ -91,15 +110,25 @@ try {
 }
 
 // test when trap is undefined
-var handler = new Proxy({}, {get: function() {return undefined}});
-var target = {prop: "value"};
+var handler = new Proxy({}, {
+  get: function() {
+    return undefined
+  }
+});
+var target = {
+  prop: "value"
+};
 var proxy = new Proxy(target, handler);
 assert(proxy.prop === "value");
 assert(proxy.prop2 === undefined);
 
 // test when invariants gets violated
 var target = {};
-var handler = {get: function(r, p){if (p != "key4") return "value"}}
+var handler = {
+  get: function(r, p) {
+    if (p != "key4") return "value"
+  }
+}
 var proxy = new Proxy(target, handler);
 
 assert(proxy.key === "value");
@@ -122,7 +151,9 @@ try {
 
 Object.defineProperty(target, "key2", {
   configurable: false,
-  get: function() {return "different value"}
+  get: function() {
+    return "different value"
+  }
 });
 
 assert(proxy.key2 === "value");
