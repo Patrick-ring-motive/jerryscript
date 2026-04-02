@@ -13,7 +13,7 @@
 // limitations under the License.
 
 function i($, b = (eval("var x"))) {
-    function x() {}
-    eval()
+  function x() {}
+  eval()
 }
 i()
