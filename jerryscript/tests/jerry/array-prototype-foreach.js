@@ -23,7 +23,11 @@ array.forEach(f);
 
 // Checking behavior when unable to get length
 var obj = {};
-Object.defineProperty(obj, 'length', { 'get' : function () {throw new ReferenceError ("foo"); } });
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 obj.forEach = Array.prototype.forEach;
 
 try {
@@ -37,7 +41,11 @@ try {
 // Checking behavior when unable to get element
 var obj = {}
 obj.length = 1;
-Object.defineProperty(obj, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 obj.forEach = Array.prototype.forEach
 
 try {
