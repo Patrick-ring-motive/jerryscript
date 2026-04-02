@@ -64,6 +64,7 @@ function Parent() {}
 Parent.prototype.inheritedMethod = function() {};
 
 function method() {};
+
 function Child() {
   this.prop = 5;
   this.method = method;
@@ -72,7 +73,7 @@ function Child() {
 Child.prototype = new Parent;
 Child.prototype.prototypeMethod = function() {};
 
-var entries = Object.entries (new Child());
+var entries = Object.entries(new Child());
 assert(entries.length === 2);
 assert(entries[0][0] === "prop");
 assert(entries[0][1] === 5);
@@ -135,8 +136,12 @@ assert(handlers.toString() === "D,D,G");
 
 // exception during enumeration
 var obj = {
-  get a() { throw "error" },
-  get b() { throw "shouldn't run" }
+  get a() {
+    throw "error"
+  },
+  get b() {
+    throw "shouldn't run"
+  }
 };
 
 try {
