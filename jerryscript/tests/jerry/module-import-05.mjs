@@ -15,22 +15,22 @@
 
 import * as f from "./module-export-08.mjs";
 
-assert (f.c === 5)
-assert (f.x === 41)
-assert (Object.getPrototypeOf(f) === null)
+assert(f.c === 5)
+assert(f.x === 41)
+assert(Object.getPrototypeOf(f) === null)
 
 try {
   Object.hasOwnProperty(f, "default")
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
 
 Object.setPrototypeOf(f, null)
 
 try {
   Object.setPrototypeOf(f, {})
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
