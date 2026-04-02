@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function checkOwnProperties(obj, propList)
-{
+function checkOwnProperties(obj, propList) {
   names = Object.getOwnPropertyNames(obj)
   assert(names.length === propList.length)
 
-  for (var i = 0; i < propList.length; ++i)
-  {
+  for (var i = 0; i < propList.length; ++i) {
     assert(names[i] === propList[i])
 
     var descriptor = Object.getOwnPropertyDescriptor(obj, names[i])
@@ -39,14 +37,13 @@ function checkOwnProperties(obj, propList)
 
 var o = {
   get a() {},
-  b:6,
-  set c(_) {
-  },
-  d:10,
+  b: 6,
+  set c(_) {},
+  d: 10,
   a: 11,
-  get b () {},
+  get b() {},
   c: 12,
-  set d (_) {}
+  set d(_) {}
 }
 
 checkOwnProperties(o, ['a', 'b', 'c', 'd']);
