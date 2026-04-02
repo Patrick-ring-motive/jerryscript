@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var target = function () {};
-var handler = { get (name) {
-  return 5;
-}};
+var target = function() {};
+var handler = {
+  get(name) {
+    return 5;
+  }
+};
 
 var revocable = Proxy.revocable(target, handler);
 
