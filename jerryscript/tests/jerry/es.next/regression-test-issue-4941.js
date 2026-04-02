@@ -13,15 +13,15 @@
 // limitations under the License.
 
 try {
-    Object.prototype.__proto__ = new Proxy({}, {});
-    assert(false);
+  Object.prototype.__proto__ = new Proxy({}, {});
+  assert(false);
 } catch (e) {
-    assert(e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-    __proto__.__proto__ = new Proxy({}, {});
-    assert(false);
+  __proto__.__proto__ = new Proxy({}, {});
+  assert(false);
 } catch (e) {
-    assert(e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
