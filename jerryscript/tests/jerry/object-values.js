@@ -22,7 +22,13 @@ assert(values.indexOf("c") === 2);
 assert(values.length === 3);
 
 // Test object
-var obj = {key1: "a", key3: "b", key2: "c", key4: "d", key5: "e"};
+var obj = {
+  key1: "a",
+  key3: "b",
+  key2: "c",
+  key4: "d",
+  key5: "e"
+};
 var values = Object.values(obj);
 
 assert(values.indexOf("a") === 0);
@@ -34,8 +40,14 @@ assert(values.length === 5);
 
 var obj2 = {};
 Object.defineProperties(obj2, {
-    key_one: {enumerable: true, value: "one"},
-    key_two: {enumerable: false, value: "two"},
+  key_one: {
+    enumerable: true,
+    value: "one"
+  },
+  key_two: {
+    enumerable: false,
+    value: "two"
+  },
 });
 
 var values = Object.values(obj2);
@@ -49,6 +61,7 @@ function Parent() {}
 Parent.prototype.inheritedMethod = function() {};
 
 function method() {};
+
 function Child() {
   this.prop = 5;
   this.method = method;
@@ -128,8 +141,12 @@ assert(handlers.toString() === "D,D,G");
 
 // exception during enumeration
 var obj = {
-  get a() { throw "error" },
-  get b() { throw "shouldn't run" }
+  get a() {
+    throw "error"
+  },
+  get b() {
+    throw "shouldn't run"
+  }
 };
 
 try {
