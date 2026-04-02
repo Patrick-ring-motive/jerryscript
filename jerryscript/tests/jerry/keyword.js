@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function check_syntax_error(code)
-{
+function check_syntax_error(code) {
   try {
     eval(code)
     assert(false)
@@ -22,8 +21,7 @@ function check_syntax_error(code)
   }
 }
 
-function check_strict_syntax_error(code)
-{
+function check_strict_syntax_error(code) {
   "use strict"
 
   try {
