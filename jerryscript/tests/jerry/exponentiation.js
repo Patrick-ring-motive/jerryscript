@@ -56,7 +56,7 @@ assertThrows("!(-a) ** 2")
 assert((-2) ** 2 === 4)
 
 a = 3
-assert((-+-a) ** 3 === 27)
+assert((- + -a) ** 3 === 27)
 
 a = 0
 assert((!a) ** 2 === 1)
