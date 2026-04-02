@@ -17,23 +17,19 @@ print("exception handler configuration test")
 function foo() {
   try {
     undefined();
-  } catch (e) {
-  }
+  } catch (e) {}
 
   try {
     xxx();
-  } catch (e) {
-  }
+  } catch (e) {}
 
   try {
     throw 456;
-  } catch (e) {
-  }
+  } catch (e) {}
 
   try {
     throw new RangeError("Bad range!");
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 foo()
