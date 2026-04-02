@@ -39,12 +39,12 @@ assert(new RegExp('/\n/').source.length === 6);
 assert(new RegExp(/\/\//).source === '\\/\\/');
 assert(new RegExp(/\?\//g).source === '\\?\\/');
 
-assert (RegExp.prototype.source === '(?:)')
+assert(RegExp.prototype.source === '(?:)')
 
-var sourceProp = Object.getOwnPropertyDescriptor (RegExp.prototype, "source");
+var sourceProp = Object.getOwnPropertyDescriptor(RegExp.prototype, "source");
 try {
   sourceProp.get.call({});
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
