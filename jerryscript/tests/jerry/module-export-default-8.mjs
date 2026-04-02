@@ -13,5 +13,10 @@
 // limitations under the License.
 
 let counter = 7.1;
-export default class A { static x = "foo8" } counter++; /* test auto semicolon insertion */
-export {counter};
+export default class A {
+  static x = "foo8"
+}
+counter++; /* test auto semicolon insertion */
+export {
+  counter
+};
