@@ -12,5 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var arrowFn = () => { };
-assert (arrowFn.prototype === undefined);
+var arrowFn = () => {};
+assert(arrowFn.prototype === undefined);
