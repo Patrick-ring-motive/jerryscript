@@ -22,7 +22,7 @@ var obj1 = {
   ['method2']() {
     return 2;
   },
-  *method3() {
+  * method3() {
     return 3;
   },
   *['method4']() {
@@ -51,7 +51,7 @@ var obj2 = {
   ['method2']() {
     return super.method2();
   },
-  *method3() {
+  * method3() {
     return super.method3();
   },
   *['method4']() {
@@ -117,7 +117,6 @@ let obj6 = {
 }
 
 assert(obj6.a() === 9);
-
 
 function checkSyntax(src) {
   try {
