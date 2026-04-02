@@ -19,24 +19,34 @@ function expect_error(error_type, method) {
     method();
     assert(false);
   } catch (ex) {
-    assert (ex instanceof error_type);
+    assert(ex instanceof error_type);
   }
 }
 
 /**
  * Create a proxy with recursion via prototype
  */
-var proxy_one = new Proxy({length:2}, {});
+var proxy_one = new Proxy({
+  length: 2
+}, {});
 
 Reflect.setPrototypeOf(proxy_one, proxy_one); /* [[SetPrototypeOf]] does not trigger recursion */
 // aka. proxy_one.__proto__ = proxy_one; /* [[SetPrototypeOf]] */
 
 function test_proxy_internals_using_proto(proxy_obj) {
   /* These methods can be recursive calls via prototype */
-  expect_error(RangeError, function() { proxy_obj[1]; /* [[Get]] */ });
-  expect_error(RangeError, function() { proxy_obj[1] = 2; /* [[Set]] */ });
-  expect_error(RangeError, function() { 3 in proxy_obj; /* [[Has]] */ });
-  expect_error(RangeError, function() { Reflect.has(proxy_obj, 3); /* [[Has]] */ });
+  expect_error(RangeError, function() {
+    proxy_obj[1]; /* [[Get]] */
+  });
+  expect_error(RangeError, function() {
+    proxy_obj[1] = 2; /* [[Set]] */
+  });
+  expect_error(RangeError, function() {
+    3 in proxy_obj; /* [[Has]] */
+  });
+  expect_error(RangeError, function() {
+    Reflect.has(proxy_obj, 3); /* [[Has]] */
+  });
 }
 
 test_proxy_internals_using_proto(proxy_one);
@@ -50,14 +60,20 @@ function test_proxy_internals_not_using_proto(proxy_obj) {
   Reflect.isExtensible(proxy_obj); /* [[IsExtensible]] */
   Object.preventExtensions(proxy_obj); /* [[PreventExtensions]] */
   Reflect.getOwnPropertyDescriptor(proxy_obj, "key"); /* [[GetOwnProperty]] */
-  Reflect.defineProperty(proxy_obj, "key2", { value: 4}); /* [[DefineOwnProperty]] */
+  Reflect.defineProperty(proxy_obj, "key2", {
+    value: 4
+  }); /* [[DefineOwnProperty]] */
   Reflect.ownKeys(proxy_obj); /* [[OwnPropertyKeys]] */
 }
 
 test_proxy_internals_not_using_proto(proxy_one);
 
-expect_error(TypeError, function() { proxy_one(3, 4); /* [[Call]] */ });
-expect_error(TypeError, function() { new proxy_one(4); /* [[Construct]] */ });
+expect_error(TypeError, function() {
+  proxy_one(3, 4); /* [[Call]] */
+});
+expect_error(TypeError, function() {
+  new proxy_one(4); /* [[Construct]] */
+});
 
 /* Special handler to trigger proxy recursion, WARNING DO NOT use in production code! */
 var handler = {
@@ -144,19 +160,40 @@ var handler = {
   }
 };
 
-
-var proxy_two = new Proxy({length:2}, handler);
+var proxy_two = new Proxy({
+  length: 2
+}, handler);
 
 handler.proxy_target = proxy_two;
 
 test_proxy_internals_using_proto(proxy_two);
 
-expect_error(RangeError, function() { delete proxy_two.none; /* [[Delete]] */ });
-expect_error(RangeError, function() { delete proxy_two["other"]; /* [[Delete]] */ });
-expect_error(RangeError, function() { Object.getPrototypeOf(proxy_two); /* [[GetPrototypeOf]] */ });
-expect_error(RangeError, function() { Object.setPrototypeOf(proxy_two, {}); /* [[GetPrototypeOf]] */ });
-expect_error(RangeError, function() { Reflect.isExtensible(proxy_two); /* [[IsExtensible]] */ });
-expect_error(RangeError, function() { Object.preventExtensions(proxy_two); /* [[PreventExtensions]] */ });
-expect_error(RangeError, function() { Reflect.getOwnPropertyDescriptor(proxy_two, "key"); /* [[GetOwnProperty]] */ });
-expect_error(RangeError, function() { Reflect.defineProperty(proxy_two, "key2", { value: 4}); /* [[DefineOwnProperty]] */ });
-expect_error(RangeError, function() { Reflect.ownKeys(proxy_two); /* [[OwnPropertyKeys]] */ });
+expect_error(RangeError, function() {
+  delete proxy_two.none; /* [[Delete]] */
+});
+expect_error(RangeError, function() {
+  delete proxy_two["other"]; /* [[Delete]] */
+});
+expect_error(RangeError, function() {
+  Object.getPrototypeOf(proxy_two); /* [[GetPrototypeOf]] */
+});
+expect_error(RangeError, function() {
+  Object.setPrototypeOf(proxy_two, {}); /* [[GetPrototypeOf]] */
+});
+expect_error(RangeError, function() {
+  Reflect.isExtensible(proxy_two); /* [[IsExtensible]] */
+});
+expect_error(RangeError, function() {
+  Object.preventExtensions(proxy_two); /* [[PreventExtensions]] */
+});
+expect_error(RangeError, function() {
+  Reflect.getOwnPropertyDescriptor(proxy_two, "key"); /* [[GetOwnProperty]] */
+});
+expect_error(RangeError, function() {
+  Reflect.defineProperty(proxy_two, "key2", {
+    value: 4
+  }); /* [[DefineOwnProperty]] */
+});
+expect_error(RangeError, function() {
+  Reflect.ownKeys(proxy_two); /* [[OwnPropertyKeys]] */
+});
