@@ -15,13 +15,15 @@
 var count = 0
 class C1 {
   error = assert(++count === 1)
-  error = function() { throw 40.5 }()
+  error = function() {
+    throw 40.5
+  }()
 }
 
 try {
   new C1
   assert(false)
-} catch(e) {
+} catch (e) {
   assert(e === 40.5)
   assert(count === 1)
 }
@@ -29,14 +31,16 @@ try {
 count = 0
 class C2 {
   constructor(a = assert(++count === 1)) {}
-  error = function() { throw "Err" }()
+  error = function() {
+    throw "Err"
+  }()
   error = assert(false)
 }
 
 try {
   new C2
   assert(false)
-} catch(e) {
+} catch (e) {
   assert(e === "Err")
   assert(count === 1)
 }
@@ -45,7 +49,9 @@ count = 0
 var o = {}
 
 class C3 extends class {
-  error = function() { throw o }()
+  error = function() {
+    throw o
+  }()
 } {
   constructor() {
     assert(++count === 1)
@@ -72,7 +78,10 @@ class C4 {
 
 class C5 extends C4 {
   ok = assert(++count === 3)
-  error = function() { assert(++count === 4); throw "Except" }()
+  error = function() {
+    assert(++count === 4);
+    throw "Except"
+  }()
   never = assert(false)
 }
 
@@ -97,7 +106,10 @@ class C7 extends C6 {
     assert(false)
   }
   ok = assert(++count === 3)
-  error = function() { assert(++count === 4); throw o }()
+  error = function() {
+    assert(++count === 4);
+    throw o
+  }()
   never = assert(false)
 }
 
@@ -112,14 +124,16 @@ try {
 var res
 class C8 {
   /* Create a non-configurable accessor */
-  a = (res = this, Object.defineProperty(this, "b", { get() {} }));
+  a = (res = this, Object.defineProperty(this, "b", {
+    get() {}
+  }));
   b = 6
 }
 
 try {
   new C8
   assert(false)
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError)
   assert(Reflect.ownKeys(res).toString() === "b,a")
 }
@@ -133,7 +147,7 @@ class C9 {
 try {
   new C9
   assert(false)
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError)
   assert(Reflect.ownKeys(res).toString() === "p1")
 }
