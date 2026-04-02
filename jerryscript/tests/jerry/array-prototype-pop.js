@@ -32,8 +32,14 @@ assert(array.pop() === undefined);
 assert(array.length === 0);
 
 // Checking behavior when unable to get length
-var obj = { pop : Array.prototype.pop };
-Object.defineProperty(obj, 'length', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  pop: Array.prototype.pop
+};
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.pop();
@@ -44,8 +50,14 @@ try {
 }
 
 // Checking behavior when unable to set length
-var obj = { pop : Array.prototype.pop };
-Object.defineProperty(obj, 'length', { 'set' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  pop: Array.prototype.pop
+};
+Object.defineProperty(obj, 'length', {
+  'set': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.pop();
@@ -56,14 +68,23 @@ try {
 }
 
 // Checking behavior when no length property defined
-var obj = { pop : Array.prototype.pop };
+var obj = {
+  pop: Array.prototype.pop
+};
 assert(obj.length === undefined)
 assert(obj.pop() === undefined)
 assert(obj.length === 0)
 
 // Checking behavior when unable to get element
-var obj = { pop : Array.prototype.pop, length : 1 };
-Object.defineProperty(obj, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  pop: Array.prototype.pop,
+  length: 1
+};
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.pop();
@@ -75,8 +96,11 @@ try {
 
 /* ES v5.1 15.4.4.6.5.c
    Checking behavior when unable to delete property */
-var obj = {pop : Array.prototype.pop, length : 2};
-Object.defineProperty(obj, '1', function () {});
+var obj = {
+  pop: Array.prototype.pop,
+  length: 2
+};
+Object.defineProperty(obj, '1', function() {});
 
 try {
   obj.pop();
@@ -87,7 +111,10 @@ try {
 
 /* ES v5.1 15.4.4.6.5.d
    Checking behavior when array is not modifiable */
-var obj = {pop : Array.prototype.pop, length : 2};
+var obj = {
+  pop: Array.prototype.pop,
+  length: 2
+};
 Object.freeze(obj);
 
 try {
