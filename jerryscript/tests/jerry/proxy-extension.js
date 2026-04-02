@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 var target = Object.create(null);
 var p = new Proxy(target, {
   defineProperty: function() {
@@ -25,8 +24,6 @@ Object.preventExtensions(p);
 try {
   p.prop = null;
   assert(false)
-}
-catch(e)
-{
+} catch (e) {
   assert(e instanceof TypeError)
 }
