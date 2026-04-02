@@ -15,6 +15,7 @@
 function assertNameExists(func) {
   assert(func.hasOwnProperty('name') === true);
 }
+
 function assertNameNotExists(func) {
   assert(func.hasOwnProperty('name') === false);
   assert(Function.prototype.name === '');
@@ -30,8 +31,11 @@ function assertConfigurableOnlyMethod(func) {
   delete func.name;
   assertNameNotExists(func);
 
-  Object.defineProperty(func, 'name', {value: 'newName', configurable: true});
-  assert (Object.getOwnPropertyDescriptor(func, 'name').value === 'newName');
+  Object.defineProperty(func, 'name', {
+    value: 'newName',
+    configurable: true
+  });
+  assert(Object.getOwnPropertyDescriptor(func, 'name').value === 'newName');
   assertNameExists(func);
 
   delete func.name;
@@ -60,30 +64,30 @@ function assertSetterName(obj, name, functionName = name) {
   assert(Object.getOwnPropertyDescriptor(obj, name).set['name'] === 'set ' + functionName)
 }
 
-var func1 = function () {};
+var func1 = function() {};
 assertMethodName(func1, 'func1');
 
 var func2 = function bar() {};
 assertMethodName(func2, 'bar');
 
-var func3 = (function () {}).prototype.constructor;
+var func3 = (function() {}).prototype.constructor;
 assert(typeof func3 === 'function');
 assertMethodName(func3, '');
 
 var func4;
-func4 = function () {}
+func4 = function() {}
 assertMethodName(func4, 'func4');
 
 var func5;
-func5 = function bar () {}
+func5 = function bar() {}
 assertMethodName(func5, 'bar');
 
 var func6;
-(func6) = function () {}
+(func6) = function() {}
 assertMethodName(func6, '');
 
 var func7;
-(func7) = function bar () {}
+(func7) = function bar() {}
 assertMethodName(func7, 'bar');
 
 let emptySymbolMethod = Symbol();
@@ -95,19 +99,23 @@ let namedSymbolSetter = Symbol('foo');
 
 var o = {
   func1() {},
-  func2: function () {},
+  func2: function() {},
   func3: function bar() {},
   func4: () => {},
   func5: class {},
   func6: class A {},
-  func7: class name { static name () {} },
+  func7: class name {
+    static name() {}
+  },
   ['func' + '8']() {},
-  ['func' + '9']: function () {},
+  ['func' + '9']: function() {},
   ['func' + '10']: function bar() {},
   ['func' + '11']: () => {},
   ['func' + '12']: class {},
   ['func' + '13']: class A {},
-  ['func' + '14']: class name { static name () {} },
+  ['func' + '14']: class name {
+    static name() {}
+  },
   get func15() {},
   get ['func' + '16']() {},
   set func17(a) {},
@@ -148,8 +156,8 @@ assertGetterName(o, namedSymbolGetter, '[foo]');
 assertSetterName(o, emptySymbolSetter, '');
 assertSetterName(o, namedSymbolSetter, '[foo]');
 
-class A  {
-  constructor () {}
+class A {
+  constructor() {}
   func1() {}
   get func2() {}
   set func3(a) {}
@@ -159,26 +167,26 @@ class A  {
   static set func6(a) {}
 
   ['func' + '7']() {}
-  get ['func' + '8']() {}
-  set ['func' + '9'](a) {}
+  get['func' + '8']() {}
+  set['func' + '9'](a) {}
 
-  static ['func' + '10']() {}
-  static get ['func' + '11']() {}
-  static set ['func' + '12'](a) {}
+  static['func' + '10']() {}
+  static get['func' + '11']() {}
+  static set['func' + '12'](a) {}
 
   [emptySymbolMethod]() {}
   [namedSymbolMethod]() {}
-  get [emptySymbolGetter]() {}
-  get [namedSymbolGetter]() {}
-  set [emptySymbolSetter](a) {}
-  set [namedSymbolSetter](a) {}
+  get[emptySymbolGetter]() {}
+  get[namedSymbolGetter]() {}
+  set[emptySymbolSetter](a) {}
+  set[namedSymbolSetter](a) {}
 
-  static [emptySymbolMethod]() {}
-  static [namedSymbolMethod]() {}
-  static get [emptySymbolGetter]() {}
-  static get [namedSymbolGetter]() {}
-  static set [emptySymbolSetter](a) {}
-  static set [namedSymbolSetter](a) {}
+  static[emptySymbolMethod]() {}
+  static[namedSymbolMethod]() {}
+  static get[emptySymbolGetter]() {}
+  static get[namedSymbolGetter]() {}
+  static set[emptySymbolSetter](a) {}
+  static set[namedSymbolSetter](a) {}
 }
 
 assertMethodName(A.prototype.func1, 'func1');
@@ -211,7 +219,7 @@ assertGetterName(A.prototype, namedSymbolGetter, '[foo]');
 assertSetterName(A.prototype, emptySymbolSetter, '');
 assertSetterName(A.prototype, namedSymbolSetter, '[foo]');
 
-class B  {
+class B {
   func1() {}
   get func2() {}
   set func3(a) {}
@@ -221,26 +229,26 @@ class B  {
   static set func6(a) {}
 
   ['func' + '7']() {}
-  get ['func' + '8']() {}
-  set ['func' + '9'](a) {}
+  get['func' + '8']() {}
+  set['func' + '9'](a) {}
 
-  static ['func' + '10']() {}
-  static get ['func' + '11']() {}
-  static set ['func' + '12'](a) {}
+  static['func' + '10']() {}
+  static get['func' + '11']() {}
+  static set['func' + '12'](a) {}
 
   [emptySymbolMethod]() {}
   [namedSymbolMethod]() {}
-  get [emptySymbolGetter]() {}
-  get [namedSymbolGetter]() {}
-  set [emptySymbolSetter](a) {}
-  set [namedSymbolSetter](a) {}
+  get[emptySymbolGetter]() {}
+  get[namedSymbolGetter]() {}
+  set[emptySymbolSetter](a) {}
+  set[namedSymbolSetter](a) {}
 
-  static [emptySymbolMethod]() {}
-  static [namedSymbolMethod]() {}
-  static get [emptySymbolGetter]() {}
-  static get [namedSymbolGetter]() {}
-  static set [emptySymbolSetter](a) {}
-  static set [namedSymbolSetter](a) {}
+  static[emptySymbolMethod]() {}
+  static[namedSymbolMethod]() {}
+  static get[emptySymbolGetter]() {}
+  static get[namedSymbolGetter]() {}
+  static set[emptySymbolSetter](a) {}
+  static set[namedSymbolSetter](a) {}
 }
 
 assertMethodName(B.prototype.func1, 'func1');
@@ -289,9 +297,11 @@ assert(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__').set.name =
 let arFunc;
 let array = [];
 array['original'] = array;
-array['original'][arFunc = ()=>{ }]=function(){}
+array['original'][arFunc = () => {}] = function() {}
 assertMethodName(array[arFunc], '');
 
-var o = { 0 : class {} };
+var o = {
+  0: class {}
+};
 
 assertMethodName(o['0'], '0');
