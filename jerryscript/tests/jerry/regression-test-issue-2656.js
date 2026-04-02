@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var obj = { "arguments": "foo" }
-
-function testcase ()
-{
-  return obj.hasOwnProperty ("arguments");
+var obj = {
+  "arguments": "foo"
 }
 
-assert (testcase () === true);
+function testcase() {
+  return obj.hasOwnProperty("arguments");
+}
+
+assert(testcase() === true);
