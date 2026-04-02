@@ -37,29 +37,29 @@ assert((123.45).toExponential(-0.1) === "1e+2");
 assert((12).toExponential(21) === "1.200000000000000000000e+1")
 
 try {
-    (12).toExponential(Number.MAX_VALUE);
-    assert(false);
+  (12).toExponential(Number.MAX_VALUE);
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError)
+  assert(e instanceof RangeError)
 }
 
 try {
-    (12).toExponential(Infinity);
-    assert(false);
+  (12).toExponential(Infinity);
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError)
+  assert(e instanceof RangeError)
 }
 
 try {
-    (12).toExponential(-1);
-    assert(false);
+  (12).toExponential(-1);
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError)
+  assert(e instanceof RangeError)
 }
 
 try {
-    Number.prototype.toExponential.call(new Object());
-    assert(false);
+  Number.prototype.toExponential.call(new Object());
+  assert(false);
 } catch (e) {
-    assert(e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
