@@ -34,7 +34,7 @@ function testLogicalOr(truish, falsish, value) {
   expectSame(a.a, value);
 
   let called = false;
-  let setter = function (_) {
+  let setter = function(_) {
     called = true
   };
   a = Object.defineProperty({}, "a", {
@@ -48,7 +48,7 @@ function testLogicalOr(truish, falsish, value) {
   expectSame(Object.getOwnPropertyDescriptor(a, "a").set, setter);
 
   a = falsish;
-  a ||= function () {};
+  a ||= function() {};
   expectSame(typeof a, 'function');
   expectSame(a.name, 'a');
 
@@ -88,7 +88,7 @@ function testLogicalAnd(truish, falsish, value) {
   expectSame(a.a, value);
 
   let called = false;
-  let setter = function (_) {
+  let setter = function(_) {
     called = true
   };
   a = Object.defineProperty({}, "a", {
@@ -102,7 +102,7 @@ function testLogicalAnd(truish, falsish, value) {
   expectSame(Object.getOwnPropertyDescriptor(a, "a").value, obj.a);
 
   a = truish;
-  a &&= function () {};
+  a &&= function() {};
   expectSame(typeof a, 'function');
   expectSame(a.name, 'a');
 
@@ -142,7 +142,7 @@ function testNullish(truish, falsish, value) {
   expectSame(a.a, truish);
 
   let called = false;
-  let setter = function (_) {
+  let setter = function(_) {
     called = true
   };
   a = Object.defineProperty({}, "a", {
@@ -156,7 +156,7 @@ function testNullish(truish, falsish, value) {
   expectSame(Object.getOwnPropertyDescriptor(a, "a").set, setter);
 
   a = falsish;
-  a ??= function () {};
+  a ??= function() {};
   expectSame(typeof a, 'function');
   expectSame(a.name, 'a');
 
