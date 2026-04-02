@@ -14,4 +14,5 @@
 
 "use strict"
 
-var let = 1;
+var
+let = 1;
