@@ -21,8 +21,14 @@ for (i = 0; i < array.length; i++) {
 }
 
 // Checking behavior when unable to get length
-var obj = { reverse : Array.prototype.reverse };
-Object.defineProperty(obj, 'length', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  reverse: Array.prototype.reverse
+};
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.reverse();
@@ -33,8 +39,15 @@ try {
 }
 
 // Checking behavior when unable to get element
-var obj = { reverse : Array.prototype.reverse, length : 3 };
-Object.defineProperty(obj, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  reverse: Array.prototype.reverse,
+  length: 3
+};
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.reverse();
@@ -46,8 +59,15 @@ try {
 
 /* ES v5.1 15.4.4.8.6.e.
    Checking behavior when unable to get the last element */
-var obj = { reverse : Array.prototype.reverse, length : 4 };
-Object.defineProperty(obj, '3', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  reverse: Array.prototype.reverse,
+  length: 4
+};
+Object.defineProperty(obj, '3', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.reverse();
@@ -60,7 +80,7 @@ try {
 /* ES v5.1 15.4.4.8.6.h.i.
    Checking behavior when first 3 elements are not writable */
 try {
-  var arr = [,,, 3, 4, 5, 6,,,,,,,,,0, 1, 2, 3, 4, 5, 6];
+  var arr = [, , , 3, 4, 5, 6, , , , , , , , , 0, 1, 2, 3, 4, 5, 6];
   Object.defineProperty(arr, '0', {});
   Object.defineProperty(arr, '1', {});
   Object.defineProperty(arr, '2', {});
@@ -73,7 +93,7 @@ try {
 /* ES v5.1 15.4.4.8.6.h.ii.
    Checking behavior when last 3 elements are not writable */
 try {
-  var arr = [0, 1, 2, 3, 4, 5, 6,,,,,,,,,0, 1, 2, 3,,,];
+  var arr = [0, 1, 2, 3, 4, 5, 6, , , , , , , , , 0, 1, 2, 3, , , ];
   Object.defineProperty(arr, '19', {});
   Object.defineProperty(arr, '20', {});
   Object.defineProperty(arr, '21', {});
@@ -86,7 +106,7 @@ try {
 /* ES v5.1 15.4.4.8.6.i.i.
    Checking behavior when first elements do not exist and the array is freezed */
 try {
-  var arr = [,,,,,,,,,,,,,,,,0, 1, 2, 3, 4, 5, 6];
+  var arr = [, , , , , , , , , , , , , , , , 0, 1, 2, 3, 4, 5, 6];
   arr = Object.freeze(arr);
   Array.prototype.reverse.call(arr);
   assert(false);
@@ -96,9 +116,16 @@ try {
 
 /* ES v5.1 15.4.4.8.6.i.ii.
    Checking behavior when unable to get the first 2 elements */
-var obj = { reverse : Array.prototype.reverse, length : 4 };
-Object.defineProperty(obj, '2', { value : 0 });
-Object.defineProperty(obj, '3', { value : 0 });
+var obj = {
+  reverse: Array.prototype.reverse,
+  length: 4
+};
+Object.defineProperty(obj, '2', {
+  value: 0
+});
+Object.defineProperty(obj, '3', {
+  value: 0
+});
 try {
   obj.reverse();
   assert(false);
@@ -108,9 +135,16 @@ try {
 
 /* ES v5.1 15.4.4.8.6.j.i.
    Checking behavior when unable to get the last 2 elements */
-var obj = { reverse : Array.prototype.reverse, length : 4 };
-Object.defineProperty(obj, '0', { value : 0 });
-Object.defineProperty(obj, '1', { value : 0 });
+var obj = {
+  reverse: Array.prototype.reverse,
+  length: 4
+};
+Object.defineProperty(obj, '0', {
+  value: 0
+});
+Object.defineProperty(obj, '1', {
+  value: 0
+});
 try {
   obj.reverse();
   assert(false);
