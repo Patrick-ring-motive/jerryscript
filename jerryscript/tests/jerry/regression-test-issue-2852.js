@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function createMap (count) {
+function createMap(count) {
   var map = new Map()
   for (var i = 0; i < count; i++) {
     map.set(i)
@@ -21,7 +21,7 @@ function createMap (count) {
 }
 
 var counter = 0;
-createMap(2000).forEach(function ($, key) {
+createMap(2000).forEach(function($, key) {
   counter++;
   $ += key
 })
