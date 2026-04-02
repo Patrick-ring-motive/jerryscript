@@ -21,8 +21,7 @@ var tmp2;
 var tmp3;
 var tmp4;
 
-for (var i = 0; i < count; i++)
-{
+for (var i = 0; i < count; i++) {
   tmp1 = x * x;
   tmp2 = y * y;
   tmp3 = tmp1 * tmp1;
