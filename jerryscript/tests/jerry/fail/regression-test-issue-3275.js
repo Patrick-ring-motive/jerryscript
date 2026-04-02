@@ -12,4 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-for ( i in this ) class ${ } eval ( )
+for (i in this) class $ {}
+eval()
