@@ -30,19 +30,18 @@ resolve.then = function() {
 };
 
 reject.catch(function(e) {
-	order.push(2);
-	throw e;
+  order.push(2);
+  throw e;
 }).finally(function() {
-	order.push(3);
-	return resolve;
+  order.push(3);
+  return resolve;
 }).catch(function(e) {
-	order.push(5);
+  order.push(5);
 });
 
 function __checkAsync() {
   assert(order.length === 5);
-  for (var i = 0; i < order.length; i++)
-  {
+  for (var i = 0; i < order.length; i++) {
     assert(i + 1 === order[i]);
   }
 }
