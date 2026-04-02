@@ -16,13 +16,11 @@
 var o = {
   x: 13,
 
-  f: function()
-  {
+  f: function() {
     return () => this.x + 1
   },
 
-  g: function()
-  {
+  g: function() {
     return function() {
       return this.x + 1
     }
@@ -34,7 +32,11 @@ assert(o.g().call(o) === 14);
 
 assert(o.f()() === 14);
 
-var o2 = { x:4, f:o.f(), g:o.g() }
+var o2 = {
+  x: 4,
+  f: o.f(),
+  g: o.g()
+}
 
 assert(o2.f() === 14);
 assert(o2.g() === 5);
