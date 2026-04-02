@@ -108,8 +108,7 @@ var tests = [
   '(`\\u000A`) = 42;',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
