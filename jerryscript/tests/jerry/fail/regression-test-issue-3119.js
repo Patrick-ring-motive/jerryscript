@@ -12,4 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-a ( ) = { m ( ) { } } .m ( ) = class { m ( ) { } }.sameValue
+a() = {
+  m() {}
+}.m() = class {
+  m() {}
+}.sameValue
