@@ -12,8 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var o1 = { valueOf() { return Symbol() } }
-var o2 = { valueOf() { throw "Should not reach here" } }
+var o1 = {
+  valueOf() {
+    return Symbol()
+  }
+}
+var o2 = {
+  valueOf() {
+    throw "Should not reach here"
+  }
+}
 
 function check_type_error(code) {
   try {
