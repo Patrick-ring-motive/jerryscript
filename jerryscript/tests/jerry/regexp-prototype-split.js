@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-result = /./[Symbol.split]('string', -13);
+result = /./ [Symbol.split]('string', -13);
 assert(result.length === 7);
 
-result = /./[Symbol.split]('string', 2);
+result = /./ [Symbol.split]('string', 2);
 assert(result.length === 2);
