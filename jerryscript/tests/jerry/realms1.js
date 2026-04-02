@@ -44,8 +44,8 @@ assert(var2 === "Y")
 
 // Test2: constructing any objects (including errors) must use the realm
 
-assert (realm.RangeError != RangeError)
-assert (realm.RangeError.prototype != RangeError.prototype)
+assert(realm.RangeError != RangeError)
+assert(realm.RangeError.prototype != RangeError.prototype)
 
 realm.RangeError.prototype.myProperty = "XY"
 assert(RangeError.prototype.myProperty === undefined)
@@ -60,8 +60,8 @@ try {
   assert(e.myProperty === "XY")
 }
 
-assert (realm.SyntaxError != SyntaxError)
-assert (realm.SyntaxError.prototype != SyntaxError.prototype)
+assert(realm.SyntaxError != SyntaxError)
+assert(realm.SyntaxError.prototype != SyntaxError.prototype)
 
 realm.SyntaxError.prototype.myProperty = "AB"
 assert(SyntaxError.prototype.myProperty === undefined)
