@@ -18,9 +18,11 @@
 
 // error checks
 var target = {};
-var handler = { isExtensible (target) {
-  throw 42;
-}};
+var handler = {
+  isExtensible(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -60,7 +62,9 @@ assert(Object.isExtensible(proxy) === false);
 
 // undefined trap
 var target = {};
-var handler =  { isExtensible: null };
+var handler = {
+  isExtensible: null
+};
 var proxy = new Proxy(target, handler);
 assert(Object.isExtensible(target) === true)
 assert(Object.isExtensible(proxy) === true);
@@ -70,18 +74,22 @@ assert(Object.isExtensible(proxy) === false);
 
 // invalid trap
 var target = {};
-var handler =  { isExtensible: true };
+var handler = {
+  isExtensible: true
+};
 var proxy = new Proxy(target, handler);
 
 try {
   Object.isExtensible(proxy);
   assert(false);
 } catch (e) {
-  assert(e instanceof TypeError); 
+  assert(e instanceof TypeError);
 }
 
 // valid trap
-var target = { prop1: true };
+var target = {
+  prop1: true
+};
 var handler = {
   isExtensible(target) {
     target.prop1 = false;
@@ -115,13 +123,13 @@ try {
 
 // handler is null
 var target = {};
-var handler = { 
-  isExtensible (target) {
+var handler = {
+  isExtensible(target) {
     return Object.isExtensible(target);
   }
 };
 
-var revocable = Proxy.revocable (target, {});
+var revocable = Proxy.revocable(target, {});
 var proxy = revocable.proxy;
 revocable.revoke();
 
