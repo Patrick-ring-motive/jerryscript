@@ -16,23 +16,23 @@
 
 /* Note: l\u0065t is let */
 
-function check_syntax_error (code) {
+function check_syntax_error(code) {
   try {
     eval(code)
-    assert (false)
+    assert(false)
   } catch (e) {
-    assert (e instanceof SyntaxError)
+    assert(e instanceof SyntaxError)
   }
 }
 
-function check_strict_syntax_error (code) {
+function check_strict_syntax_error(code) {
   "use strict"
 
   try {
     eval(code)
-    assert (false)
+    assert(false)
   } catch (e) {
-    assert (e instanceof SyntaxError)
+    assert(e instanceof SyntaxError)
   }
 }
 
@@ -46,39 +46,40 @@ check_strict_syntax_error("function let() {}")
 check_strict_syntax_error("for (let in []) ;")
 check_strict_syntax_error("l\\u0065t;")
 
-var let = 1
+var
+let = 1
 assert(let === 1)
 
 var [let] = [2]
 assert(let === 2)
 
 var x = 0;
-let = [ () => x = 1 ]
+let = [() => x = 1]
 
 l\u0065t[0]()
 assert(x === 1)
 
-function f1()
-{
+function f1() {
   var a = 0
 
-  function let(l\u0065t) {
-    a = let
+  function
+  let (l\u0065t) {
+    a =
+      let
   }
 
-  let(3)
+  let (3)
 
   assert(a === 3)
 }
 f1()
 
-function f2()
-{
-  var let = [1]
+function f2() {
+  var
+  let = [1]
 
   /* First: destructuring pattern definition */
-  let
-  [a] = [2]
+  let [a] = [2]
 
   assert(a === 2)
 
@@ -86,15 +87,15 @@ function f2()
 
   /* Second: property access */
   l\u0065t
-  [a] = [3]
+    [a] = [3]
 
-  assert(let[0][0] === 3)
+  assert(let [0][0] === 3)
 }
 f2()
 
 var arr = []
 
-for (let in ["x","y"])
+for (let in ["x", "y"])
   arr.push(let)
 
 assert(arr[0] === "0")
@@ -102,7 +103,7 @@ assert(arr[1] === "1")
 
 /* Let and arrow */
 
-for (let => 4; false ; ) ;
+for (let => 4; false;);
 
 let => 5
 
