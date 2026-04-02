@@ -13,10 +13,14 @@
  * limitations under the License.
  */
 
-import def, {a} from "./module-namespace-03.mjs"
+import def, {
+  a
+} from "./module-namespace-03.mjs"
 /* Nothing is tracked, only the result value is exported. */
 export default def
-export {a}
+export {
+  a
+}
 
 export * from "./module-namespace-03.mjs"
 export * from "./module-namespace-04.mjs"
