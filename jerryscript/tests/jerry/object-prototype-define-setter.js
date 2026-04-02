@@ -13,12 +13,15 @@
 // limitations under the License.
 
 var o = {};
-o.__defineSetter__('foo', function(val) { this.bar = val; });
+o.__defineSetter__('foo', function(val) {
+  this.bar = val;
+});
 o.foo = 5;
 assert(o.foo === undefined); // undefined
-assert(o.bar === 5); 
+assert(o.bar === 5);
 
 var obj = {};
+
 function bar() {}
 Object.prototype.__defineSetter__.call(obj, "foo", bar);
 var prop = Object.getOwnPropertyDescriptor(obj, "foo");
@@ -29,6 +32,7 @@ assert(prop.enumerable);
 
 var obj = {};
 var sym = Symbol();
+
 function bar(baz) {}
 Object.prototype.__defineSetter__.call(obj, sym, bar);
 var prop = Object.getOwnPropertyDescriptor(obj, sym);
@@ -38,24 +42,31 @@ assert(prop.configurable);
 assert(prop.enumerable);
 
 var key = '__accessors_test__';
-Object.prototype.__defineSetter__.call(1, key, function(){});
+Object.prototype.__defineSetter__.call(1, key, function() {});
 
 try {
-  Object.prototype.__defineSetter__.call(null, key, function(){});
+  Object.prototype.__defineSetter__.call(null, key, function() {});
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
 }
 
 var def = [];
-var p = new Proxy({}, { defineProperty: function(o, v, desc) { def.push(v); Object.defineProperty(o, v, desc); return true; }});
+var p = new Proxy({}, {
+  defineProperty: function(o, v, desc) {
+    def.push(v);
+    Object.defineProperty(o, v, desc);
+    return true;
+  }
+});
 Object.prototype.__defineSetter__.call(p, "foo", Object);
 assert(def + '' === "foo");
 
 var func = function() {};
-var subject = Object.defineProperty(
-  {}, 'attr', { value: 1, configurable: false }
-);
+var subject = Object.defineProperty({}, 'attr', {
+  value: 1,
+  configurable: false
+});
 
 try {
   subject.__defineSetter__('attr', func);
@@ -64,7 +75,9 @@ try {
   assert(e instanceof TypeError);
 }
 
-var subject = Object.preventExtensions({ existing: null });
+var subject = Object.preventExtensions({
+  existing: null
+});
 
 subject.__defineSetter__('existing', func);
 
