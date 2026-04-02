@@ -13,7 +13,7 @@
 // limitations under the License.
 
 function createIterable(arr, methods = {}) {
-  let iterable = function *() {
+  let iterable = function*() {
     let idx = 0;
     while (idx < arr.length) {
       yield arr[idx];
@@ -29,7 +29,10 @@ function createIterable(arr, methods = {}) {
 function close1() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; return {}; }
+    'return': function() {
+      closed = true;
+      return {};
+    }
   });
   for (var it of iter) break;
   return closed;
@@ -40,12 +43,15 @@ assert(close1());
 function close2() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; return {}; }
+    'return': function() {
+      closed = true;
+      return {};
+    }
   });
   try {
     for (var it of iter) throw 0;
     assert(false);
-  } catch(e){
+  } catch (e) {
     assert(e === 0);
   }
   return closed;
@@ -56,7 +62,10 @@ assert(close2());
 function close3() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; return {}; }
+    'return': function() {
+      closed = true;
+      return {};
+    }
   });
   for (var it of iter) continue;
   return closed;
@@ -67,12 +76,15 @@ assert(!close3());
 function close4() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; throw 6; }
+    'return': function() {
+      closed = true;
+      throw 6;
+    }
   });
   try {
     for (var it of iter) throw 5;
     assert(false);
-  } catch(e) {
+  } catch (e) {
     assert(e === 5);
   }
   return closed;
@@ -83,7 +95,10 @@ assert(close4());
 function close5() {
   var closed_called = 0;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed_called++; throw 6; }
+    'return': function() {
+      closed_called++;
+      throw 6;
+    }
   });
   try {
     for (var it of iter) {
@@ -93,7 +108,7 @@ function close5() {
       assert(false);
     }
     assert(false);
-  } catch(e) {
+  } catch (e) {
     assert(e === 5);
   }
   return closed_called === 2;
@@ -104,7 +119,10 @@ assert(close5());
 function close6() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; return {}; }
+    'return': function() {
+      closed = true;
+      return {};
+    }
   });
   for (var it of iter) {};
 
@@ -114,9 +132,13 @@ function close6() {
 assert(!close6());
 
 var close7_result = false;
+
 function close7() {
   var iter = createIterable([1, 2, 3], {
-    'return': function() { close7_result = true; throw "5"; }
+    'return': function() {
+      close7_result = true;
+      throw "5";
+    }
   });
 
   for (var it of iter) {
@@ -134,7 +156,10 @@ try {
 
 function close8() {
   var iter = createIterable([1, 2, 3], {
-    'return': function() { close8_result = true; throw "5"; }
+    'return': function() {
+      close8_result = true;
+      throw "5";
+    }
   });
 
   for (var it of iter) {
@@ -154,7 +179,10 @@ try {
 function close9() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; throw "5"; }
+    'return': function() {
+      closed = true;
+      throw "5";
+    }
   });
 
   try {
@@ -177,7 +205,10 @@ try {
 function close10() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; return {}; }
+    'return': function() {
+      closed = true;
+      return {};
+    }
   });
 
   try {
@@ -200,7 +231,10 @@ try {
 function close11() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; throw "5"; }
+    'return': function() {
+      closed = true;
+      throw "5";
+    }
   });
 
   try {
@@ -223,7 +257,10 @@ try {
 function close12() {
   var closed = false;
   var iter = createIterable([1, 2, 3], {
-    'return': function() { closed = true; throw "5"; }
+    'return': function() {
+      closed = true;
+      throw "5";
+    }
   });
 
   try {
