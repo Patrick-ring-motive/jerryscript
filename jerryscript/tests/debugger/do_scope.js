@@ -17,19 +17,18 @@ var c = 4;
 function f() {
   try {
     throw "error";
-  }
-  catch (err) {
+  } catch (err) {
     var c = 10;
   }
 
   var z = true;
   var g = 0;
   (function() {
-    var a = [1,2,3]
+    var a = [1, 2, 3]
     a.y = "abc";
-    with (a) {
-      var h = [4,5,6]
-      with (h) {
+    with(a) {
+      var h = [4, 5, 6]
+      with(h) {
         h.d = "dfg"
       }
       a.d = g + c;
@@ -38,4 +37,3 @@ function f() {
 }
 
 f();
-
