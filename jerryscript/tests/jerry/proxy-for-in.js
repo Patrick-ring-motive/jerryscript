@@ -17,62 +17,67 @@
 // found in the LICENSE file.
 
 var handlerBoolean = {
-  ownKeys: function() { return true; },
+  ownKeys: function() {
+    return true;
+  },
 }
 var boolProxy = new Proxy({}, handlerBoolean);
 
 try {
   for (var a in boolProxy) {
     // This should never be called.
-    assert (false);
+    assert(false);
   }
 
-  assert (false);
+  assert(false);
 } catch (ex) {
-  assert (ex instanceof TypeError);
+  assert(ex instanceof TypeError);
 }
 
-
 var handlerSymbol = {
-  ownKeys: function() { return Symbol("alma"); },
+  ownKeys: function() {
+    return Symbol("alma");
+  },
 }
 var symbolProxy = new Proxy({}, handlerSymbol);
 
 try {
   for (var a in symbolProxy) {
     // This should never be called.
-    assert (false);
+    assert(false);
   }
 
-  assert (false);
+  assert(false);
 } catch (ex) {
-  assert (ex instanceof TypeError);
+  assert(ex instanceof TypeError);
 }
 
-
 var handlerNumber = {
-  ownKeys: function() { return 1; },
+  ownKeys: function() {
+    return 1;
+  },
 }
 var numberProxy = new Proxy({}, handlerNumber);
 
 try {
   for (var a in numberProxy) {
     // This should never be called.
-    assert (false);
+    assert(false);
   }
 
-  assert (false);
+  assert(false);
 } catch (ex) {
-  assert (ex instanceof TypeError);
+  assert(ex instanceof TypeError);
 }
 
-
 var handlerObject = {
-  ownKeys: function() { return {}; },
+  ownKeys: function() {
+    return {};
+  },
 }
 var objectProxy = new Proxy({}, handlerObject);
 
 for (var a in objectProxy) {
   // This should never be called.
-  assert (false);
+  assert(false);
 }
