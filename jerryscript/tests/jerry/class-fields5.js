@@ -82,6 +82,6 @@ assert(c.a === 6.6)
 try {
   f()
   assert(false)
-} catch(e) {
+} catch (e) {
   assert(e instanceof ReferenceError)
 }
