@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { getOwnPropertyDescriptor (target) {
-  throw "cat";
-}};
+var handler = {
+  getOwnPropertyDescriptor(target) {
+    throw "cat";
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -27,7 +29,7 @@ try {
   // 19.1.3.2.5
   Object.prototype.hasOwnProperty.call(proxy);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e == "cat");
 }
 
@@ -35,7 +37,7 @@ try {
   // 19.1.3.4
   Object.prototype.propertyIsEnumerable.call(proxy)
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e == "cat");
 }
 
@@ -43,7 +45,7 @@ try {
   // 19.1.2.6.5
   Object.getOwnPropertyDescriptor(proxy)
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e == "cat");
 }
 
@@ -104,10 +106,12 @@ assert(nonconfigurable_obj.configurable == nonconfigurable_desc.configurable);
 assert(nonconfigurable_obj.writable == nonconfigurable_desc.writable);
 assert(nonconfigurable_obj.enumerable == nonconfigurable_desc.enumerable);
 
-var other_obj = { value: proxied_desc.value,
-                  configurable: proxied_desc.configurable,
-                  enumerable: false,
-                  writable: false }
+var other_obj = {
+  value: proxied_desc.value,
+  configurable: proxied_desc.configurable,
+  enumerable: false,
+  writable: false
+}
 var proxied_obj = Object.getOwnPropertyDescriptor(proxy, "proxied");
 
 assert(other_obj.value == proxied_obj.value);
@@ -132,7 +136,7 @@ assert(other_obj3.enumerable == nonconfigurable_desc.enumerable);
 try {
   Object.getOwnPropertyDescriptor(proxy, "return_null");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -140,12 +144,14 @@ try {
 
 // (Inv-1) "A property cannot be reported as non-existent, if it exists as a
 // non-configurable own property of the target object."
-handler.getOwnPropertyDescriptor = function(target, name) { return undefined; };
+handler.getOwnPropertyDescriptor = function(target, name) {
+  return undefined;
+};
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "nonconfigurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -155,20 +161,24 @@ assert(Object.getOwnPropertyDescriptor(proxy, "configurable") == undefined)
 // exist as an own property of the target object or if it exists as a
 // configurable own property of the target object."
 handler.getOwnPropertyDescriptor = function(target, name) {
-  return {value: 234, configurable: false, enumerable: true};
+  return {
+    value: 234,
+    configurable: false,
+    enumerable: true
+  };
 };
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "nonexistent");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "configurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -177,19 +187,21 @@ assert(!Object.getOwnPropertyDescriptor(proxy, "nonconfigurable").configurable);
 // (Inv-3) "A property cannot be reported as non-existent, if it exists as an
 // own property of the target object and the target object is not extensible."
 Object.seal(target);
-handler.getOwnPropertyDescriptor = function(target, name) { return undefined; };
+handler.getOwnPropertyDescriptor = function(target, name) {
+  return undefined;
+};
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "configurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "nonconfigurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -198,20 +210,26 @@ assert(undefined == Object.getOwnPropertyDescriptor(proxy, "nonexistent"));
 // (Inv-4) "A property cannot be reported as existent, if it does not exist as
 // an own property of the target object and the target object is not
 // extensible."
-var existent_desc = {value: "yes"};
-handler.getOwnPropertyDescriptor = function() { return existent_desc; };
+var existent_desc = {
+  value: "yes"
+};
+handler.getOwnPropertyDescriptor = function() {
+  return existent_desc;
+};
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "nonexistent");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
-var new_obj =  {  value: "yes",
-                  writable: false,
-                  enumerable: false,
-                  configurable: false };
+var new_obj = {
+  value: "yes",
+  writable: false,
+  enumerable: false,
+  configurable: false
+};
 var conf_proxied = Object.getOwnPropertyDescriptor(proxy, "configurable");
 
 assert(new_obj.value == conf_proxied.value);
@@ -227,27 +245,31 @@ handler.getOwnPropertyDescriptor = {};
 try {
   Object.getOwnPropertyDescriptor(proxy, "configurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 // Step 8: Trap throws.
-handler.getOwnPropertyDescriptor = function() { throw "unicorn"; };
+handler.getOwnPropertyDescriptor = function() {
+  throw "unicorn";
+};
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "configurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e == "unicorn");
 }
 
 // Step 9: Trap result is neither undefined nor an object.
-handler.getOwnPropertyDescriptor = function() { return 1; }
+handler.getOwnPropertyDescriptor = function() {
+  return 1;
+}
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "configurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -257,20 +279,27 @@ try {
 // Step 16: Incompatible PropertyDescriptor; a non-configurable property
 // cannot be reported as configurable. (Inv-4) above checks more cases.
 handler.getOwnPropertyDescriptor = function(target, name) {
-  return {value: 456, configurable: true, writable: true}
+  return {
+    value: 456,
+    configurable: true,
+    writable: true
+  }
 };
 
 try {
   Object.getOwnPropertyDescriptor(proxy, "nonconfigurable");
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 // Step 17: See (Inv-2) above.
 
 var result = [];
-var proxy = new Proxy({foo: 1, bar: 2}, {
+var proxy = new Proxy({
+  foo: 1,
+  bar: 2
+}, {
   getOwnPropertyDescriptor: function(o, v) {
     result.push(v);
     return Object.getOwnPropertyDescriptor(o, v);
@@ -282,7 +311,6 @@ Object.assign({}, proxy);
 assert(result.length === 2);
 assert(result[0] === "foo");
 assert(result[1] === "bar");
-
 
 var trapCalls = 0;
 var p = new Proxy({}, {
@@ -300,12 +328,9 @@ var p = new Proxy({}, {
   },
 });
 
-try
-{
+try {
   Object.getOwnPropertyDescriptor(p, "prop");
-  assert (false)
-}
-catch (e)
-{
+  assert(false)
+} catch (e) {
   assert(e instanceof TypeError)
 }
