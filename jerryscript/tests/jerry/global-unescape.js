@@ -17,7 +17,7 @@
 
 assert(unescape('%U0000') === '%U0000');
 assert(unescape('%t0000') === '%t0000');
-assert(unescape('%v0000') ==='%v0000');
+assert(unescape('%v0000') === '%v0000');
 assert(unescape('%%0000') === '%\x0000');
 
 // tests for two hexa unescape
