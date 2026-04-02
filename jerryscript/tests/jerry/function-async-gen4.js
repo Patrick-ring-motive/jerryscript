@@ -14,8 +14,7 @@
 
 var successCount = 0
 
-function check_fulfilled(p, value, done)
-{
+function check_fulfilled(p, value, done) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -27,8 +26,7 @@ function check_fulfilled(p, value, done)
   })
 }
 
-function check_rejected(p, value)
-{
+function check_rejected(p, value) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -48,33 +46,42 @@ var async1 = {
     return {
       get next() {
         assert(++state1 === 2)
-        return function () {
-          return { value:"Res", done:false }
+        return function() {
+          return {
+            value: "Res",
+            done: false
+          }
         }
       },
       get throw() {
         ++state1
         assert(state1 === 5 || state1 === 7 || state1 == 9)
-        return function (v) {
+        return function(v) {
           assert(v === "Input")
-          return { value:o1, done:false }
+          return {
+            value: o1,
+            done: false
+          }
         }
       },
       get return() {
         ++state1
         assert(state1 === 6 || state1 === 8 || state1 == 10)
-        return function (v) {
+        return function(v) {
           assert(v === o1)
-          return { value:4.5, done:false }
+          return {
+            value: 4.5,
+            done: false
+          }
         }
       }
     }
   }
 }
 
-async function *f1() {
+async function* f1() {
   assert(++state1 === 1)
-  yield *async1
+  yield* async1
   assert(false)
 }
 
@@ -107,10 +114,10 @@ var async2 = {
   }
 }
 
-async function *f2() {
+async function* f2() {
   assert(++state2 === 1)
   try {
-    yield *async2
+    yield* async2
     assert(false)
   } catch (e) {
     assert(e instanceof TypeError)
