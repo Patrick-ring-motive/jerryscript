@@ -13,14 +13,12 @@
  * limitations under the License.
  */
 
-function check_result(result, value, done)
-{
+function check_result(result, value, done) {
   assert(result.value === value)
   assert(result.done === done)
 }
 
-function check_throw(str, expected)
-{
+function check_throw(str, expected) {
   try {
     eval(str)
     assert(false);
@@ -29,7 +27,7 @@ function check_throw(str, expected)
   }
 }
 
-function * gen1(a) {
+function* gen1(a) {
   return "a: " + (yield a.p)
 }
 
@@ -37,20 +35,26 @@ var f = gen1({})
 check_throw("f.throw(4)", 4)
 check_result(f.next(), undefined, true)
 
-f = gen1({ p:"x" })
+f = gen1({
+  p: "x"
+})
 check_result(f.next(), "x", false)
 check_throw("f.throw(10)", 10)
 check_result(f.next(), undefined, true)
 
-f = gen1({ p:"b" })
+f = gen1({
+  p: "b"
+})
 check_result(f.next(), "b", false)
 check_result(f.next(), "a: undefined", true)
 check_result(f.next(), undefined, true)
 
-function*gen2() {
+function* gen2() {
   try {
-    for (let i in { x:1, y:2 })
-    {
+    for (let i in {
+        x: 1,
+        y: 2
+      }) {
       assert((yield i) === "33")
     }
     assert(false)
@@ -69,7 +73,7 @@ check_result(f.throw("throw"), "z", false)
 check_throw("f.next()", "throw")
 check_result(f.next(), undefined, true)
 
-function/* generator */*/* generator */gen3() {
+function /* generator */ * /* generator */ gen3() {
   try {
     return 8
   } finally {
@@ -82,12 +86,10 @@ check_result(f.next(), 1, false)
 check_throw("f.throw(2)", 2)
 
 function
-  /* generator */
-  *
-  /* generator */
-  gen4()
-{
-}
+/* generator */
+*
+/* generator */
+gen4() {}
 
 f = gen4()
 check_result(f.next(), undefined, true)
