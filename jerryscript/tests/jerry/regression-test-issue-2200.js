@@ -22,6 +22,5 @@
 ].forEach(function(badJson) {
   try {
     JSON.parse(badJson);
-  } catch (e) {
-  }
+  } catch (e) {}
 });
