@@ -180,8 +180,7 @@ var tests = [
   'var a = {"foo": function(){}}; [] < "foo" % 12 << typeof a.foo() + 8 = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
