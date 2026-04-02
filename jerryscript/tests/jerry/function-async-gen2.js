@@ -14,8 +14,7 @@
 
 var successCount = 0
 
-function check_fulfilled(p, value, done)
-{
+function check_fulfilled(p, value, done) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -27,8 +26,7 @@ function check_fulfilled(p, value, done)
   })
 }
 
-function check_rejected(p, value)
-{
+function check_rejected(p, value) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -53,17 +51,29 @@ var async1 = {
 
         if (i == 0) {
           assert(v === undefined)
-          res = { value:"Res", done:false }
+          res = {
+            value: "Res",
+            done: false
+          }
         } else if (i == 1) {
           assert(v === "B")
-          res = { value:{}, done:false }
+          res = {
+            value: {},
+            done: false
+          }
         } else if (i == 2) {
           assert(v === o1)
           res = Promise.resolve("Nested")
-          res = { value:res, done:false }
+          res = {
+            value: res,
+            done: false
+          }
         } else {
           assert(v === -1.5)
-          res = { value:3.5, done:true }
+          res = {
+            value: 3.5,
+            done: true
+          }
         }
         i++
 
@@ -74,9 +84,9 @@ var async1 = {
   }
 }
 
-async function *f1() {
+async function* f1() {
   successCount++
-  assert((yield *async1) === 3.5)
+  assert((yield* async1) === 3.5)
   successCount++
   return "End"
 }
@@ -128,11 +138,11 @@ var async2 = {
   }
 }
 
-async function *f2() {
+async function* f2() {
   successCount++
   try {
     try {
-      yield *async2
+      yield* async2
       assert(false)
     } finally {
       successCount++
@@ -159,7 +169,10 @@ var async3 = {
       next() {
         if (i == 0) {
           i++
-          return { value:6.25, done:false }
+          return {
+            value: 6.25,
+            done: false
+          }
         }
         throw o3
       }
@@ -167,11 +180,11 @@ var async3 = {
   }
 }
 
-async function *f3() {
+async function* f3() {
   successCount++
   try {
     try {
-      yield *async3
+      yield* async3
       assert(false)
     } finally {
       successCount++
@@ -196,17 +209,20 @@ var async4 = {
     return {
       next() {
         /* Returns with a promise which fails. */
-        return { value:Promise.reject("Failed!"), done:false }
+        return {
+          value: Promise.reject("Failed!"),
+          done: false
+        }
       }
     }
   }
 }
 
-async function *f4() {
+async function* f4() {
   successCount++
   try {
     try {
-      yield *async4
+      yield* async4
       assert(false)
     } finally {
       successCount++
@@ -230,16 +246,19 @@ var async5 = {
     return {
       next() {
         /* Returns with a promise which fails. */
-        return { value:Promise.reject("FailedAndDone!"), done:true }
+        return {
+          value: Promise.reject("FailedAndDone!"),
+          done: true
+        }
       }
     }
   }
 }
 
-async function *f5() {
+async function* f5() {
   successCount++
   try {
-    var p = yield *async5
+    var p = yield* async5
     assert(p instanceof Promise)
     check_rejected(p, "FailedAndDone!")
     successCount++
@@ -266,23 +285,32 @@ var async6 = {
         i++
         if (i == 1) {
           assert(++state === 3)
-          return { value:5.75, done:false }
+          return {
+            value: 5.75,
+            done: false
+          }
         } else if (i == 2) {
           assert(++state === 7)
-          return { value:o6, done:false }
+          return {
+            value: o6,
+            done: false
+          }
         } else if (i == 3) {
           assert(++state === 8)
-          return { value:"Val", done:true }
+          return {
+            value: "Val",
+            done: true
+          }
         }
       }
     }
   }
 }
 
-async function *f6() {
+async function* f6() {
   assert(++state === 1)
 
-  assert((yield *async6) === "Val")
+  assert((yield* async6) === "Val")
 
   assert(++state === 9)
   return "End"
