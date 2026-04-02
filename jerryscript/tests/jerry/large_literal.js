@@ -24,11 +24,9 @@ literal = undefined
 var str = ""
 var expected = ""
 
-for (var i = 0; i < 1000; i++)
-{
+for (var i = 0; i < 1000; i++) {
   str += "123456789\\n"
   expected += "123456789\n"
 }
 
 assert(eval('"' + str + '"') === expected);
-
