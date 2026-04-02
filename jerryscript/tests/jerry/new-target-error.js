@@ -12,21 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function F (){}
-var obj = Reflect.construct (Error, [], F);
+function F() {}
+var obj = Reflect.construct(Error, [], F);
 obj[2] = 'foo';
-assert (obj instanceof F);
+assert(obj instanceof F);
 
 try {
-  Reflect.construct (Error, [-1], F);
+  Reflect.construct(Error, [-1], F);
 } catch (e) {
-  assert (e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
-var o = new Proxy (function f () {}, { get (t,p,r) { if (p == "prototype") { throw "34" } Reflect.get (...arguments) }})
+var o = new Proxy(function f() {}, {
+  get(t, p, r) {
+    if (p == "prototype") {
+      throw "34"
+    }
+    Reflect.get(...arguments)
+  }
+})
 
 try {
-  Reflect.construct (Error, [], o)
+  Reflect.construct(Error, [], o)
 } catch (e) {
-  assert (e === "34");
+  assert(e === "34");
 }
