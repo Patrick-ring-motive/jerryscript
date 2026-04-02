@@ -14,4 +14,4 @@
 
 "use strict"
 
-with (Array) {}
+with(Array) {}
