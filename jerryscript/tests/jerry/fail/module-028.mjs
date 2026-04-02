@@ -14,4 +14,6 @@
  */
 
 /* Ambiguous import */
-import { x } from "../module-export-05.mjs"
+import {
+  x
+} from "../module-export-05.mjs"
