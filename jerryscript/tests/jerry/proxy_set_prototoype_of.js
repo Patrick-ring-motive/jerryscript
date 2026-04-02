@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { setPrototypeOf (target) {
-  throw 42;
-}};
+var handler = {
+  setPrototypeOf(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -132,7 +134,7 @@ var handler = {};
 var handler2 = {};
 var target2 = new Proxy(target, handler2);
 var proxy2 = new Proxy(target2, handler);
-var prototype = [2,3];
+var prototype = [2, 3];
 
 Object.setPrototypeOf(proxy2, prototype);
 
@@ -141,11 +143,11 @@ assert(prototype === Object.getPrototypeOf(target));
 // test when invariants gets violated
 var target = {};
 var handler = {
-    setPrototypeOf(target, proto) {
-        Object.setPrototypeOf(target, Function.prototype);
-        Object.preventExtensions(target);
-        return true;
-    }
+  setPrototypeOf(target, proto) {
+    Object.setPrototypeOf(target, Function.prototype);
+    Object.preventExtensions(target);
+    return true;
+  }
 }
 
 var proxy = new Proxy(target, handler);
