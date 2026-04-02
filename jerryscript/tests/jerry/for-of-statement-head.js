@@ -13,4 +13,3 @@
 // limitations under the License.
 
 for (a of [1] || [2]) {}
-
