@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export default function () { function () {} }
+export default function() {
+  function() {}
+}
