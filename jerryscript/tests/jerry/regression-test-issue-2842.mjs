@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export function $ () { var $, b }
+export function $() {
+  var $, b
+}
