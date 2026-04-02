@@ -14,7 +14,7 @@
 
 var r;
 r = new RegExp("]");
-assert (r.exec("]") == "]");
+assert(r.exec("]") == "]");
 
 r = new RegExp("}");
-assert (r.exec("}") == "}");
+assert(r.exec("}") == "}");
