@@ -47,7 +47,9 @@ f()
 function g() {
   'use strict'
 
-  function h(x, y = function() { return x }) {
+  function h(x, y = function() {
+    return x
+  }) {
     var x = 2;
 
     /* This should not overwrite y. */
