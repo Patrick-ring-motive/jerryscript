@@ -13,33 +13,29 @@
 // limitations under the License.
 
 try {
-    eval(`async((a))`);
-    assert(false);
-}
-catch (e) {
-    assert(e instanceof ReferenceError);
-}
-
-try {
-    eval(`async(async((async((a)))))`);
-    assert(false);
-}
-catch (e) {
-    assert(e instanceof ReferenceError);
+  eval(`async((a))`);
+  assert(false);
+} catch (e) {
+  assert(e instanceof ReferenceError);
 }
 
 try {
-    eval(`async((a)`);
-    assert(false);
-}
-catch (e) {
-    assert(e instanceof SyntaxError);
+  eval(`async(async((async((a)))))`);
+  assert(false);
+} catch (e) {
+  assert(e instanceof ReferenceError);
 }
 
 try {
-    eval(`async((a)))`);
-    assert(false);
+  eval(`async((a)`);
+  assert(false);
+} catch (e) {
+  assert(e instanceof SyntaxError);
 }
-catch (e) {
-    assert(e instanceof SyntaxError);
+
+try {
+  eval(`async((a)))`);
+  assert(false);
+} catch (e) {
+  assert(e instanceof SyntaxError);
 }
