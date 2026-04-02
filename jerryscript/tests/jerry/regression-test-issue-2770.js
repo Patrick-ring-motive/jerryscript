@@ -12,5 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-Object.defineProperty(Array.prototype, 0, {set: function() { return Array.prototype.push(), Object.freeze(Array.prototype)}});
+Object.defineProperty(Array.prototype, 0, {
+  set: function() {
+    return Array.prototype.push(), Object.freeze(Array.prototype)
+  }
+});
 Promise.all([0]);
