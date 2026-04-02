@@ -14,7 +14,7 @@
 
 var methods = ['entries', 'keys', 'values', Symbol.iterator];
 
-methods.forEach(function (method) {
+methods.forEach(function(method) {
   try {
     Map.prototype[method].call(5);
     assert(false);
@@ -23,7 +23,7 @@ methods.forEach(function (method) {
   }
 });
 
-methods.forEach(function (method) {
+methods.forEach(function(method) {
   try {
     Map.prototype[method].call({});
     assert(false);
@@ -32,13 +32,35 @@ methods.forEach(function (method) {
   }
 });
 
-var testArray = [{0: '0', 1: 0},
-                 {0: '1', 1: 1},
-                 {0: '2', 1: 2},
-                 {0: '3', 1: 3},
-                 {0: '4', 1: 4},
-                 {0: '5', 1: 5},
-                 {0: '6', 1: 6}];
+var testArray = [{
+    0: '0',
+    1: 0
+  },
+  {
+    0: '1',
+    1: 1
+  },
+  {
+    0: '2',
+    1: 2
+  },
+  {
+    0: '3',
+    1: 3
+  },
+  {
+    0: '4',
+    1: 4
+  },
+  {
+    0: '5',
+    1: 5
+  },
+  {
+    0: '6',
+    1: 6
+  }
+];
 
 var m = new Map(testArray);
 
@@ -46,7 +68,7 @@ methods.forEach(function(method) {
   assert(m[method]().toString() === '[object Map Iterator]');
 });
 
-methods.forEach(function (method) {
+methods.forEach(function(method) {
   try {
     m[method].next.call(5);
     assert(false);
@@ -55,7 +77,7 @@ methods.forEach(function (method) {
   }
 });
 
-methods.forEach(function (method) {
+methods.forEach(function(method) {
   try {
     m[method].next.call({});
     assert(false);
@@ -127,13 +149,35 @@ assert(m.size === 0);
 
 m = new Map(testArray);
 var loopCount = 0;
-var expected = [{0: '0', 1: 0},
-                {0: '2', 1: 2},
-                {0: '4', 1: 4},
-                {0: '6', 1: 6},
-                {0: '1', 1: 1},
-                {0: '3', 1: 3},
-                {0: '5', 1: 5}]
+var expected = [{
+    0: '0',
+    1: 0
+  },
+  {
+    0: '2',
+    1: 2
+  },
+  {
+    0: '4',
+    1: 4
+  },
+  {
+    0: '6',
+    1: 6
+  },
+  {
+    0: '1',
+    1: 1
+  },
+  {
+    0: '3',
+    1: 3
+  },
+  {
+    0: '5',
+    1: 5
+  }
+]
 
 m.forEach(function(value, key) {
   if (loopCount === 0) {
@@ -145,8 +189,8 @@ m.forEach(function(value, key) {
     }
   }
 
-  assert (key === expected[loopCount][0]);
-  assert (value === expected[loopCount][1]);
+  assert(key === expected[loopCount][0]);
+  assert(value === expected[loopCount][1]);
 
   loopCount++;
 });
@@ -154,8 +198,15 @@ m.forEach(function(value, key) {
 assert(loopCount === expected.length);
 
 loopCount = 0;
-expected = [{0: '0', 1: 0},
-            {0: '1', 1: 1}];
+expected = [{
+    0: '0',
+    1: 0
+  },
+  {
+    0: '1',
+    1: 1
+  }
+];
 
 for (var [key, value] of m) {
   if (loopCount === 0) {
