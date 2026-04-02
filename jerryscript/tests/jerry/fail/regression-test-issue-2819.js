@@ -13,8 +13,9 @@
 // limitations under the License.
 
 try {
-  for (this << class extends this {} in this) { }
-  assert (false);
+  for (this << class extends this {}
+    in this) {}
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
