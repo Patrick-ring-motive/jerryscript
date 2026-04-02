@@ -14,28 +14,40 @@
  */
 
 export {};
-export {a as aa,};
-export {b as bb, c as cc};
-export {d};
+export {
+  a as aa,
+};
+export {
+  b as bb, c as cc
+};
+export {
+  d
+};
 export var x = 40;
-export function f(a) {return a;} x++; /* test auto semicolon insertion */
+export function f(a) {
+  return a;
+}
+x++; /* test auto semicolon insertion */
 export class Dog {
-  constructor (name) {
+  constructor(name) {
     this.name = name;
   }
 
   speak() {
     return this.name + " barks."
   }
-} x++; /* test auto semicolon insertion */
+}
+x++; /* test auto semicolon insertion */
 export default "default";
 
 var a = "a";
 var b = 5;
-var c = function(a) { return 2 * a;}
-var d = [1,2,3];
+var c = function(a) {
+  return 2 * a;
+}
+var d = [1, 2, 3];
 
-assert (x === 42);
-assert (f(1) === 1);
+assert(x === 42);
+assert(f(1) === 1);
 var dog = new Dog("Pluto")
 assert(dog.speak() === "Pluto barks.")
