@@ -12,6 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export {b as a} from "./module-circular-07.mjs";
-import {b} from "./module-circular-07.mjs"
+export {
+  b as a
+}
+from "./module-circular-07.mjs";
+import {
+  b
+} from "./module-circular-07.mjs"
 assert(b === 6.5 || b === undefined)
