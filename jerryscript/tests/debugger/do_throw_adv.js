@@ -74,7 +74,8 @@ try {
     break break_try_label;
   }
   throw "Should be caught";
-} catch (e) {
+}
+catch (e) {
   ++a;
 }
 
