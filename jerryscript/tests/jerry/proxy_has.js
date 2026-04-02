@@ -17,9 +17,11 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { has (target) {
-  throw 42;
-}};
+var handler = {
+  has(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -33,7 +35,7 @@ try {
 
 try {
   // 8.1.1.2.1
-  with (proxy) {
+  with(proxy) {
     p;
     assert(false);
   }
@@ -44,8 +46,8 @@ try {
 
 try {
   // ecma_op_put_value_lex_env_base/[[HasProperty]]
-  with (proxy) {
-    function a (){}
+  with(proxy) {
+    function a() {}
     assert(false);
   }
   assert(false);
@@ -101,7 +103,9 @@ assert("foo" in proxy === true);
 var target = {
   foo: "foo"
 };
-var handler = {has: null};
+var handler = {
+  has: null
+};
 var proxy = new Proxy(target, handler);
 
 assert("foo" in proxy === true);
@@ -110,7 +114,9 @@ assert("foo" in proxy === true);
 var target = {
   foo: "foo"
 };
-var handler = {has: 42};
+var handler = {
+  has: 42
+};
 var proxy = new Proxy(target, handler);
 
 try {
@@ -159,7 +165,9 @@ try {
   assert(e instanceof TypeError);
 }
 
-var target = { a: 10 };
+var target = {
+  a: 10
+};
 Object.preventExtensions(target);
 
 var proxy = new Proxy(target, handler);
