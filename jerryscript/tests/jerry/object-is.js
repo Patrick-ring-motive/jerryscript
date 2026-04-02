@@ -44,8 +44,12 @@ sym2 = Symbol.for('foo');
 assert(Object.is(sym1, sym2) === true);
 assert(Object.is(Symbol('foo'), Symbol('foo')) === false);
 
-var foo = { a: 1 };
-var bar = { a: 1 };
+var foo = {
+  a: 1
+};
+var bar = {
+  a: 1
+};
 var zoo = foo;
 assert(Object.is(foo, foo) === true);
 assert(Object.is(foo, bar) === false);
@@ -56,4 +60,4 @@ assert(Object.is(+0, -0) === false);
 assert(Object.is(+0, 0) === true);
 assert(Object.is(-0, -0) === true);
 assert(Object.is(-0, 0) === false);
-assert(Object.is(NaN, 0/0) === true);
+assert(Object.is(NaN, 0 / 0) === true);
