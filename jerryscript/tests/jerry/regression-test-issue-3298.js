@@ -12,11 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var $ = { $: function ( $) { } };
+var $ = {
+  $: function($) {}
+};
 
-function g ( b = (local = $) ) {
-  var o ;
-  function f ( ) { return this === o }
+function g(b = (local = $)) {
+  var o;
+
+  function f() {
+    return this === o
+  }
 }
 
-g ()
+g()
