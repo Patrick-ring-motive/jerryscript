@@ -16,10 +16,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var target = function () {};
-var handler = { construct (target) {
-  throw 42;
-}};
+var target = function() {};
+var handler = {
+  construct(target) {
+    throw 42;
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -40,7 +42,7 @@ try {
 }
 
 // test basic functionality
-var proxy = new Proxy({},{});
+var proxy = new Proxy({}, {});
 
 try {
   new proxy();
@@ -89,7 +91,9 @@ function Target2(a, b) {
 };
 var handler = {
   construct(t, c, args) {
-      return { sum: 42 };
+    return {
+      sum: 42
+    };
   }
 };
 var proxy = new Proxy(Target2, handler);
@@ -121,7 +125,7 @@ var instance2 = Reflect.construct(proxy, ['a1', 'b1'], Array);
 assert(Target3 === seen_target);
 assert(JSON.stringify(seen_arguments) === '["a1","b1"]');
 assert(Array === seen_new_target);
-assert('a1'=== instance2.arg1);
+assert('a1' === instance2.arg1);
 assert('b1' === instance2.arg2);
 
 var p = new Proxy(function() {}, {
@@ -148,7 +152,7 @@ try {
   new p();
   assert(false);
 } catch (e) {
-  assert(e instanceof TypeError); 
+  assert(e instanceof TypeError);
 }
 
 var p = new Proxy({}, {
@@ -161,5 +165,5 @@ try {
   new p();
   assert(false);
 } catch (e) {
-  assert(e instanceof TypeError); 
+  assert(e instanceof TypeError);
 }
