@@ -14,6 +14,7 @@
 
 "use strict";
 
-(function () {
-  var let = 1;
+(function() {
+  var
+  let = 1;
 })();
