@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function test(len)
-{
-  function applyTest() { }
+function test(len) {
+  function applyTest() {}
   try {
-    applyTest.apply(null, { length : len });
+    applyTest.apply(null, {
+      length: len
+    });
     assert(false);
   } catch (e) {
     assert(e instanceof RangeError);
