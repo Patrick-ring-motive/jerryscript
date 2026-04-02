@@ -14,58 +14,58 @@
 
 var local = 0;
 
-switch(0) { /* This switch forces a pre-scanner run. */
-default:
+switch (0) {
+  /* This switch forces a pre-scanner run. */
+  default:
 
-  function f(a = (5, local = 6),
-             b = ((5 + function(a = 6) { return a }() * 3)),
-             c,
-             d = true ? 1 : 2)
-  {
-    return "" + a + ", " + b + ", " + c + ", " + d;
-  }
-
-  assert(f() === "6, 23, undefined, 1");
-  assert(local === 6);
-
-  var obj = {
-    f: function(a = [10,,20],
-                b,
-                c = Math.cos(0),
-                d)
-    {
+    function f(a = (5, local = 6),
+      b = ((5 + function(a = 6) {
+        return a
+      }() * 3)),
+      c,
+      d = true ? 1 : 2) {
       return "" + a + ", " + b + ", " + c + ", " + d;
     }
-  };
 
-  assert(obj.f() === "10,,20, undefined, 1, undefined");
+    assert(f() === "6, 23, undefined, 1");
+    assert(local === 6);
 
-  function g(a, b = (local = 7)) { }
+    var obj = {
+      f: function(a = [10, , 20],
+        b,
+        c = Math.cos(0),
+        d) {
+        return "" + a + ", " + b + ", " + c + ", " + d;
+      }
+    };
 
-  local = 0;
-  g();
-  assert(local === 7);
+    assert(obj.f() === "10,,20, undefined, 1, undefined");
 
-  local = 0;
-  g(0);
-  assert(local === 7);
+    function g(a, b = (local = 7)) {}
 
-  local = 0;
-  g(0, undefined);
-  assert(local === 7);
+    local = 0;
+    g();
+    assert(local === 7);
 
-  local = 0;
-  g(0, null);
-  assert(local === 0);
+    local = 0;
+    g(0);
+    assert(local === 7);
 
-  local = 0;
-  g(0, false);
-  assert(local === 0);
-  break;
+    local = 0;
+    g(0, undefined);
+    assert(local === 7);
+
+    local = 0;
+    g(0, null);
+    assert(local === 0);
+
+    local = 0;
+    g(0, false);
+    assert(local === 0);
+    break;
 }
 
-function CheckSyntaxError(str)
-{
+function CheckSyntaxError(str) {
   try {
     eval(str);
     assert(false);
@@ -83,13 +83,13 @@ CheckSyntaxError('function x(a = 5, a) {}');
 // Pre-scanner tests.
 var str = "a = 5, b, c = function() { for (var a = 0; a < 4; a++) ; return a; } ()"
 
-var f = new Function (str, str);
+var f = new Function(str, str);
 f();
 
-var f = new Function (str, "return (a + c) * (b == undefined ? 1 : 0)");
-assert (f() == 9);
+var f = new Function(str, "return (a + c) * (b == undefined ? 1 : 0)");
+assert(f() == 9);
 
-function duplicatedArg (a = c, b = d, c) {
+function duplicatedArg(a = c, b = d, c) {
   assert(a === 1);
   assert(b === 2);
   assert(c === 3);
