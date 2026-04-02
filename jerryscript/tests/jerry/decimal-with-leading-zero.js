@@ -13,35 +13,33 @@
 // limitations under the License.
 
 // valid decimal with leading zero
-assert (01239 === 1239)
-assert (0999 === 999)
-assert (0000000000009 === 9)
+assert(01239 === 1239)
+assert(0999 === 999)
+assert(0000000000009 === 9)
 
-function invalid_strict_cases (string)
-{
+function invalid_strict_cases(string) {
   "use strict"
   try {
-    eval (string)
-    assert (false)
+    eval(string)
+    assert(false)
   } catch (e) {
-    assert (true)
+    assert(true)
   }
 }
 
 // invalid strict test-cases
-invalid_strict_cases ("09")
-invalid_strict_cases ("01239")
+invalid_strict_cases("09")
+invalid_strict_cases("01239")
 
 // invalid to create bigint with decimal with leading zero
-function invalid_cases (string)
-{
+function invalid_cases(string) {
   try {
-    eval (string)
-    assert (false)
+    eval(string)
+    assert(false)
   } catch (e) {
-    assert (true)
+    assert(true)
   }
 }
 
-invalid_cases ("09n")
-invalid_cases ("01239n")
+invalid_cases("09n")
+invalid_cases("01239n")
