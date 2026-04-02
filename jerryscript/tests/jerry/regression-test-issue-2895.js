@@ -12,9 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function createMap (count) {
-  var map = new Map ( )
-  for (var i = { member : 0, valueOf: function () { return this.member } }; i < count ; i ++) {
+function createMap(count) {
+  var map = new Map()
+  for (var i = {
+      member: 0,
+      valueOf: function() {
+        return this.member
+      }
+    }; i < count; i++) {
     map.set(i);
   }
   return map
