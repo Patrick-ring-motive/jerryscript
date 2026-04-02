@@ -13,8 +13,10 @@
 // limitations under the License.
 
 function f($, [
-    [b, [c] = [], {} = {
-        $: eval()
-    }]
-] = [[]], c) {}
+  [b, [c] = [], {} = {
+    $: eval()
+  }]
+] = [
+  []
+], c) {}
 f()
