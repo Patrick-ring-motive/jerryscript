@@ -14,12 +14,9 @@
 
 var name = "";
 
-try
-{
+try {
   Int16Array.from();
-}
-catch (e)
-{
+} catch (e) {
   name = e.name;
 }
 
