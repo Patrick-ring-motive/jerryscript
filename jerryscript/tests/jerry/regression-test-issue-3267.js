@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var hasProp = $ => { }
+var hasProp = $ => {}
 Object.preventExtensions(hasProp);
-assert (Object.isSealed(hasProp) === false);
+assert(Object.isSealed(hasProp) === false);
 
 var keys = Object.getOwnPropertyNames(hasProp);
-assert (keys.length === 2);
-assert (keys[0] === "length");
-assert (keys[1] === "name");
+assert(keys.length === 2);
+assert(keys[0] === "length");
+assert(keys[1] === "name");
