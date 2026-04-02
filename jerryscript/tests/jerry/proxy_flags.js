@@ -13,6 +13,7 @@
 // limitations under the License.
 
 var target_called = 0;
+
 function target_method() {
   target_called++;
 }
