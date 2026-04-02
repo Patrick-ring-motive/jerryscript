@@ -42,13 +42,19 @@ var arr = [];
 arr[4294967294] = "foo";
 assert(arr.lastIndexOf("foo", -1) === 4294967294)
 
-var arr = [1,2];
+var arr = [1, 2];
 assert(arr.lastIndexOf(2, undefined) === -1);
 assert(arr.lastIndexOf(2) === 1);
 
 // Checking behavior when unable to get length
-var obj = { lastIndexOf : Array.prototype.lastIndexOf}
-Object.defineProperty(obj, 'length', { 'get' : function () { throw new ReferenceError ("foo"); } });
+var obj = {
+  lastIndexOf: Array.prototype.lastIndexOf
+}
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.lastIndexOf("bar");
@@ -59,8 +65,15 @@ try {
 }
 
 // Checking behavior when unable to get element
-var obj = { lastIndexOf : Array.prototype.lastIndexOf, length : 1}
-Object.defineProperty(obj, '0', { 'get' : function () { throw new ReferenceError ("foo"); } });
+var obj = {
+  lastIndexOf: Array.prototype.lastIndexOf,
+  length: 1
+}
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.lastIndexOf("bar");
@@ -73,9 +86,9 @@ try {
 // Remove the buffer
 var array = [1, 2, 3, 4, 5];
 var value = array.lastIndexOf(4, {
-    valueOf: function() {
-        array.length = 0;
-    }
+  valueOf: function() {
+    array.length = 0;
+  }
 })
 
 assert(value === -1);
@@ -83,9 +96,9 @@ assert(value === -1);
 // Extend the buffer
 var array = [1, 2, 3];
 var value = array.lastIndexOf(1, {
-    valueOf: function() {
-        array.length = 5;
-    }
+  valueOf: function() {
+    array.length = 5;
+  }
 })
 
 assert(value === 0);
@@ -93,9 +106,9 @@ assert(value === 0);
 // Reduce the buffer
 var array = [1, 2, 3, 4, 5, 6, 7];
 var value = array.indexOf(5, {
-    valueOf: function() {
-        array.length = 2;
-    }
+  valueOf: function() {
+    array.length = 2;
+  }
 })
 
 assert(value === -1);
