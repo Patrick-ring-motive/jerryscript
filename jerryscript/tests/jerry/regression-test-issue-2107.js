@@ -13,7 +13,9 @@
 // limitations under the License.
 
 var thenableWithError = {
-  then: function() { throw new Error("") }
+  then: function() {
+    throw new Error("")
+  }
 };
 
 function executor(resolve) {
