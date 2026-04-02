@@ -23,13 +23,12 @@ function addX(x) {
 }
 
 addThree = addX(3);
-d = addThree(c+z);
+d = addThree(c + z);
 
 function f() {
   try {
     throw "error";
-  }
-  catch (err) {
+  } catch (err) {
     var c = 10;
   }
 
@@ -44,11 +43,11 @@ function f() {
   var b = 10;
 
   (function() {
-    var a = [1,2,3]
+    var a = [1, 2, 3]
     a.y = "abc";
-    with (a) {
-      var h = [4,5,6]
-      with (h) {
+    with(a) {
+      var h = [4, 5, 6]
+      with(h) {
         h.d = "dfg"
       }
       a.d = x;
@@ -57,4 +56,3 @@ function f() {
 }
 
 f();
-
