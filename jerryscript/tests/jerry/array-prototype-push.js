@@ -16,28 +16,28 @@
 
 var len;
 var d = [];
-assert (d.length === 0);
+assert(d.length === 0);
 len = d.push();
-assert (d.length === 0);
-assert (d.length === len);
+assert(d.length === 0);
+assert(d.length === len);
 len = d.push(1);
-assert (d.length === 1);
-assert (d.length === len);
+assert(d.length === 1);
+assert(d.length === len);
 len = d.push(2);
-assert (d.length === 2);
-assert (d.length === len);
+assert(d.length === 2);
+assert(d.length === len);
 len = d.push('a');
-assert (d.length === 3);
-assert (d.length === len);
+assert(d.length === 3);
+assert(d.length === len);
 len = d.push('b', 'c', 3);
-assert (d.length == 6);
-assert (d.length === len);
-assert (d[0] === 1);
-assert (d[1] === 2);
-assert (d[2] === 'a');
-assert (d[3] === 'b');
-assert (d[4] === 'c');
-assert (d[5] === 3);
+assert(d.length == 6);
+assert(d.length === len);
+assert(d[0] === 1);
+assert(d[1] === 2);
+assert(d[2] === 'a');
+assert(d[3] === 'b');
+assert(d[4] === 'c');
+assert(d[5] === 3);
 
 var a = [];
 a.length = 4294967294;
@@ -49,11 +49,14 @@ try {
   a.push("y");
   assert(false);
 } catch (e) {
-  assert (e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 assert(a.length === 4294967295)
 
-var o = { length : 4294967294, push : Array.prototype.push };
+var o = {
+  length: 4294967294,
+  push: Array.prototype.push
+};
 assert(o.push("x") === 4294967295);
 assert(o.length === 4294967295);
 assert(o[4294967294] === "x");
