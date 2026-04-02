@@ -13,11 +13,16 @@
 // limitations under the License.
 
 var o = {};
-o.__defineGetter__('foo', function() { return 5; });
+o.__defineGetter__('foo', function() {
+  return 5;
+});
 assert(o.foo === 5);
 
 var obj = {};
-function bar() { return "bar"; }
+
+function bar() {
+  return "bar";
+}
 Object.prototype.__defineGetter__.call(obj, "foo", bar);
 var prop = Object.getOwnPropertyDescriptor(obj, "foo");
 assert(prop.get == bar);
@@ -27,7 +32,10 @@ assert(prop.enumerable);
 
 var obj = {};
 var sym = Symbol();
-function bar() { return "bar"; }
+
+function bar() {
+  return "bar";
+}
 Object.prototype.__defineGetter__.call(obj, sym, bar);
 var prop = Object.getOwnPropertyDescriptor(obj, sym);
 assert(prop.get == bar);
@@ -36,24 +44,31 @@ assert(prop.configurable);
 assert(prop.enumerable);;
 
 var key = '__accessors_test__';
-Object.prototype.__defineGetter__.call(1, key, function(){});
+Object.prototype.__defineGetter__.call(1, key, function() {});
 
 try {
-  Object.prototype.__defineGetter__.call(null, key, function(){});
+  Object.prototype.__defineGetter__.call(null, key, function() {});
   assert(false);
-} catch(e){
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 var def = [];
-var p = new Proxy({}, { defineProperty: function(o, v, desc) { def.push(v); Object.defineProperty(o, v, desc); return true; }});
+var p = new Proxy({}, {
+  defineProperty: function(o, v, desc) {
+    def.push(v);
+    Object.defineProperty(o, v, desc);
+    return true;
+  }
+});
 Object.prototype.__defineGetter__.call(p, "foo", Object);
 assert(def + '' === "foo");
 
 var func = function() {};
-var subject = Object.defineProperty(
-  {}, 'foo', { value: 1, configurable: false }
-);
+var subject = Object.defineProperty({}, 'foo', {
+  value: 1,
+  configurable: false
+});
 
 try {
   subject.__defineGetter__('foo', func);
@@ -62,7 +77,9 @@ try {
   assert(e instanceof TypeError);
 }
 
-var subject = Object.preventExtensions({ existing: null });
+var subject = Object.preventExtensions({
+  existing: null
+});
 
 subject.__defineGetter__('existing', func);
 
