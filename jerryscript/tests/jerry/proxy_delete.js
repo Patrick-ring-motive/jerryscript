@@ -17,20 +17,23 @@
 // found in the LICENSE file.
 
 var target = {};
-var handler = { deleteProperty (target) {
-  throw 42;
-}, get (object, propName) {
-  if (propName == "length") {
-    return 5;
+var handler = {
+  deleteProperty(target) {
+    throw 42;
+  },
+  get(object, propName) {
+    if (propName == "length") {
+      return 5;
+    }
   }
-}};
+};
 
 var proxy = new Proxy(target, handler);
 
 var a = 5;
 
 // ecma_op_delete_binding
-with (proxy) {
+with(proxy) {
   delete a
 }
 
@@ -43,7 +46,9 @@ try {
 }
 
 // test basic functionality
-var target = {foo: "bar"};
+var target = {
+  foo: "bar"
+};
 var handler = {
   deleteProperty(obj, prop) {
     delete obj[prop];
@@ -78,7 +83,9 @@ assert(delete proxy.bar == true);
 assert(target.bar === undefined);
 
 // test with no trap
-var target = {1: 42};
+var target = {
+  1: 42
+};
 var handler = {};
 var proxy = new Proxy(target, handler);
 
@@ -87,8 +94,12 @@ assert(delete proxy[1] === true)
 assert(target[1] === undefined);
 
 // test with undefined trap
-var target = {2: 52};
-var handler = { deleteProperty: null};
+var target = {
+  2: 52
+};
+var handler = {
+  deleteProperty: null
+};
 var proxy = new Proxy(target, handler);
 
 assert(target[2] === 52)
@@ -97,7 +108,9 @@ assert(target[2] === undefined);
 
 // test when trap is invalid
 var target = {};
-var handler = { deleteProperty: true };
+var handler = {
+  deleteProperty: true
+};
 var proxy = new Proxy(target, handler);
 
 try {
@@ -108,7 +121,7 @@ try {
 }
 
 // test when handler is null
-var revocable = Proxy.revocable ({}, {});
+var revocable = Proxy.revocable({}, {});
 var proxy = revocable.proxy;
 revocable.revoke();
 
@@ -120,7 +133,9 @@ try {
 }
 
 // test when target is proxy
-var target = {prop: "foo"};
+var target = {
+  prop: "foo"
+};
 var handler = {
   deleteProperty(obj, prop) {
     delete obj[prop];
@@ -154,7 +169,7 @@ Object.defineProperty(target, "foo", {
   value: "foo"
 });
 
-var proxy = new Proxy (target, handler);
+var proxy = new Proxy(target, handler);
 
 try {
   delete proxy.foo;
@@ -164,7 +179,9 @@ try {
 }
 
 var trapCalls = 0;
-var p = new Proxy({prop: 1}, {
+var p = new Proxy({
+  prop: 1
+}, {
   deleteProperty: function(t, prop) {
     Object.preventExtensions(t);
     trapCalls++;
@@ -173,10 +190,10 @@ var p = new Proxy({prop: 1}, {
 });
 
 try {
-  Reflect.deleteProperty (p, "prop");
-  assert (false);
+  Reflect.deleteProperty(p, "prop");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-assert (trapCalls == 1);
+assert(trapCalls == 1);
