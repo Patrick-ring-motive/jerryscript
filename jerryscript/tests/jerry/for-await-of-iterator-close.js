@@ -23,7 +23,10 @@ var asyncIter1 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: "Val", done: false })
+        return Promise.resolve({
+          value: "Val",
+          done: false
+        })
       }
       /* No return() function */
     }
@@ -37,14 +40,14 @@ async function f1() {
   }
   successCount++
 
-exit:
-  for await (var v of asyncIter1) {
+  exit:
     for await (var v of asyncIter1) {
-      assert(v === "Val")
-      break exit
+      for await (var v of asyncIter1) {
+        assert(v === "Val")
+        break exit
+      }
+      assert(false)
     }
-    assert(false)
-  }
   successCount++
 
   try {
@@ -83,9 +86,12 @@ var asyncIter2 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: o2, done: false })
+        return Promise.resolve({
+          value: o2,
+          done: false
+        })
       },
-      return(...v) {
+      return (...v) {
         assert(v.length === 0)
         returnCount2++
         return Promise.resolve({})
@@ -101,14 +107,14 @@ async function f2() {
   }
   successCount++
 
-exit:
-  for await (var v of asyncIter2) {
+  exit:
     for await (var v of asyncIter2) {
-      assert(v === o2)
-      break exit
+      for await (var v of asyncIter2) {
+        assert(v === o2)
+        break exit
+      }
+      assert(false)
     }
-    assert(false)
-  }
   successCount++
 
   try {
@@ -146,16 +152,19 @@ var asyncIter3 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
-      return() {
+      return () {
         throw "Error"
       }
     }
   }
 }
 
-async function *f3() {
+async function* f3() {
   try {
     for await (var v of asyncIter3) {
       assert(v === -4.5)
@@ -202,7 +211,10 @@ var asyncIter4 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
       get return() {
         throw o4
@@ -211,7 +223,7 @@ var asyncIter4 = {
   }
 }
 
-async function *f4() {
+async function* f4() {
   try {
     for await (var v of asyncIter4) {
       assert(v === -4.5)
@@ -257,7 +269,10 @@ var asyncIter5 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
       get return() {
         return "Not callable"
@@ -313,9 +328,12 @@ var asyncIter6 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
-      return() {
+      return () {
         return Promise.resolve(4.5)
       }
     }
@@ -368,9 +386,12 @@ var asyncIter7 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
-      return() {
+      return () {
         return Promise.reject("Rejected")
       }
     }
@@ -423,9 +444,12 @@ var asyncIter8 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
-      return() {
+      return () {
         return {}
       }
     }
@@ -472,9 +496,12 @@ var asyncIter9 = {
     return {
       next() {
         assert(++idx === 1)
-        return Promise.resolve({ value: -4.5, done: false })
+        return Promise.resolve({
+          value: -4.5,
+          done: false
+        })
       },
-      return() {
+      return () {
         throw "Except"
       }
     }
@@ -547,10 +574,10 @@ var asyncIter10 = {
       next() {
         throw "NoNext"
       },
-      return() {
+      return () {
         assert(false)
       },
-      throw() {
+      throw () {
         assert(false)
       }
     }
@@ -584,13 +611,16 @@ var asyncIter11 = {
     return {
       next() {
         if (++idx < 3)
-          return Promise.resolve({ value: -4.5, done: false })
+          return Promise.resolve({
+            value: -4.5,
+            done: false
+          })
         throw "NoNext"
       },
-      return() {
+      return () {
         assert(false)
       },
-      throw() {
+      throw () {
         assert(false)
       }
     }
@@ -618,8 +648,7 @@ f11()
 // Test 12
 
 var o12 = {}
-async function *gen12()
-{
+async function* gen12() {
   try {
     yield 9.5
     assert(false)
@@ -629,10 +658,8 @@ async function *gen12()
   assert(false)
 }
 
-async function f12()
-{
-  for await (var v of gen12())
-  {
+async function f12() {
+  for await (var v of gen12()) {
     assert(v === 9.5)
     break;
   }
