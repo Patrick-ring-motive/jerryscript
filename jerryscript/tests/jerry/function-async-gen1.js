@@ -14,8 +14,7 @@
 
 var successCount = 0
 
-function check_fulfilled(p, value, done)
-{
+function check_fulfilled(p, value, done) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -27,8 +26,7 @@ function check_fulfilled(p, value, done)
   })
 }
 
-function check_rejected(p, value)
-{
+function check_rejected(p, value) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -39,9 +37,7 @@ function check_rejected(p, value)
   })
 }
 
-
-function check_type_error(p)
-{
+function check_type_error(p) {
   assert(p instanceof Promise)
 
   p.then(function(v) {
@@ -56,7 +52,7 @@ function check_type_error(p)
 
 var gen, r, o
 
-async function *f1(p, o) {
+async function* f1(p, o) {
   assert((yield "Test1") === "Test2")
   await p
 
@@ -69,7 +65,9 @@ async function *f1(p, o) {
 assert(Object.prototype.toString.call(f1) === "[object AsyncGeneratorFunction]")
 
 o = {}
-gen = f1(new Promise(function(resolve, reject) { r = resolve }), o)
+gen = f1(new Promise(function(resolve, reject) {
+  r = resolve
+}), o)
 
 assert(Object.prototype.toString.call(gen) === "[object AsyncGenerator]")
 
@@ -86,7 +84,7 @@ r(1)
 
 // Test 2
 
-async function *f2(o) {
+async function* f2(o) {
   try {
     await {}
     yield o
@@ -118,7 +116,7 @@ check_fulfilled(gen.return(), undefined, true)
 
 // Test 3
 
-async function *f3() {
+async function* f3() {
   throw "Msg"
 }
 
@@ -129,7 +127,7 @@ check_rejected(gen.throw("End"), "End")
 
 // Test 4
 
-async function *f4() {
+async function* f4() {
   assert(++state === 1)
   await 1
   assert(++state === 4)
@@ -145,7 +143,7 @@ assert(++state === 3)
 
 // Test 5
 
-async function *f5() {
+async function* f5() {
   assert(++state2 === 1)
   yield 1
   assert(++state2 === 4)
@@ -161,7 +159,7 @@ assert(++state2 === 3)
 
 // Test 6
 
-async function *f6() {
+async function* f6() {
   return "Res"
 }
 
@@ -185,11 +183,13 @@ p.then(function(v) {
 
 // Test 7
 
-var AsyncGeneratorFun = Object.getPrototypeOf(async function *() {}).constructor;
+var AsyncGeneratorFun = Object.getPrototypeOf(async function*() {}).constructor;
 
 o = {}
 gen = AsyncGeneratorFun("p, o, x = 5.5", "assert((await p) === 'P'); yield o; return x")
-gen = gen(new Promise(function(resolve, reject) { r = resolve }), o)
+gen = gen(new Promise(function(resolve, reject) {
+  r = resolve
+}), o)
 
 check_fulfilled(gen.next(), o, false)
 check_fulfilled(gen.next(), 5.5, true)
@@ -200,8 +200,9 @@ r("P")
 
 // Test 8
 
-async function *f8() {
+async function* f8() {
   var o = {}
+
   function f() {}
 
   check_fulfilled(selfGen.next(), o, false)
@@ -218,7 +219,7 @@ check_fulfilled(selfGen.next(), "Str", false)
 
 // Test 9
 
-async function *f9() {
+async function* f9() {
   try {
     yield "X"
   } finally {
