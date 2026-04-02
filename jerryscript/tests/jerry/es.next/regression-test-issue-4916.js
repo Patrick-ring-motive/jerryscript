@@ -13,9 +13,8 @@
 // limitations under the License.
 
 try {
-    eval(`var a = { get {(param)} }`);
-    assert(false);
-}
-catch (e) {
-    assert(e instanceof SyntaxError);
+  eval(`var a = { get {(param)} }`);
+  assert(false);
+} catch (e) {
+  assert(e instanceof SyntaxError);
 }
