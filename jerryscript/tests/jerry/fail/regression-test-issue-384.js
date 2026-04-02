@@ -19,7 +19,7 @@
 
 'use strictI
 // Copyrnse. Functionn f_0(){
-    'use strictT
+'use strictT
 // Copyrnse.
 
 'use strict)
