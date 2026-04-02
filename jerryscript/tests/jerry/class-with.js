@@ -14,13 +14,18 @@
  */
 
 var called = false
-var obj = { f() { assert(this === obj); called = true } }
+var obj = {
+  f() {
+    assert(this === obj);
+    called = true
+  }
+}
 
 function f() {
   assert(false)
 }
 
-with (obj) {
+with(obj) {
   new class {
     constructor() {
       f()
