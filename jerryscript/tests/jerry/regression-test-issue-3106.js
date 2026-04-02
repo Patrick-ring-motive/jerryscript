@@ -14,8 +14,8 @@
 
 var symbol = Symbol();
 var arr = [{}];
-with (arr.pop()){
-    arr.push(symbol.valueOf());
+with(arr.pop()) {
+  arr.push(symbol.valueOf());
 }
 
 try {
