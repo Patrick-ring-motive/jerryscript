@@ -12,5 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var $ = class { } .prototype  = [ ]
-switch ( '1' ) {
+var $ = class {}.prototype = []
+switch ('1') {
