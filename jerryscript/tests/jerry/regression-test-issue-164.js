@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var v_1 = { };
+var v_1 = {};
 
 for (i = 0; i < 1; i++) {
-  with ( v_1 ) {
-    with ( v_1 ) { }
+  with(v_1) {
+    with(v_1) {}
   }
 }
