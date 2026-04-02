@@ -14,4 +14,4 @@
 
 async () => {}
 await Symbol;
-class B{}
+class B {}
