@@ -14,8 +14,7 @@
 
 import * as o from "module-circular-01.mjs"
 
-if (o.early != "Loaded")
-{
+if (o.early != "Loaded") {
   // The scope of module-circular-01.mjs is initialized and functions are usable
   // However, the module script has not been executed
 
@@ -58,26 +57,37 @@ if (o.early != "Loaded")
   assert(result.enumerable === false)
   assert(result.writable === false)
 
-  Object.defineProperty(o, "a", { value: "X" })
+  Object.defineProperty(o, "a", {
+    value: "X"
+  })
 
   try {
-    Object.defineProperty(o, "a", { value: "Y" })
+    Object.defineProperty(o, "a", {
+      value: "Y"
+    })
     assert(false)
   } catch (e) {
     assert(e instanceof TypeError)
   }
 
   try {
-    Object.defineProperty(o, "b", { value:5 })
+    Object.defineProperty(o, "b", {
+      value: 5
+    })
     assert(false)
   } catch (e) {
     assert(e instanceof ReferenceError)
   }
 
-  Object.defineProperty(o, Symbol.toStringTag, { value: "Module", writable:false })
+  Object.defineProperty(o, Symbol.toStringTag, {
+    value: "Module",
+    writable: false
+  })
 
   try {
-    Object.defineProperty(o, Symbol.toStringTag, { writable:true })
+    Object.defineProperty(o, Symbol.toStringTag, {
+      writable: true
+    })
     assert(false)
   } catch (e) {
     assert(e instanceof TypeError)
