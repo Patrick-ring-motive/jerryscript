@@ -14,11 +14,10 @@
 
 var realm = createRealm()
 
-function compare(a, b)
-{
-  assert (a === b)
-  assert (typeof a === "symbol")
-  assert (typeof b === "symbol")
+function compare(a, b) {
+  assert(a === b)
+  assert(typeof a === "symbol")
+  assert(typeof b === "symbol")
 }
 
 compare(Symbol.asyncIterator, realm.Symbol.asyncIterator)
