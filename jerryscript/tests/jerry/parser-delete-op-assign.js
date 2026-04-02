@@ -86,8 +86,7 @@ var tests = [
   'function a(prop){return prop}; var b = a(12); delete b = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
