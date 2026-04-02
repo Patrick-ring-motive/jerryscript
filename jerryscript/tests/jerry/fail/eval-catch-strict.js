@@ -14,4 +14,4 @@
 
 "use strict"
 
-try{}catch(eval){};
+try {} catch (eval) {};
