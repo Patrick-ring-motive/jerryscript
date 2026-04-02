@@ -12,4 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-new Float32Array({ length: 0x40000001 });
+new Float32Array({
+  length: 0x40000001
+});
