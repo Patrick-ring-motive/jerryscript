@@ -12,16 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import foo1, { counter as bar1 } from "./module-export-default-1.mjs"
-import foo2, { counter as bar2 } from "./module-export-default-2.mjs"
-import foo3, { counter as bar3 } from "./module-export-default-3.mjs"
+import foo1, {
+  counter as bar1
+} from "./module-export-default-1.mjs"
+import foo2, {
+  counter as bar2
+} from "./module-export-default-2.mjs"
+import foo3, {
+  counter as bar3
+} from "./module-export-default-3.mjs"
 import foo4 from "./module-export-default-4.mjs"
 import foo5 from "./module-export-default-5.mjs"
 import foo6 from "./module-export-default-6.mjs"
 import foo7 from "./module-export-default-7.mjs"
-import foo8, { counter as bar8 } from "./module-export-default-8.mjs"
-import foo9, { counter as bar9 } from "./module-export-default-9.mjs"
-import foo10, { g as bar10 } from "./module-export-default-10.mjs"
+import foo8, {
+  counter as bar8
+} from "./module-export-default-8.mjs"
+import foo9, {
+  counter as bar9
+} from "./module-export-default-9.mjs"
+import foo10, {
+  g as bar10
+} from "./module-export-default-10.mjs"
 
 let async_queue_expected = ["foo2", "foo3", "foo6", "foo7"];
 let async_queue = [];
