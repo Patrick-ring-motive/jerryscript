@@ -13,9 +13,13 @@
 // limitations under the License.
 
 var obj = {
-  get foo() { return "bar" },
+  get foo() {
+    return "bar"
+  },
   qux: 1,
-  set bar(value) { this.x = value }
+  set bar(value) {
+    this.x = value
+  }
 };
 
 var foo = Object.prototype.__lookupGetter__.call(obj, "foo");
@@ -33,8 +37,14 @@ assert(Object.prototype.__lookupGetter__.call(obj, "bar") === undefined);
 var sym = Symbol();
 var sym2 = Symbol();
 var obj = {};
-Object.defineProperty(obj, sym, { get: function() { return "bar"; }});
-Object.defineProperty(obj, sym2, { value: 1 });
+Object.defineProperty(obj, sym, {
+  get: function() {
+    return "bar";
+  }
+});
+Object.defineProperty(obj, sym2, {
+  value: 1
+});
 var foo = Object.prototype.__lookupGetter__.call(obj, sym);
 
 assert(foo() === "bar");
@@ -46,21 +56,29 @@ Object.prototype.__lookupGetter__.call(1, 'key');
 try {
   Object.prototype.__lookupGetter__.call(null, 'key');
   assert(false);
-} catch(e){
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
 var a = {};
 var b = Object.create(a);
 b.foo = 1;
-Object.defineProperty(a, "foo", {function () {}})
+Object.defineProperty(a, "foo", {
+  function() {}
+})
 assert(b.__lookupGetter__("foo") === undefined);
 
 var gopd = [];
 var gpo = false;
 var p = new Proxy({}, {
-  getPrototypeOf: function(o) { gpo = true; return Object.getPrototypeOf(o); },
-  getOwnPropertyDescriptor: function(o, v) { gopd.push(v); return Object.getOwnPropertyDescriptor(o, v); }
+  getPrototypeOf: function(o) {
+    gpo = true;
+    return Object.getPrototypeOf(o);
+  },
+  getOwnPropertyDescriptor: function(o, v) {
+    gopd.push(v);
+    return Object.getOwnPropertyDescriptor(o, v);
+  }
 });
 
 Object.prototype.__lookupGetter__.call(p, "foo");
