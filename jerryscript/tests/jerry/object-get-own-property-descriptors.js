@@ -15,14 +15,17 @@
 var object = {};
 var symbol = Symbol("symbol");
 
-function getter() { return 2; }
+function getter() {
+  return 2;
+}
+
 function setter(value) {}
 
 // Append a symbol property.
 object[symbol] = "symbol";
 
 Object.defineProperties(object, {
-  "foo" : {
+  "foo": {
     get: getter,
     set: setter,
     enumerable: true,
@@ -90,7 +93,7 @@ assert(array_desc.prototype.enumerable === false);
 try {
   Object.getOwnPropertyDescriptors(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -107,13 +110,13 @@ var proxy_own_keys_handler = new Proxy(object, {
 try {
   Object.getOwnPropertyDescriptors(proxy_get_desc_handler);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof Error);
 }
 
 try {
   Object.getOwnPropertyDescriptors(proxy_own_keys_handler);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
