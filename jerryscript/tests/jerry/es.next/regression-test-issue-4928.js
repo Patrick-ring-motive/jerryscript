@@ -15,6 +15,6 @@
 try {
   eval('var { a, b, ...rest }"');
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof SyntaxError);
 }
