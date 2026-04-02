@@ -12,12 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function f ( ) { }
-var B = class extends f { constructor ( ){ eval ( "eval ('super (1, 2, 3, 4)')" ) ; } }
-    C = class extends B { g ( ) { { ( ) => { } } } }
-    D = class extends C { constructor ( ) { super ( )
+function f() {}
+var B = class extends f {
+  constructor() {
+    eval("eval ('super (1, 2, 3, 4)')");
+  }
 }
+C = class extends B {
+  g() {
+    {
+      () => {}
+    }
+  }
+}
+D = class extends C {
+  constructor() {
+    super()
+  }
 
-g () { eval () } }
+  g() {
+    eval()
+  }
+}
 eval = eval.bind()
 new D
