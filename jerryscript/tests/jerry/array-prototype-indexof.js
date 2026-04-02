@@ -39,7 +39,10 @@ assert(array.indexOf("foo", -Infinity) === 0);
 assert([true].indexOf(true, -0) === 0);
 
 // Checking behavior when length is zero
-var obj = { indexOf : Array.prototype.indexOf, length : 0 };
+var obj = {
+  indexOf: Array.prototype.indexOf,
+  length: 0
+};
 assert(obj.indexOf("foo") === -1);
 
 // Checking behavior when start index >= length
@@ -47,11 +50,11 @@ var arr = [11, 22, 33, 44];
 assert(arr.indexOf(44, 4) === -1);
 
 var fromIndex = {
-  toString: function () {
+  toString: function() {
     return {};
   },
 
-  valueOf: function () {
+  valueOf: function() {
     return {};
   }
 };
@@ -64,8 +67,14 @@ try {
 }
 
 // Checking behavior when unable to get length
-var obj = { indexOf : Array.prototype.indexOf}
-Object.defineProperty(obj, 'length', { 'get' : function () { throw new ReferenceError ("foo"); } });
+var obj = {
+  indexOf: Array.prototype.indexOf
+}
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.indexOf("bar");
@@ -76,8 +85,15 @@ try {
 }
 
 // Checking behavior when unable to get element
-var obj = { indexOf : Array.prototype.indexOf, length : 1}
-Object.defineProperty(obj, '0', { 'get' : function () { throw new ReferenceError ("foo"); } });
+var obj = {
+  indexOf: Array.prototype.indexOf,
+  length: 1
+}
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.indexOf("bar");
@@ -90,9 +106,9 @@ try {
 // Remove the buffer
 var array = [1, 2, 3, 4, 5];
 var value = array.indexOf(4, {
-    valueOf: function() {
-        array.length = 0;
-    }
+  valueOf: function() {
+    array.length = 0;
+  }
 })
 
 assert(value === -1);
@@ -100,9 +116,9 @@ assert(value === -1);
 // Extend the buffer
 var array = [1, 2, 3];
 var value = array.indexOf(2, {
-    valueOf: function() {
-        array.length = 5;
-    }
+  valueOf: function() {
+    array.length = 5;
+  }
 })
 
 assert(value === 1);
@@ -110,9 +126,9 @@ assert(value === 1);
 // Reduce the buffer
 var array = [1, 2, 3, 4, 5, 6, 7];
 var value = array.indexOf(6, {
-    valueOf: function() {
-        array.length = 5;
-    }
+  valueOf: function() {
+    array.length = 5;
+  }
 })
 
 assert(value === -1);
