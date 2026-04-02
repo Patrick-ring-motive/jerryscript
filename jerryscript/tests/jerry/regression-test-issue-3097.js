@@ -13,6 +13,7 @@
 // limitations under the License.
 
 switch ($) {
-  case $: function $( $ = $, ... c ) { }
-  case $ :
+  case $:
+    function $($ = $, ...c) {}
+  case $:
 }
