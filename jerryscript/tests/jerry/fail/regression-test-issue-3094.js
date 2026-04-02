@@ -13,6 +13,6 @@
 // limitations under the License.
 
 class $ {
-  set ( ) {}
+  set() {}
 }
-for ( ; 10 ; i )
+for (; 10; i)
