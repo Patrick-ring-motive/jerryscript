@@ -66,7 +66,7 @@ assert(parseFloat("\u2029\u2029\u00a01.\u20292e\u00D0") === 1);
 assert(isNaN(parseFloat("\u2029\u2029")));
 
 var obj = new Object();
-var arr = [3,4,5];
+var arr = [3, 4, 5];
 var num = 7;
 var bool = true;
 var undef;
@@ -77,7 +77,11 @@ assert(parseFloat(num) === 7);
 assert(isNaN(parseFloat(bool)));
 assert(isNaN(parseFloat(undef)));
 
-var obj = { toString : function () { throw new ReferenceError("foo") } };
+var obj = {
+  toString: function() {
+    throw new ReferenceError("foo")
+  }
+};
 try {
   parseFloat(obj);
   assert(false);
