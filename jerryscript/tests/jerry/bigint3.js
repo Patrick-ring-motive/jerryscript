@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-function check_result(bigint, expected)
-{
+function check_result(bigint, expected) {
   assert(bigint.toString() === expected)
 }
 
-function check_error (code, error_type)
-{
+function check_error(code, error_type) {
   try {
     eval(code)
     assert(false)
@@ -41,7 +39,11 @@ check_error("BigInt(Infinity)", RangeError)
 
 check_result(BigInt(true), "1")
 check_result(BigInt(false), "0")
-check_result(BigInt({ valueOf() { return "0x100" } }), "256")
+check_result(BigInt({
+  valueOf() {
+    return "0x100"
+  }
+}), "256")
 
 check_result(BigInt(0), "0")
 check_result(BigInt(-0), "0")
@@ -53,4 +55,3 @@ check_result(BigInt(4503599627370496.5), "4503599627370496")
 check_result(BigInt(9007199254740991.5), "9007199254740992")
 check_result(BigInt(0x1fffffffffffff * (2 ** 70)), "10633823966279325802638835764831453184")
 check_result(BigInt(-0x1fffffffffffff * (2 ** 128)), "-3064991081731777376434327133362154903862870812598992896")
-
