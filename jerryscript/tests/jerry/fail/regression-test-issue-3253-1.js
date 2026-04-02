@@ -13,4 +13,5 @@
 // limitations under the License.
 
 var a;
-export { a
+export {
+  a
