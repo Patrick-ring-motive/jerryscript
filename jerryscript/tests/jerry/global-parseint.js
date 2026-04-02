@@ -41,7 +41,7 @@ assert(parseInt("\u00A01") === parseInt("1"));
 var bool = true;
 var obj = new Object();
 var num = 8;
-var arr = [2,3,4];
+var arr = [2, 3, 4];
 var undef;
 
 assert(isNaN(parseInt(bool, bool)));
@@ -69,7 +69,11 @@ assert(isNaN(parseInt(undef, obj)));
 assert(isNaN(parseInt(undef, num)));
 assert(isNaN(parseInt(undef, arr)));
 
-var obj = { toString : function () { throw new ReferenceError("foo") } };
+var obj = {
+  toString: function() {
+    throw new ReferenceError("foo")
+  }
+};
 try {
   parseInt(obj);
   assert(false);
