@@ -17,7 +17,11 @@ export function getName() {
 }
 
 export function getNamePromise(collector) {
-  return new Promise((resolve) => { collector["start"] = sourceName(); resolve(); })
-    .then(() => { collector["middle"] = sourceName(); });
+  return new Promise((resolve) => {
+      collector["start"] = sourceName();
+      resolve();
+    })
+    .then(() => {
+      collector["middle"] = sourceName();
+    });
 }
-
