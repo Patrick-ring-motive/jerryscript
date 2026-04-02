@@ -14,9 +14,9 @@
 
 var arr = [0, Infinity];
 Object.defineProperties(arr, {
-    length: {
+  length: {
     value: 1,
-    }
+  }
 });
 
 assert(arr.length === 1);
