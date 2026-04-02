@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import JSON, { counter as Object } from 'module-export-default-1.mjs'
+import JSON, {
+  counter as Object
+} from 'module-export-default-1.mjs'
 
 // Overwriting globals.
 assert(typeof JSON === "function")
