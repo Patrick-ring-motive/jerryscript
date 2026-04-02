@@ -16,12 +16,15 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var target = function () {};
-var handler = { defineProperty (target) {
-  throw 42;
-}, construct () {
-  return {};
-}};
+var target = function() {};
+var handler = {
+  defineProperty(target) {
+    throw 42;
+  },
+  construct() {
+    return {};
+  }
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -41,7 +44,11 @@ var handler = {
 
 var target = {};
 var proxy = new Proxy(target, handler);
-var desc = { value: 1, writable: true, configurable: true };
+var desc = {
+  value: 1,
+  writable: true,
+  configurable: true
+};
 
 Object.defineProperty(proxy, "foo", desc);
 
@@ -75,7 +82,6 @@ try {
   assert(e instanceof TypeError);
 }
 
-
 // test when trap is not callable
 var target = {};
 var handler = {
@@ -85,7 +91,9 @@ var handler = {
 var proxy = new Proxy(target, handler);
 
 try {
-  Object.defineProperty(proxy, "foo", {value: "foo"});
+  Object.defineProperty(proxy, "foo", {
+    value: "foo"
+  });
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
@@ -98,7 +106,9 @@ var handler = {
 }
 
 var proxy = new Proxy(target, handler);
-var desc = { value: 1 };
+var desc = {
+  value: 1
+};
 
 Object.defineProperty(proxy, "prop1", desc);
 assert(proxy.prop1 === 1);
@@ -122,14 +132,21 @@ var proxy = new Proxy(target, handler);
 Object.preventExtensions(target);
 
 try {
-  Object.defineProperty(proxy, "foo", {value: 1});
+  Object.defineProperty(proxy, "foo", {
+    value: 1
+  });
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
 }
 
 var target = {};
-var desc = {value: 1, writable: true, configurable: false, enumerable: true};
+var desc = {
+  value: 1,
+  writable: true,
+  configurable: false,
+  enumerable: true
+};
 
 var proxy = new Proxy(target, handler);
 
@@ -149,10 +166,16 @@ var handler = {
 
 var proxy = new Proxy(target, handler);
 
-Object.defineProperty(target, "foo", {value: 1, writable: false, configurable: false});
+Object.defineProperty(target, "foo", {
+  value: 1,
+  writable: false,
+  configurable: false
+});
 
 try {
-  Object.defineProperty(proxy, 'foo', {value: 2});
+  Object.defineProperty(proxy, 'foo', {
+    value: 2
+  });
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
@@ -161,7 +184,10 @@ try {
 target.bar = "baz";
 
 try {
-  Object.defineProperty(proxy, 'bar', {value: 2, configurable: false});
+  Object.defineProperty(proxy, 'bar', {
+    value: 2,
+    configurable: false
+  });
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
@@ -181,12 +207,12 @@ var p = new Proxy({}, {
 });
 
 try {
-  Reflect.defineProperty (p, "prop", {
+  Reflect.defineProperty(p, "prop", {
     writable: false,
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-assert (trapCalls == 1)
+assert(trapCalls == 1)
