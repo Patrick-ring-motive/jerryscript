@@ -1,4 +1,6 @@
 {
   "name": "jerry",
-  "macros": ["JERRY_GLOBAL_HEAP_SIZE=70"]
+  "macros": [
+    "JERRY_GLOBAL_HEAP_SIZE=70"
+  ]
 }
