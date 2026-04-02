@@ -14,13 +14,12 @@
 
 /* This test checks await expressions (nothing else). */
 
-function check_syntax_error (code)
-{
+function check_syntax_error(code) {
   try {
-    eval (code)
-    assert (false)
+    eval(code)
+    assert(false)
   } catch (e) {
-    assert (e instanceof SyntaxError)
+    assert(e instanceof SyntaxError)
   }
 }
 
@@ -39,9 +38,13 @@ check_syntax_error("async (a) => { () => 0\na\\u0077ait a }");
 // Valid uses of await
 
 async a => await a
-async a => { await a }
+async a => {
+  await a
+}
 async (a) => await a
-async(a) => { await a }
+async (a) => {
+  await a
+}
 
 // Nested async and non-async functions
 
@@ -60,27 +63,31 @@ async (a) => {
 
 async function f1(a) {
   await a
-  (function () { await ? async function(a) { await a } : await })
+    (function() {
+      await ? async function(a) {
+        await a
+      }: await
+    })
   await a
 }
 
 async (a) => {
   await a;
-  () => await ? async (a) => await a : await
+  () => await ? async (a) => await a: await
   await a
 }
 
 async (a) => {
   (a = () => await, [b] = (c))
   await a
-  (a, b = () => await)
+    (a, b = () => await)
   await a
 }
 
 // Object initializers
 
 var o = {
-  async await(a) {
+  async await (a) {
     await a;
     () => await
     await a
@@ -94,7 +101,7 @@ var o = {
     a\u0077ait
   },
 
-  async ["g"] () {
+  async ["g"]() {
     await a;
     () => await
     await a
@@ -103,13 +110,15 @@ var o = {
 
 async function f2(a) {
   var o = {
-    [await a]() { await % await }
+    [await a]() {
+      await % await
+    }
   }
   await a;
 }
 
 class C {
-  async await(a) {
+  async await (a) {
     await a;
     () => await
     await a
@@ -123,7 +132,7 @@ class C {
     a\u0077ait
   }
 
-  async ["g"] () {
+  async ["g"]() {
     await a;
     () => await
     await a
@@ -132,7 +141,9 @@ class C {
 
 async function f3(a) {
   class C {
-    [await a]() { await % await }
+    [await a]() {
+      await % await
+    }
   }
   await a;
 }
