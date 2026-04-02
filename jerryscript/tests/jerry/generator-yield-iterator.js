@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-function check_result(result, value, done)
-{
+function check_result(result, value, done) {
   assert(result.value === value)
   assert(result.done === done)
 }
 
-function *gen1() {
+function* gen1() {
   yield 1
-  yield *[2,3,4]
+  yield*[2, 3, 4]
   yield 5
 }
 
@@ -33,8 +32,8 @@ check_result(g.next(), 4, false)
 check_result(g.next(), 5, false)
 check_result(g.next(), undefined, true)
 
-function *gen2() {
-  yield * true
+function* gen2() {
+  yield* true
 }
 
 try {
@@ -45,10 +44,11 @@ try {
   assert(e instanceof TypeError)
 }
 
-var t0 = 0, t1 = 0
+var t0 = 0,
+  t1 = 0
 
-function *gen3() {
-  function *f() {
+function* gen3() {
+  function* f() {
     try {
       yield 5
     } finally {
@@ -57,7 +57,7 @@ function *gen3() {
   }
 
   try {
-    yield *f()
+    yield* f()
   } finally {
     t1 = 1
   }
@@ -72,27 +72,39 @@ assert(t1 === 1)
 t0 = -1
 t1 = 0
 
-function *gen4() {
-  function next(arg)
-  {
+function* gen4() {
+  function next(arg) {
     t0++;
 
-    if (t0 === 0)
-    {
+    if (t0 === 0) {
       assert(arg === undefined);
-      return { value:2, done:false }
+      return {
+        value: 2,
+        done: false
+      }
     }
-    if (t0 === 1)
-    {
+    if (t0 === 1) {
       assert(arg === -3);
-      return { value:3, done:false }
+      return {
+        value: 3,
+        done: false
+      }
     }
     assert(arg === -4);
-    return { value:4, done:true }
+    return {
+      value: 4,
+      done: true
+    }
   }
 
-  var o = { [Symbol.iterator]() { return { next } } }
-  assert((yield *o) === 4)
+  var o = {
+    [Symbol.iterator]() {
+      return {
+        next
+      }
+    }
+  }
+  assert((yield* o) === 4)
   return 5;
 }
 
@@ -101,8 +113,8 @@ check_result(g.next(-2), 2, false)
 check_result(g.next(-3), 3, false)
 check_result(g.next(-4), 5, true)
 
-function *gen5() {
-  function *f() {
+function* gen5() {
+  function* f() {
     try {
       yield 1
       assert(false)
@@ -112,7 +124,7 @@ function *gen5() {
     return 2
   }
 
-  assert((yield *f()) === 2)
+  assert((yield* f()) === 2)
   yield 3
 }
 
@@ -127,33 +139,42 @@ var iter6 = {
     return {
       get next() {
         assert(++state === 2)
-        return function () {
-          return { value:"Res", done:false }
+        return function() {
+          return {
+            value: "Res",
+            done: false
+          }
         }
       },
       get throw() {
         ++state
         assert(state === 4 || state === 9 || state == 14)
-        return function (v) {
+        return function(v) {
           assert(v === "Input")
-          return { value:o, done:false }
+          return {
+            value: o,
+            done: false
+          }
         }
       },
       get return() {
         ++state
         assert(state === 6 || state === 11 || state == 16)
-        return function (v) {
+        return function(v) {
           assert(v === o)
-          return { value:4.5, done:false }
+          return {
+            value: 4.5,
+            done: false
+          }
         }
       }
     }
   }
 }
 
-function *gen6() {
+function* gen6() {
   assert(++state === 1)
-  yield *iter6
+  yield* iter6
   assert(false)
 }
 
@@ -191,9 +212,9 @@ var iter7 = {
   }
 }
 
-function *gen7() {
+function* gen7() {
   assert(++state === 1)
-  yield *iter7
+  yield* iter7
   assert(false)
 }
 
