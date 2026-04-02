@@ -183,8 +183,7 @@ var tests = [
   '[1,2] >> +5 * function a(){} ^ !"foo" == !"foo" % ~6 + !4 / void /foo/ && [3] << !5 * function a(){} ^ "foo" == !"foo" % 6 + !0b11 / 0xFF = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
