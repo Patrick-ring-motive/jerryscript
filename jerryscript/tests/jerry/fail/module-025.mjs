@@ -14,4 +14,7 @@
  */
 
 /* Indirect exports must be checked if they are resolvable. */
-export { l } from "../module-export-01.mjs"
+export {
+  l
+}
+from "../module-export-01.mjs"
