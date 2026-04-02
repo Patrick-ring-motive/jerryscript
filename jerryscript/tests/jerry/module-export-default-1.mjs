@@ -13,5 +13,10 @@
 // limitations under the License.
 
 let counter = 0.1;
-export default function* g() { return "foo1"; } counter++; /* test auto semicolon insertion */
-export {counter};
+export default function* g() {
+  return "foo1";
+}
+counter++; /* test auto semicolon insertion */
+export {
+  counter
+};
