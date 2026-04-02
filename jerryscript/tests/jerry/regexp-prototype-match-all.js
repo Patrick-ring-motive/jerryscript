@@ -39,7 +39,7 @@ class MyRegExp extends RegExp {
     return Array.from(result);
   }
 }
-  
+
 var regexp = new MyRegExp('-[0-9]+', 'g');
 var result = re[Symbol.matchAll]("2016-01-02|2019-03-07");
 assert(Array.from(result, x => x[0]).toString() === "2016,01,02,2019,03,07");
@@ -48,7 +48,7 @@ var counter = 0;
 var callArgs;
 var regexp = /\d/u;
 regexp.constructor = {
-  [Symbol.species]: function(){
+  [Symbol.species]: function() {
     counter++;
     callArgs = arguments;
     return /\w/g;
@@ -66,7 +66,11 @@ assert(Array.from(result, x => x[0]).toString() === "a");
 
 // test when flags throws error
 var regexp = /a/g;
-Object.defineProperty(regexp, 'flags', { get () { throw 42; }});
+Object.defineProperty(regexp, 'flags', {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   regexp[Symbol.matchAll]("foo");
@@ -78,7 +82,9 @@ try {
 // test when flags value is symbol
 var regexp = /a/g;
 var sym = Symbol("foo")
-Object.defineProperty(regexp, 'flags', { value: sym });
+Object.defineProperty(regexp, 'flags', {
+  value: sym
+});
 
 try {
   regexp[Symbol.matchAll]("foo");
@@ -89,7 +95,11 @@ try {
 
 // test when match Symbol throws error
 var regexp = /[A-Z]/g;
-Object.defineProperty (regexp, Symbol.match, { get () { throw 42; }});
+Object.defineProperty(regexp, Symbol.match, {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   regexp[Symbol.matchAll]("foo");
@@ -101,12 +111,12 @@ try {
 // test when can't create RegExp
 var obj = {
   toString() {
-     throw 42;
-   }
+    throw 42;
+  }
 };
 
 try {
-  RegExp.prototype[Symbol.matchAll].call(obj, ''); 
+  RegExp.prototype[Symbol.matchAll].call(obj, '');
   assert(false);
 } catch (e) {
   assert(e === 42);
@@ -115,7 +125,7 @@ try {
 // test when constructor throws error
 var regexp = /./;
 Object.defineProperty(regexp, 'constructor', {
-  get(){
+  get() {
     throw 42;
   }
 });
@@ -129,7 +139,11 @@ try {
 
 // test when global flag throws error
 var regexp = /[A-Z]/;
-Object.defineProperty(regexp, 'global', { get() { throw 42; }});
+Object.defineProperty(regexp, 'global', {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   regexp[Symbol.matchAll]('');
