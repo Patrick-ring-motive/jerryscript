@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function foo(loop)
-{
-    while(loop)
-    {
-        print("eval");
-        print("syntax");
-    }
+function foo(loop) {
+  while (loop) {
+    print("eval");
+    print("syntax");
+  }
 }
 
 var a = 10;
