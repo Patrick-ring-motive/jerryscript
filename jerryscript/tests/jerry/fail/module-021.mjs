@@ -14,5 +14,9 @@
  */
 
 /* Can't have duplicated local bindings. */
-import { b } from "../module-export-01.mjs"
-import { b } from "../module-export-02.mjs"
+import {
+  b
+} from "../module-export-01.mjs"
+import {
+  b
+} from "../module-export-02.mjs"
