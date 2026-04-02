@@ -25,8 +25,7 @@ try {
 try {
   var o = {
     get p() {
-      function decl() {
-      }
+      function decl() {}
     }
   };
   decl();
