@@ -15,11 +15,10 @@
 print("backtrace-test");
 
 function f4() {
-	print("function f4");
+  print("function f4");
 }
 
-function foo()
-{
+function foo() {
   print("function foo");
   var tmp = 4;
   f4();
@@ -27,14 +26,13 @@ function foo()
 
 var cat = 'cat';
 
-function test()
-{
-	print("function test");
-	foo();
+function test() {
+  print("function test");
+  foo();
 }
 
 var
-	x =
-	  1;
+  x =
+  1;
 
 test();
