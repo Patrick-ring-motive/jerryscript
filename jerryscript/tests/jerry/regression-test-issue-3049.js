@@ -12,5 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var func = function (a, b) { return a + b };
+var func = function(a, b) {
+  return a + b
+};
 assert(['A'].findIndex(func) == 0);
