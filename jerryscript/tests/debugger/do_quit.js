@@ -25,17 +25,12 @@ function func() {
   }
 }
 
-;
-;
+;;
 
 var
   x =
-    1,
+  1,
   y =
-    2
+  2
 
-test = function
-(
-)
-{
-}
+test = function() {}
