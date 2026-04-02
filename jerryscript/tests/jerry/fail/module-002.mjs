@@ -13,4 +13,7 @@
  * limitations under the License.
  */
 
-import { , as b } from "../module-export-01.mjs";
+import {
+  ,
+  as b
+} from "../module-export-01.mjs";
