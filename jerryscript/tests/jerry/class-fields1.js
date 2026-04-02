@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function check_syntax_error(code)
-{
+function check_syntax_error(code) {
   try {
     eval(code)
     assert(false)
@@ -22,8 +21,7 @@ function check_syntax_error(code)
   }
 }
 
-function check_property(obj, name, value)
-{
+function check_property(obj, name, value) {
   property = Object.getOwnPropertyDescriptor(obj, name)
   assert(typeof property === "object")
   assert(property.value === value)
@@ -55,7 +53,9 @@ function f1() {
 
 var C1 = class {
   get = "a" + f1()
-  static; set; a = () => Math.cos(0)
+  static;
+  set;
+  a = () => Math.cos(0)
   v\u0061r
   f\u006fr = () => this
   arguments = this
@@ -86,7 +86,9 @@ res = new C2
 class C3 {
   constructor() {
     assert(this.x === 1)
-    return { z:"zz" }
+    return {
+      z: "zz"
+    }
   }
   x = 1
 }
@@ -114,13 +116,13 @@ check_property(res, "3", true)
 check_property(res, "z", "zz")
 
 class C6 {
-  a= () => this
-  b= this
+  a = () => this
+  b = this
 }
 
 class C7 extends C6 {
-  c= () => this
-  d= this
+  c = () => this
+  d = this
 }
 
 count = 0
@@ -130,8 +132,8 @@ class C8 extends C7 {
     super()
   }
 
-  e= () => this
-  f= this
+  e = () => this
+  f = this
 }
 
 var res = new C8
@@ -144,14 +146,14 @@ assert(res.f === res)
 
 count = 0
 class C9 {
-  a=assert(++count === 5)
-  a=assert(++count === 6)
-  a=assert(++count === 7)
-  a=assert(++count === 8)
-  static a=assert(++count === 1)
-  static a=assert(++count === 2)
-  static a=assert(++count === 3)
-  static a=assert(++count === 4)
+  a = assert(++count === 5)
+  a = assert(++count === 6)
+  a = assert(++count === 7)
+  a = assert(++count === 8)
+  static a = assert(++count === 1)
+  static a = assert(++count === 2)
+  static a = assert(++count === 3)
+  static a = assert(++count === 4)
 }
 
 assert(count === 4)
