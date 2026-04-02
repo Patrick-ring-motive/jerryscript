@@ -16,7 +16,9 @@
 var y = 0
 var prot = Object.getPrototypeOf(/ /)
 
-prot.setY = function (v) { y = v }
+prot.setY = function(v) {
+  y = v
+}
 
 assert(y === 0)
 // Since arrow function is an assignment expression, this affects certain constructs
@@ -39,7 +41,8 @@ assert(f() === 1)
 var f = [x => 2][0]
 assert(f() === 2)
 
-var f = 123; f += x => y
+var f = 123;
+f += x => y
 assert(typeof f === "string")
 
 // Comma operator
