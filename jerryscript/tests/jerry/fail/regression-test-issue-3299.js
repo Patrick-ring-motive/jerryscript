@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function f (a, b = $+ function ( ) { } ( ), $) { }
-var $ = { $: function ($) { }}
-f( )
+function f(a, b = $ + function() {}(), $) {}
+var $ = {
+  $: function($) {}
+}
+f()
 
-function duplicatedArg ( a , b = d , c ) {
+function duplicatedArg(a, b = d, c) {
   try {
     var eval
     var id_1
-    if ( id_2 === eval ( ) ) { }
-  } finally { }
+    if (id_2 === eval()) {}
+  } finally {}
 }
 
 duplicatedArg(1, 2)
