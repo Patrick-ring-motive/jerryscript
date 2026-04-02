@@ -24,7 +24,7 @@ class A {
 }
 class B extends A {
   constructor() {
-    super() (super.super)
+    super()(super.super)
   }
 }
 
