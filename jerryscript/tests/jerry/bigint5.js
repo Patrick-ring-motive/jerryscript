@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-function check_syntax_error(code)
-{
+function check_syntax_error(code) {
   try {
     eval(code)
     assert(false)
@@ -45,10 +44,16 @@ assert(0xffn == 255n)
 assert(0o77777n == 0x7fffn)
 assert(255n.toString(16) == "ff")
 
-var o = { 12n : "data" }
+var o = {
+  12n: "data"
+}
 assert(o[12] === "data")
 
-var c = class C { static 19n () { return "BigInt" } }
+var c = class C {
+  static 19n() {
+    return "BigInt"
+  }
+}
 assert(c[19]() === "BigInt")
 
 function f(p, q) {
