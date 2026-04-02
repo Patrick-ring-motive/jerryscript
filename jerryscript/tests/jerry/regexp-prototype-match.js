@@ -61,9 +61,7 @@ class RegExpSub extends RegExp {
     var result = RegExp.prototype[Symbol.match].call(this, str);
     if (result) {
       return "VALID";
-    }
-    else
-    {
+    } else {
       return "INVALID";
     }
   }
@@ -76,11 +74,13 @@ assert(result === "VALID");
 var o = {
   lastIndex: 0,
   global: true,
-  exec: function () {
-    if (this.lastIndex === 0)
-    {
+  exec: function() {
+    if (this.lastIndex === 0) {
       this.lastIndex = 1;
-      return {0: 3.14, index: 2};
+      return {
+        0: 3.14,
+        index: 2
+      };
     }
 
     return null;
