@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-function check_syntax_error(code)
-{
+function check_syntax_error(code) {
   try {
     eval(code);
     assert(false);
