@@ -14,10 +14,8 @@
 
 print("next test");
 
-function test()
-{
-  function f()
-  {
+function test() {
+  function f() {
     return 0;
   }
 
@@ -26,15 +24,14 @@ function test()
 }
 
 var f = test(),
-    g,
-    h = f();
+  g,
+  h = f();
 
 {
   let a = test(),
-      b,
-      c = a();
+    b,
+    c = a();
 }
-
 
 eval("(function () {} `a`)")
 gc();
