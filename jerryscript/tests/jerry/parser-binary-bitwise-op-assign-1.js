@@ -109,8 +109,7 @@ var tests = [
   'var a = [1,2,3]; a[2] == "foo" >> [] << typeof class a{} * 12 + void [] / [] != !a[0] % /[A]/ - delete `` & ++a[1] - a[2]-- = 42',
 ];
 
-for (var i = 0; i < tests.length; i++)
-{
+for (var i = 0; i < tests.length; i++) {
   try {
     eval(tests[i]);
     assert(false);
