@@ -39,17 +39,24 @@ assert(array[2] === Infinity);
 assert(array[3] instanceof Array);
 assert(array[4] === "foo")
 
-
 // Checking behavior when no length property defined
-var obj = { unshift : Array.prototype.unshift };
+var obj = {
+  unshift: Array.prototype.unshift
+};
 
 assert(obj.length === undefined);
-obj.unshift(1,2,3);
+obj.unshift(1, 2, 3);
 assert(obj.length === 3);
 
 // Checking behavior when unable to get length
-var obj = { unshift : Array.prototype.unshift };
-Object.defineProperty(obj, 'length', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  unshift: Array.prototype.unshift
+};
+Object.defineProperty(obj, 'length', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.unshift(1);
@@ -60,8 +67,14 @@ try {
 }
 
 // Checking behavior when unable to set length
-var obj = { unshift : Array.prototype.unshift };
-Object.defineProperty(obj, 'length', { 'set' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  unshift: Array.prototype.unshift
+};
+Object.defineProperty(obj, 'length', {
+  'set': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.unshift(2);
@@ -72,8 +85,15 @@ try {
 }
 
 // Checking behavior when unable shift elements
-var obj = { unshift : Array.prototype.unshift, length : 1 };
-Object.defineProperty(obj, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  unshift: Array.prototype.unshift,
+  length: 1
+};
+Object.defineProperty(obj, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.unshift(3);
@@ -83,8 +103,15 @@ try {
   assert(e instanceof ReferenceError);
 }
 
-var obj = { unshift : Array.prototype.unshift, length : 1 };
-Object.defineProperty(obj, '0', { 'set' : function () {throw new ReferenceError ("foo"); } });
+var obj = {
+  unshift: Array.prototype.unshift,
+  length: 1
+};
+Object.defineProperty(obj, '0', {
+  'set': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   obj.unshift(4);
@@ -95,7 +122,12 @@ try {
 }
 
 // Checking behavior when a property is not defined
-var obj = { '0' : "foo", '2' : "bar", length : 3, unshift : Array.prototype.unshift };
+var obj = {
+  '0': "foo",
+  '2': "bar",
+  length: 3,
+  unshift: Array.prototype.unshift
+};
 assert(obj.unshift("baz") === 4);
 assert(obj[0] === "baz");
 assert(obj[1] === "foo");
@@ -116,14 +148,22 @@ try {
 /* ES v5.1 15.4.4.13.6.e.i.
    Checking behavior when the array has only one property and bigger length */
 try {
-  var arr = { length : 9 };
-  Object.defineProperty(arr, '6', { value : 2 });
+  var arr = {
+    length: 9
+  };
+  Object.defineProperty(arr, '6', {
+    value: 2
+  });
   Array.prototype.unshift.call(arr, 2, 3);
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
 }
 
-var arrayLike = {get 5() { throw "shouldn't throw"; }};
+var arrayLike = {
+  get 5() {
+    throw "shouldn't throw";
+  }
+};
 arrayLike.length = 10;
 Array.prototype.unshift.call(arrayLike);
