@@ -15,21 +15,21 @@
 var t;
 
 t = /\//.exec("/");
-assert (t == "/");
+assert(t == "/");
 
 t = /[/]/.exec("/");
-assert ("a"+/x/+"b" == "a/x/b");
+assert("a" + /x/ + "b" == "a/x/b");
 
 t = /\/\[[\]/]/.exec("/[/");
-assert (t == "/[/");
+assert(t == "/[/");
 
 t = /\u0000/.exec("\u0000");
-assert (t == "\u0000");
+assert(t == "\u0000");
 
 try {
   eval("/" + String.fromCharCode("0x0000") + "/");
 } catch (e) {
-  assert (false);
+  assert(false);
 }
 
 try {
@@ -68,17 +68,17 @@ try {
 try {
   eval("var x = /aaa/");
 } catch (e) {
-  assert (false);
+  assert(false);
 }
 
 try {
   eval("{}/a/g");
 } catch (e) {
-  assert (false);
+  assert(false);
 }
 
 try {
   eval("var a, g; +{}/a/g");
 } catch (e) {
-  assert (false);
+  assert(false);
 }
