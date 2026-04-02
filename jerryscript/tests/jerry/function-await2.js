@@ -17,15 +17,16 @@ var p, r
 
 // Test 1
 
-async function f1(p)
-{
+async function f1(p) {
   assert(await p === 1)
   return 2
 }
 
-p = new Promise(function(resolve, reject) { r = resolve })
+p = new Promise(function(resolve, reject) {
+  r = resolve
+})
 
-f1(p).then(function (v) {
+f1(p).then(function(v) {
   assert(v === 2)
   successCount++
 })
@@ -34,14 +35,15 @@ r(1)
 
 // Test 2
 
-var f2 = async(p) =>
-{
+var f2 = async (p) => {
   assert(await p === 3)
 }
 
-p = new Promise(function(resolve, reject) { r = resolve })
+p = new Promise(function(resolve, reject) {
+  r = resolve
+})
 
-f2(p).then(function (v) {
+f2(p).then(function(v) {
   assert(v === undefined)
   successCount++
 })
@@ -52,9 +54,10 @@ r(3)
 
 var thenableCounter = 0
 
-async function f3()
-{
-  return new Promise(function(resolve) { resolve(f3) })
+async function f3() {
+  return new Promise(function(resolve) {
+    resolve(f3)
+  })
 }
 
 f3.then = function(resolve) {
@@ -70,8 +73,7 @@ f3()
 
 // Test 4
 
-async function f4(p)
-{
+async function f4(p) {
   try {
     throw 4
   } catch (e) {
@@ -79,9 +81,11 @@ async function f4(p)
   }
 }
 
-p = new Promise(function(resolve, reject) { r = resolve })
+p = new Promise(function(resolve, reject) {
+  r = resolve
+})
 
-f4(p).then(undefined, function (v) {
+f4(p).then(undefined, function(v) {
   assert(v === 5)
   successCount++
 })
@@ -90,8 +94,7 @@ r(1)
 
 // Test 5
 
-async function f5(p)
-{
+async function f5(p) {
   try {
     return 6
   } finally {
@@ -99,9 +102,11 @@ async function f5(p)
   }
 }
 
-p = new Promise(function(resolve, reject) { r = resolve })
+p = new Promise(function(resolve, reject) {
+  r = resolve
+})
 
-f5(p).then(undefined, function (v) {
+f5(p).then(undefined, function(v) {
   assert(v === 7)
   successCount++
 })
@@ -110,17 +115,18 @@ r(1)
 
 // Test 6
 
-p = new Promise(function(resolve, reject) { r = resolve })
+p = new Promise(function(resolve, reject) {
+  r = resolve
+})
 
-async function f6(p)
-{
+async function f6(p) {
   await p
   return self
 }
 
 var self = f6()
 
-self.then(undefined, function (v) {
+self.then(undefined, function(v) {
   assert(v instanceof TypeError)
   successCount++
 })
@@ -129,8 +135,7 @@ r(1)
 
 // Test 7
 
-async function f7(p)
-{
+async function f7(p) {
   var x = {}
   assert((await x) === x)
 
@@ -148,12 +153,16 @@ f7();
 
 async function f8() {
   var p = new Promise(function() {});
-  Object.defineProperty(p, 'constructor', { get() { throw "Error!" } });
+  Object.defineProperty(p, 'constructor', {
+    get() {
+      throw "Error!"
+    }
+  });
 
   await p
 }
 
-f8().then(undefined, function (v) {
+f8().then(undefined, function(v) {
   assert(v === "Error!")
   successCount++
 })
