@@ -20,7 +20,9 @@ var badDeleteArray = new Proxy([0], {
 });
 
 try {
-  JSON.parse('[0,0]', function() { this[1] = badDeleteArray; });
+  JSON.parse('[0,0]', function() {
+    this[1] = badDeleteArray;
+  });
 } catch (ex) {
   assert(ex === "My Super Error A");
 }
@@ -33,7 +35,9 @@ var badDeleteObj = new Proxy([0], {
 });
 
 try {
-  JSON.parse('[0,0]', function() { this[1] = badDeleteObj; });
+  JSON.parse('[0,0]', function() {
+    this[1] = badDeleteObj;
+  });
 } catch (ex) {
   assert(ex === "My Super Error B");
 }
@@ -57,7 +61,9 @@ try {
 }
 
 /* Test JSON parse property define with Object */
-var badDefineObj = new Proxy({0: null}, {
+var badDefineObj = new Proxy({
+  0: null
+}, {
   defineProperty: function(_, name) {
     throw "My Super Error D";
   }
@@ -82,7 +88,9 @@ var badKeys = new Proxy({}, {
 });
 
 try {
-  JSON.parse('[0,0]', function() { this[1] = badKeys; });
+  JSON.parse('[0,0]', function() {
+    this[1] = badKeys;
+  });
 } catch (ex) {
   assert(ex === "My Super Error E");
 }
