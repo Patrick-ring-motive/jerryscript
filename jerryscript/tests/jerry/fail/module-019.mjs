@@ -14,4 +14,6 @@
  */
 
 /* An ImportClause must be followed by a FromClause. */
-import { c }
+import {
+  c
+}
