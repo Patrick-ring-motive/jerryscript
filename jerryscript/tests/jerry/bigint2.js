@@ -20,8 +20,7 @@ try {
   assert(e instanceof TypeError)
 }
 
-function check_type_error (code)
-{
+function check_type_error(code) {
   try {
     eval(code)
     assert(false)
