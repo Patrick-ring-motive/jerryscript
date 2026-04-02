@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var v_1 = [,];
+var v_1 = [, ];
 Object.defineProperty(v_1, "0", {
-    set: function() {},
+  set: function() {},
 });
