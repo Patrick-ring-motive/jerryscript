@@ -199,6 +199,7 @@ var F = class ClassF {
   }
 
   static
+
   function(a) {
     return 3 * a;
   }
