@@ -15,10 +15,9 @@
 (function tc_13__012() {
   function foo(a, b, c, d) {
     var deleted = true;
-    for (i = 0; i < arguments.length; i++)
-    {
+    for (i = 0; i < arguments.length; i++) {
       delete arguments[i];
-      deleted = deleted && (typeof (arguments[i]) === "undefined");
+      deleted = deleted && (typeof(arguments[i]) === "undefined");
     }
     return deleted;
   }
@@ -29,11 +28,10 @@
 (function tc_13__005() {
   var foo = 1;
 
-  assert (foo === 1);
+  assert(foo === 1);
 
-  function foo()
-  {
-      return 1;
+  function foo() {
+    return 1;
   }
 })();
 
@@ -57,8 +55,7 @@
 
 (function tc_13__001() {
   var b = 1;
-  for (var i = 1; i < 10; ++i)
-  {
+  for (var i = 1; i < 10; ++i) {
     b *= i;
   }
   var c = b;
@@ -83,7 +80,7 @@
 })();
 
 (function tc_13__003() {
-  assert(function (param1, param2) {
+  assert(function(param1, param2) {
     return 1;
   }(true, "blah") === 1);
 })();
@@ -105,7 +102,7 @@
 })();
 
 (function tc_13__009() {
-  var check = typeof (foo) === "function";
+  var check = typeof(foo) === "function";
 
   var foo = 1;
 
@@ -119,28 +116,26 @@
 })();
 
 (function tc_13__006() {
-  function foo() {
-  }
+  function foo() {}
 
   assert(foo() === undefined);
 })();
 
 (function tc_13__004() {
-  function foo() {
-  }
+  function foo() {}
 
   assert(typeof foo === "function");
 })();
 
 (function tc_13_01__001() {
-  function arguments (param) {
+  function arguments(param) {
     return true;
   }
-  assert (arguments ());
+  assert(arguments());
 })();
 
 (function tc_13_02__001() {
-  var foo = function () {
+  var foo = function() {
     this.caller = 123;
   };
   var f = new foo();
@@ -148,8 +143,7 @@
 })();
 
 (function tc_13_02__007() {
-  var obj = new function foo()
-  {
+  var obj = new function foo() {
     this.prop = 1;
   };
 
@@ -194,8 +188,7 @@
 })();
 
 (function tc_13_02__008() {
-  function func() {
-  }
+  function func() {}
 
   assert(Function.prototype.isPrototypeOf(func));
 })();
