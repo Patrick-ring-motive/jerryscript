@@ -14,92 +14,92 @@
  */
 
 var int_typedarrays = [
-    Uint8ClampedArray,
-    Uint8Array,
-    Uint16Array,
-    Uint32Array,
-    Int8Array,
-    Int16Array,
-    Int32Array
+  Uint8ClampedArray,
+  Uint8Array,
+  Uint16Array,
+  Uint32Array,
+  Int8Array,
+  Int16Array,
+  Int32Array
 ];
 
 var float_typedarrays = [
-    Float32Array,
-    Float64Array,
+  Float32Array,
+  Float64Array,
 ];
 
 var obj = {
-    0: 0,
-    1: 1
+  0: 0,
+  1: 1
 };
 
-int_typedarrays.forEach(function(e){
-    try {
-        e.of.call(undefined);
-        assert (false);
-    } catch (err) {
-        assert (err instanceof TypeError);
-    }
+int_typedarrays.forEach(function(e) {
+  try {
+    e.of.call(undefined);
+    assert(false);
+  } catch (err) {
+    assert(err instanceof TypeError);
+  }
 
-    try {
-        e.of.call(obj);
-        assert (false);
-    } catch (err) {
-        assert (err instanceof TypeError);
-    }
+  try {
+    e.of.call(obj);
+    assert(false);
+  } catch (err) {
+    assert(err instanceof TypeError);
+  }
 
-    // Test with regulat inputs
-    assert(e.of(1,2,3).toString() === "1,2,3");
-    assert(e.of(12,4,5,0).toString() === "12,4,5,0");
-    assert(e.of(23).toString() === "23");
+  // Test with regulat inputs
+  assert(e.of(1, 2, 3).toString() === "1,2,3");
+  assert(e.of(12, 4, 5, 0).toString() === "12,4,5,0");
+  assert(e.of(23).toString() === "23");
 
-    // Test with string inputs
-    assert(e.of("12",4).toString() === "12,4");
-    assert(e.of(1,2,"foo").toString() === "1,2,0");
+  // Test with string inputs
+  assert(e.of("12", 4).toString() === "12,4");
+  assert(e.of(1, 2, "foo").toString() === "1,2,0");
 
-    // Test with undefined
-    assert(e.of(undefined).toString() === "0");
+  // Test with undefined
+  assert(e.of(undefined).toString() === "0");
 
-    // Test with object
-    assert(e.of(obj).toString() === "0");
+  // Test with object
+  assert(e.of(obj).toString() === "0");
 
-    // Test with NaN
-    assert(e.of(NaN).toString() === "0");
+  // Test with NaN
+  assert(e.of(NaN).toString() === "0");
 });
 
-float_typedarrays.forEach(function(e){
-    try {
-        e.of.call(undefined);
-        assert (false);
-    } catch (err) {
-        assert (err instanceof TypeError);
-    }
+float_typedarrays.forEach(function(e) {
+  try {
+    e.of.call(undefined);
+    assert(false);
+  } catch (err) {
+    assert(err instanceof TypeError);
+  }
 
-    try {
-        e.of.call(obj);
-        assert (false);
-    } catch (err) {
-        assert (err instanceof TypeError);
-    }
+  try {
+    e.of.call(obj);
+    assert(false);
+  } catch (err) {
+    assert(err instanceof TypeError);
+  }
 
-    // Test with regulat inputs
-    assert(e.of(1,2,3).toString() === "1,2,3");
-    assert(e.of(12,4,5,0).toString() === "12,4,5,0");
-    assert(e.of(23).toString() === "23");
+  // Test with regulat inputs
+  assert(e.of(1, 2, 3).toString() === "1,2,3");
+  assert(e.of(12, 4, 5, 0).toString() === "12,4,5,0");
+  assert(e.of(23).toString() === "23");
 
-    // Test with string inputs
-    assert(e.of("12",4).toString() === "12,4");
-    assert(e.of(1,2,"foo").toString() === "1,2,NaN");
-    assert(e.of("-12").toString() === "-12");
+  // Test with string inputs
+  assert(e.of("12", 4).toString() === "12,4");
+  assert(e.of(1, 2, "foo").toString() === "1,2,NaN");
+  assert(e.of("-12").toString() === "-12");
 
-    // Test with undefined
-    assert(e.of(undefined).toString() === "NaN");
+  // Test with undefined
+  assert(e.of(undefined).toString() === "NaN");
 
-    // Test with object
-    assert(e.of(obj).toString() === "NaN");
+  // Test with object
+  assert(e.of(obj).toString() === "NaN");
 
-    // Test with NaN
-    assert(e.of(NaN).toString() === "NaN");
+  // Test with NaN
+  assert(e.of(NaN).toString() === "NaN");
 });
 
 // Test with negative inputs
