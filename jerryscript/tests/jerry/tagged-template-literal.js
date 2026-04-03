@@ -25,7 +25,7 @@ function myTag(strings, personExp, ageExp) {
   var str1 = strings[1];
 
   var ageStr;
-  if (ageExp > 99){
+  if (ageExp > 99) {
     ageStr = 'centenarian';
   } else {
     ageStr = 'youngster';
@@ -52,10 +52,12 @@ function template(strings, ...keys) {
 var t1Closure = template`${0}${1}${0}!`;
 assert(t1Closure('Y', 'A') === "YAY!");
 var t2Closure = template`${0} ${'foo'}!`;
-assert(t2Closure('Hello', {foo: 'World'}) === "Hello World!");
+assert(t2Closure('Hello', {
+  foo: 'World'
+}) === "Hello World!");
 
 // Raw strings
-(function () {
+(function() {
   function tag(strings) {
     assert(strings.raw[0].length === 40);
   }
@@ -63,29 +65,29 @@ assert(t2Closure('Hello', {foo: 'World'}) === "Hello World!");
   tag`string text line 1 \n string text line 2`;
 })();
 
-assert (String.raw`Hi\n${2+3}!` === "Hi\\n5!");
+assert(String.raw`Hi\n${2+3}!` === "Hi\\n5!");
 
-(function () {
+(function() {
   function empty(strings, ...params) {
     assert(strings.length === 4);
     assert(strings.raw.length === 4);
     assert(params.length === 3);
-    strings.forEach ((e) => assert (e === ""));
-    strings.raw.forEach ((e) => assert (e === ""));
-    params.forEach ((e) => assert (e === 1));
+    strings.forEach((e) => assert(e === ""));
+    strings.raw.forEach((e) => assert(e === ""));
+    params.forEach((e) => assert(e === 1));
   }
 
   empty`${1}${1}${1}`;
 })();
 
-(function () {
-  function f (str) {
+(function() {
+  function f(str) {
     return str.raw[0].length;
   }
-  assert (eval("f`a\u2029b`") === 3);
+  assert(eval("f`a\u2029b`") === 3);
 })();
 
-(function () {
+(function() {
   function testRaw(parts, a, b) {
     assert(parts instanceof Array);
     assert(parts.raw instanceof Array);
@@ -106,8 +108,9 @@ assert (String.raw`Hi\n${2+3}!` === "Hi\\n5!");
 })();
 
 // TemplateStrings call site caching
-(function () {
+(function() {
   let str = (arr) => arr;
+
   function getStr() {
     return str`foo`;
   }
@@ -117,8 +120,9 @@ assert (String.raw`Hi\n${2+3}!` === "Hi\\n5!");
 })();
 
 // TemplateStrings permanent caching
-(function () {
+(function() {
   let str = (arr) => arr;
+
   function getStr() {
     return str`foo`;
   }
@@ -138,9 +142,9 @@ assert(desc.writable === false);
 assert(desc.enumerable === true);
 assert(desc.configurable === false);
 
-(function () {
-  function f (strings, ...args) {
-    return function () {
+(function() {
+  function f(strings, ...args) {
+    return function() {
       return Array(...args);
     };
   }
@@ -151,7 +155,7 @@ assert(desc.configurable === false);
   assert(a[1] === 2);
   assert(a[2] === 3);
 
-  function g (strings, ...args) {
+  function g(strings, ...args) {
     return Array;
   }
 
@@ -162,13 +166,13 @@ assert(desc.configurable === false);
   assert(a[2] === 6);
 
   try {
-    new (g`${1}${2}${3}`(4, 5, 6));
+    new(g`${1}${2}${3}`(4, 5, 6));
     assert(false);
   } catch (e) {
-    assert (e instanceof TypeError);
+    assert(e instanceof TypeError);
   }
 
-  function h (strings, ...args) {
+  function h(strings, ...args) {
     return 5;
   }
 
@@ -176,6 +180,6 @@ assert(desc.configurable === false);
     new h`foo`;
     assert(false);
   } catch (e) {
-    assert (e instanceof TypeError);
+    assert(e instanceof TypeError);
   }
 })();
