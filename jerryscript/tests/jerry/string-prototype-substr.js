@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -39,7 +40,7 @@ assert(String.prototype.substr.call({}) === "[object Object]");
 try {
   String.prototype.substr.call(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -47,7 +48,7 @@ try {
 try {
   String.prototype.substr.call(null);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -69,20 +70,20 @@ assert("Hello world!".substr(2, NaN) === "");
 assert("Hello world!".substr(2, undefined) === "llo world!");
 
 // check negative
-assert("Hello world!".substr(-1,8) === "!");
+assert("Hello world!".substr(-1, 8) === "!");
 
 // check negative
-assert("Hello\tworld!".substr(5,-8) === "");
+assert("Hello\tworld!".substr(5, -8) === "");
 
 // check negative
-assert("Hello world!".substr(-1,-8) === "");
+assert("Hello world!".substr(-1, -8) === "");
 
 // check ranges
-assert("Hello world!".substr(-1,10000) === "!");
+assert("Hello world!".substr(-1, 10000) === "!");
 
-assert("Hello world!".substr(10000,1000000) === "");
+assert("Hello world!".substr(10000, 1000000) === "");
 
-assert("Hello world!".substr(100000,1) === "");
+assert("Hello world!".substr(100000, 1) === "");
 
 // check both undefined
 assert("Hello world!".substr(undefined, undefined) === "Hello world!");
@@ -102,19 +103,21 @@ assert("Hello world!".substr(2, false) === "");
 assert("Hello world!".substr(5, obj) === " world!");
 
 // check other objects
-var obj = { substr : String.prototype.substr }
-
-obj.toString = function() {
-    return "Iam";
+var obj = {
+  substr: String.prototype.substr
 }
-assert(obj.substr(0,1) === "I");
 
 obj.toString = function() {
-  throw new ReferenceError ("foo");
+  return "Iam";
+}
+assert(obj.substr(0, 1) === "I");
+
+obj.toString = function() {
+  throw new ReferenceError("foo");
 };
 
 try {
-  assert(obj.substr(100000,1));
+  assert(obj.substr(100000, 1));
   assert(false);
 } catch (e) {
   assert(e.message === "foo");
@@ -141,7 +144,10 @@ try {
 assert(String.prototype.substr.call(true, 0, 1) === "t");
 
 // check coercible - Object
-var test_object = {firstName:"John", lastName:"Doe"};
+var test_object = {
+  firstName: "John",
+  lastName: "Doe"
+};
 assert(String.prototype.substr.call(test_object, 0, 7) === "[object");
 
 // check coercible - Number
