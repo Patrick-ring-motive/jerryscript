@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function validate_typedarray (typedarray, result) {
+function validate_typedarray(typedarray, result) {
   assert(typedarray.length === result.length);
   for (var i = 0; i < typedarray.length; i++) {
     assert(typedarray[i] === result[i]);
@@ -45,7 +45,7 @@ var species_called = false;
 var v7 = new Float64Array(6);
 var v8 = v7.buffer;
 v8.constructor = {
-  get [Symbol.species] (){
+  get [Symbol.species]() {
     species_called = true;
     return Uint8Array;
   }
