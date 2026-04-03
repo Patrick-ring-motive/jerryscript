@@ -13,7 +13,9 @@
 // limitations under the License.
 
 var o = Object("str");
-o.toString = function() { throw "toString error" };
+o.toString = function() {
+  throw "toString error"
+};
 
 try {
   JSON.stringify(o);
