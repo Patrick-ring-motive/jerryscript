@@ -14,11 +14,10 @@
 
 var obj = {};
 var proxy = new Proxy(obj, {
-    getOwnPropertyDescriptor: function (target, property) {
-    },
+  getOwnPropertyDescriptor: function(target, property) {},
 });
 var proxy2 = new Proxy(proxy, {
-    a: obj.prop2++
+  a: obj.prop2++
 });
 
 try {
