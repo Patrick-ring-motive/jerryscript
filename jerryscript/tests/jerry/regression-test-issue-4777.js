@@ -12,13 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 var fast_array = [];
 for (var i = 0; i < 1000; i++) {
-    fast_array.push(i);
+  fast_array.push(i);
 }
 
-var result_array = fast_array.slice(0, {valueOf: function() { fast_array.length = '3'; return 1000; }});
+var result_array = fast_array.slice(0, {
+  valueOf: function() {
+    fast_array.length = '3';
+    return 1000;
+  }
+});
 
 assert(result_array.length === 1000);
 
