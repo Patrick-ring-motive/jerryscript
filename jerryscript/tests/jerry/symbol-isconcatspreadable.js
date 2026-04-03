@@ -45,7 +45,9 @@ assert(JSON.stringify(numericArray) === '[1,2,3,{"0":4,"1":5,"length":2}]');
 assert(numericArray.length === 4);
 
 // Test with object
-var obj = { 0: 'd' };
+var obj = {
+  0: 'd'
+};
 
 var alphaObj = alpha.concat(obj);
 assert(JSON.stringify(alphaObj) === '["a","b","c",{"0":"d"}]');
@@ -70,7 +72,11 @@ assert(numericBool.length === 4);
 // Test when unable to concat
 var array1 = [];
 var array2 = [];
-Object.defineProperty(array2, '0', { 'get' : function () {throw new ReferenceError ("foo"); } });
+Object.defineProperty(array2, '0', {
+  'get': function() {
+    throw new ReferenceError("foo");
+  }
+});
 
 try {
   array1.concat(array2);
