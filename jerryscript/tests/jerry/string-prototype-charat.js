@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -38,7 +39,7 @@ assert(String.prototype.charAt.call(new String()) === "");
 assert("hello world!".charAt(NaN) === "h");
 
 // check Object
-assert(String.prototype.charAt.call({})  === "[");
+assert(String.prototype.charAt.call({}) === "[");
 
 // simple checks
 assert("hello world!".charAt(0) === "h");
@@ -82,7 +83,7 @@ assert("hello world!".charAt(false) === "h");
 try {
   String.prototype.charAt.call(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -90,7 +91,7 @@ try {
 try {
   String.prototype.charAt.call(null);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -114,7 +115,10 @@ try {
 assert(String.prototype.charAt.call(true, 1) === "r");
 
 // check coercible - Object
-var test_object = {firstName:"John", lastName:"Doe"};
+var test_object = {
+  firstName: "John",
+  lastName: "Doe"
+};
 assert(String.prototype.charAt.call(test_object, 1) === "o");
 
 // check coercible - Number
