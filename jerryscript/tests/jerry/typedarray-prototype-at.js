@@ -41,10 +41,10 @@ assert(index === 0);
 assert(normal_typedarrays[index].at(0) === 0);
 
 /* Integer input */
-normal_typedarrays.forEach(function(e){
+normal_typedarrays.forEach(function(e) {
   assert(e.at(normal_typedarrays[1].length) === undefined);
-  assert(e.at(normal_typedarrays[2].length+1) === undefined);
-  assert(e.at(normal_typedarrays[3].length-1) === 6);
+  assert(e.at(normal_typedarrays[2].length + 1) === undefined);
+  assert(e.at(normal_typedarrays[3].length - 1) === 6);
   assert(e.at(0) === 0);
   assert(e.at("-1") === 6);
   assert(e.at(-1) === 6);
@@ -53,7 +53,7 @@ normal_typedarrays.forEach(function(e){
 });
 
 /* Float input */
-float_typedarrays.forEach(function(f){
+float_typedarrays.forEach(function(f) {
   assert(f.at(float_typedarrays[1].length) === undefined);
   assert(f.at(0) === 1.5);
   assert(f.at("-1") === 10.5);
@@ -63,7 +63,7 @@ float_typedarrays.forEach(function(f){
 });
 
 /* BigInt input */
-bigint_typedarrays.forEach(function(b){
+bigint_typedarrays.forEach(function(b) {
   assert(b.at(bigint_typedarrays[1].length) === undefined);
   assert(b.at(0) === 3n);
   assert(b.at("-1") === 6n);
@@ -72,11 +72,11 @@ bigint_typedarrays.forEach(function(b){
   assert(b.at(100) === undefined)
 });
 
-normal_typedarrays.forEach(function(e){
+normal_typedarrays.forEach(function(e) {
   try {
     e.prototype.at.call(undefined);
     assert(false);
-  } catch(e) {
+  } catch (e) {
     assert(e instanceof TypeError);
   }
 });
