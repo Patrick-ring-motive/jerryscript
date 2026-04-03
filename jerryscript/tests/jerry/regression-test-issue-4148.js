@@ -29,7 +29,7 @@ var array = [42.333333, 2.3];
 var sampleA = new Float32Array(array);
 try {
   sampleA.toLocaleString();
-} catch(ex) {
+} catch (ex) {
   assert(ex === "ERROR V");
 }
 assert(calls === 2);
@@ -37,7 +37,7 @@ assert(calls === 2);
 var sampleB = new Uint8Array(array);
 try {
   sampleB.toLocaleString();
-} catch(ex) {
+} catch (ex) {
   assert(ex === "ERROR V");
 }
 assert(calls === 3);
