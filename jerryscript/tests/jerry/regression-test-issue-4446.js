@@ -14,11 +14,11 @@
 
 class Base {
   constructor() {
-      return new Proxy(this, {
-          defineProperty(target, p, desc) {
-              return Reflect.defineProperty(target, p, desc);
-          }
-      });
+    return new Proxy(this, {
+      defineProperty(target, p, desc) {
+        return Reflect.defineProperty(target, p, desc);
+      }
+    });
   }
 }
 
