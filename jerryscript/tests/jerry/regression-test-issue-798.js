@@ -12,27 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var a = {}, b = 0;
+var a = {},
+  b = 0;
 
 while (a[b]) {
-  assert (false);
+  assert(false);
 }
 
-for ( ; a[b]; ) {
-  assert (false);
+for (; a[b];) {
+  assert(false);
 }
 
 var flag = false;
-do
-{
-  assert (!flag);
+do {
+  assert(!flag);
   flag = true;
 } while (a[b]);
 
-a = { };
-a.b = { c : 1 };
+a = {};
+a.b = {
+  c: 1
+};
 
-with (a.b)
-{
-  assert (c === 1);
+with(a.b) {
+  assert(c === 1);
 }
