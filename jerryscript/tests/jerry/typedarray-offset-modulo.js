@@ -22,16 +22,16 @@ var types = [
   Int32Array,
 ]
 
-var buffer = new ArrayBuffer (100);
+var buffer = new ArrayBuffer(100);
 
 for (var idx = 0; idx < types.length; idx++) {
   try {
     var target = types[idx];
 
     /* TypedArray should throw error on incorrect offset (offset % elementSize != 0)! */
-    new target (buffer, target.BYTES_PER_ELEMENT + 1, 1);
-    assert (false);
+    new target(buffer, target.BYTES_PER_ELEMENT + 1, 1);
+    assert(false);
   } catch (ex) {
-    assert (ex instanceof RangeError);
+    assert(ex instanceof RangeError);
   }
 }
