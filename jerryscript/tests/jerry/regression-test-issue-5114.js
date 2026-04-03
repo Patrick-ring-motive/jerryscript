@@ -13,7 +13,5 @@
 // limitations under the License.
 
 class c {
-    static {
-    }
-    ;
+  static {};
 }
