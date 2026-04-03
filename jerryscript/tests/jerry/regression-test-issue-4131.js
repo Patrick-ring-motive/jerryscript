@@ -12,38 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var P = function (executor) {
-  return new Promise (function () {
-    executor (
-      function () {},
-      function () {
-        throw new TypeError ();
+var P = function(executor) {
+  return new Promise(function() {
+    executor(
+      function() {},
+      function() {
+        throw new TypeError();
       }
     );
   });
 };
 
 try {
-  Promise.reject.call (P);
-  assert (false)
+  Promise.reject.call(P);
+  assert(false)
 } catch (e) {
-  assert ( e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
 
-var P = function (executor) {
-  return new Promise ( function() {
+var P = function(executor) {
+  return new Promise(function() {
     executor(
-      function () {
-        throw new TypeError ();
+      function() {
+        throw new TypeError();
       },
-      function () {}
+      function() {}
     );
   });
 };
 
 try {
   Promise.resolve.call(P);
-  assert (false)
+  assert(false)
 } catch (e) {
-  assert ( e instanceof TypeError)
+  assert(e instanceof TypeError)
 }
