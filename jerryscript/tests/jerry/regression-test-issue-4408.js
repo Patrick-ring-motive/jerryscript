@@ -14,12 +14,12 @@
 
 try {
   eval('/(?<=^abc)def/');
-} catch(e) {
+} catch (e) {
   assert(e instanceof SyntaxError);
 }
 
 try {
   eval('/(?a)/;')
-} catch(e) {
+} catch (e) {
   assert(e instanceof SyntaxError);
 }
