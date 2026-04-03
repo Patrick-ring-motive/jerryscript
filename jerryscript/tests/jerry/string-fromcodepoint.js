@@ -22,43 +22,43 @@ assert(String.fromCodePoint(0x1F303) === "🌃");
 
 // Tests with invalid inputs
 try {
-    assert(String.fromCodePoint('_'));
-    assert(false);
+  assert(String.fromCodePoint('_'));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
 try {
-    assert(String.fromCodePoint(Infinity));
-    assert(false);
+  assert(String.fromCodePoint(Infinity));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
 try {
-    assert(String.fromCodePoint(-1));
-    assert(false);
+  assert(String.fromCodePoint(-1));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
 try {
-    assert(String.fromCodePoint(3.14));
-    assert(false);
+  assert(String.fromCodePoint(3.14));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
 try {
-    assert(String.fromCodePoint(3e-2));
-    assert(false);
+  assert(String.fromCodePoint(3e-2));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
 
 try {
-    assert(String.fromCodePoint(NaN));
-    assert(false);
+  assert(String.fromCodePoint(NaN));
+  assert(false);
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
