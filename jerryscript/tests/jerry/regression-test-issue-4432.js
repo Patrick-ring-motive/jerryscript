@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function f(x,x,x) {
+function f(x, x, x) {
   return arguments[1];
 }
 
