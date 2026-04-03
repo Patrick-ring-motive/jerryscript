@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var p = new Proxy(Function(), { get: function closure() { eval("o.p.y"); delete closure; return closure == arguments.callee && !(new String(undefined)); }});
+var p = new Proxy(Function(), {
+  get: function closure() {
+    eval("o.p.y");
+    delete closure;
+    return closure == arguments.callee && !(new String(undefined));
+  }
+});
 
 try {
   Function.prototype.bind.call(p);
