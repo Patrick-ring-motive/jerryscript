@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -101,7 +102,10 @@ assert(String.prototype.charCodeAt.call(true, 1) === 114);
 assert(String.prototype.charCodeAt.call(true) === 116);
 
 // check coercible - Object
-var test_object = {firstName:"John", lastName:"Doe"};
+var test_object = {
+  firstName: "John",
+  lastName: "Doe"
+};
 assert(String.prototype.charCodeAt.call(test_object, 1) === 111);
 
 // check coercible - Number
