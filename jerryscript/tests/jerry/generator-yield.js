@@ -40,8 +40,8 @@ function* gen() {
 
 function* gen2() {
   1 ?
-    yield :
-    yield
+    yield:
+      yield
 }
 
 var gen3 = function*() {
