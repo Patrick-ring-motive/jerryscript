@@ -12,4 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-[function(a, a) { (function() { a }) }()]
+[function(a, a) {
+  (function() {
+    a
+  })
+}()]
