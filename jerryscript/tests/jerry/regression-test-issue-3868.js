@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var a = new Proxy({ a : 4, b :4}, {});
+var a = new Proxy({
+  a: 4,
+  b: 4
+}, {});
 var reached = false;
 
-for (var $ in a)
-{
+for (var $ in a) {
   reached = true;
 }
 
-assert (reached === true);
+assert(reached === true);
