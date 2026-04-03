@@ -22,7 +22,9 @@ var targetProxy = new Proxy({}, {
 var px = new Proxy(targetProxy, {
   get: function(target, key) {
     called_get = true;
-    return { debug: 1 };
+    return {
+      debug: 1
+    };
   }
 });
 
