@@ -13,6 +13,7 @@
 // limitations under the License.
 
 let str = '';
-function async() {}
 
-async(str)
+function async () {}
+
+async (str)
