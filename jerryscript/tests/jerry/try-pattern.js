@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-function check_syntax_error(code)
-{
+function check_syntax_error(code) {
   try {
     eval(code);
     assert(false);
@@ -35,7 +34,7 @@ check_syntax_error("try {} catch([a]) { { var a } }");
 check_syntax_error("try {} catch([a]) { function a() {} }");
 
 try {
-  throw [1,2]
+  throw [1, 2]
   assert(false)
 } catch ([a, b]) {
   assert(a === 1)
@@ -43,15 +42,21 @@ try {
 }
 
 try {
-  throw { x:1, y:2 }
+  throw {
+    x: 1,
+    y: 2
+  }
   assert(false)
-} catch ({x, 'y':b}) {
+} catch ({
+  x,
+  'y': b
+}) {
   assert(x === 1)
   assert(b === 2)
 }
 
 try {
-  throw [1,2]
+  throw [1, 2]
   assert(false)
 } catch ([a, b]) {
   eval("assert(a === 1)")
@@ -59,9 +64,15 @@ try {
 }
 
 try {
-  throw { x:1, y:2 }
+  throw {
+    x: 1,
+    y: 2
+  }
   assert(false)
-} catch ({x, 'y':b}) {
+} catch ({
+  x,
+  'y': b
+}) {
   eval("assert(x === 1)")
   eval("assert(b === 2)")
 }
@@ -78,8 +89,12 @@ try {
 }
 
 try {
-  throw [{a : 5}];
-} catch([{a}]) {
+  throw [{
+    a: 5
+  }];
+} catch ([{
+  a
+}]) {
   assert(a === 5);
 }
 
@@ -87,7 +102,7 @@ var catchReached = false;
 try {
   throw [{}];
   assert(false);
-} catch([{}]) {
+} catch ([{}]) {
   catchReached = true;
 }
 
