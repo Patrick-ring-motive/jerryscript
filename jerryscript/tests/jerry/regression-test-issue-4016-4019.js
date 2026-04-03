@@ -25,7 +25,6 @@ checkSyntax(`function a ([{ catch (e) {
   eval("var e");
 } }])`);
 
-
 checkSyntax(`function a ({
   catch (e) {
   eval("var e");
