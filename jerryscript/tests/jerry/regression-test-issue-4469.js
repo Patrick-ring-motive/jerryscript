@@ -26,7 +26,7 @@ function assertArrayEquals(array1, array2) {
   return true;
 }
 
-function tag(site){
+function tag(site) {
   return site;
 }
 
