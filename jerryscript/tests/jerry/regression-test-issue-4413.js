@@ -12,7 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-assert((new (class C2 { x = 5 })).x === 5);
-assert((new (class C2 { x = {} + {} })).x === "[object Object][object Object]");
-assert((new (class C2 { ["foo"] = 5; x = {} + {} })).foo === 5);
-assert((new (class C2 { ["foo"] = 5; x = 6 })).foo === 5);
+assert((new(class C2 {
+  x = 5
+})).x === 5);
+assert((new(class C2 {
+  x = {} + {}
+})).x === "[object Object][object Object]");
+assert((new(class C2 {
+  ["foo"] = 5;
+  x = {} + {}
+})).foo === 5);
+assert((new(class C2 {
+  ["foo"] = 5;
+  x = 6
+})).foo === 5);
