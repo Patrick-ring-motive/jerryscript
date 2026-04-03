@@ -12,5 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-assert ("abcde".indexOf("",1) === 1);
-assert ("abcde".lastIndexOf("",1) === 1);
+assert("abcde".indexOf("", 1) === 1);
+assert("abcde".lastIndexOf("", 1) === 1);
