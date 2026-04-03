@@ -62,13 +62,17 @@ try {
 }
 
 // Comparator function returns a Number.
-i.sort(function (lhs, rhs) {
+i.sort(function(lhs, rhs) {
   return rhs - lhs;
 });
 assert(i.toString() === '3,2,1');
 
 // Comparator function returns a non-Number type that coerces to a Number.
-i.sort(function (lhs, rhs) {
-  return { valueOf: function() { return rhs - lhs; } };
+i.sort(function(lhs, rhs) {
+  return {
+    valueOf: function() {
+      return rhs - lhs;
+    }
+  };
 });
 assert(i.toString() === '3,2,1');
