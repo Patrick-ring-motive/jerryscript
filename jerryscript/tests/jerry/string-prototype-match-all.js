@@ -42,15 +42,15 @@ assert('a'.matchAll(null) === obj);
 assert(counter === 1);
 
 assert(''.matchAll(undefined) === obj);
-assert(counter === 2) ;
+assert(counter === 2);
 
 var obj = {};
 var retval = {};
 var counter = 0;
 var thisVal, args;
 
-obj[Symbol.matchAll] = function () {
-    counter++;
+obj[Symbol.matchAll] = function() {
+  counter++;
   thisVal = this;
   args = arguments;
   return retval;
@@ -122,7 +122,9 @@ try {
 
 // test when flags value is undefined
 var regexp = /a/g;
-Object.defineProperty(regexp, 'flags', { value: undefined });
+Object.defineProperty(regexp, 'flags', {
+  value: undefined
+});
 
 try {
   "foo".matchAll(regexp)
@@ -133,7 +135,11 @@ try {
 
 // test when match Symbol throws error
 var regexp = /[A-Z]/g;
-Object.defineProperty (regexp, Symbol.match, { get () { throw 42; }});
+Object.defineProperty(regexp, Symbol.match, {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   "foo".matchAll(regexp);
@@ -144,7 +150,11 @@ try {
 
 // test when flags throws error
 var regexp = /a/g;
-Object.defineProperty(regexp, 'flags', { get () { throw 42; }});
+Object.defineProperty(regexp, 'flags', {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   "foo".matchAll(regexp);
@@ -156,7 +166,9 @@ try {
 // test when flags value is symbol
 var regexp = /a/g;
 var sym = Symbol("foo")
-Object.defineProperty(regexp, 'flags', { value: sym });
+Object.defineProperty(regexp, 'flags', {
+  value: sym
+});
 
 try {
   "foo".matchAll(regexp);
@@ -167,7 +179,11 @@ try {
 
 // test when matchAll Symbol throws error
 var regexp = /[A-Z]/g;
-Object.defineProperty (regexp, Symbol.matchAll, { get () { throw 42; }});
+Object.defineProperty(regexp, Symbol.matchAll, {
+  get() {
+    throw 42;
+  }
+});
 
 try {
   "foo".matchAll(regexp);
