@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -78,9 +79,9 @@ assert("\ud800\dc00\ud800\dc00".lastIndexOf("\dc00") === 6);
 // check empty string
 assert(String.prototype.lastIndexOf.call(new String()) === -1);
 
-assert(String.prototype.lastIndexOf.call("Hello world, welcome to the universe.","") === 37);
+assert(String.prototype.lastIndexOf.call("Hello world, welcome to the universe.", "") === 37);
 
-assert(String.prototype.lastIndexOf.call("","") === 0);
+assert(String.prototype.lastIndexOf.call("", "") === 0);
 
 // check NaN
 assert("Hello world, welcome to the universe.".lastIndexOf(NaN) === -1);
@@ -113,7 +114,7 @@ assert("true".lastIndexOf(true, false) === 0);
 try {
   String.prototype.lastIndexOf.call(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -130,7 +131,10 @@ assert(String.prototype.lastIndexOf.call(true, "e") === 3);
 assert(String.prototype.lastIndexOf.call(false, "e") === 4);
 
 // check coercible - Object
-var test_object = {firstName:"John", lastName:"Doe"};
+var test_object = {
+  firstName: "John",
+  lastName: "Doe"
+};
 assert(String.prototype.lastIndexOf.call(test_object, "Obj") === 8);
 
 // check coercible - Number
