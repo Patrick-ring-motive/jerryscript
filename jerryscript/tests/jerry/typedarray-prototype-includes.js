@@ -23,7 +23,7 @@ var typedarrays = [
   new Int32Array([0, 1, 2, 3, 0, 5, 6])
 ];
 
-typedarrays.forEach(function(e){
+typedarrays.forEach(function(e) {
   assert(e.includes.length === 1);
   assert(e.includes.name === "includes");
   assert(e.includes() === false);
@@ -50,6 +50,6 @@ var empty_typedarrays = [
   new Int32Array([])
 ];
 
-empty_typedarrays.forEach(function(e){
+empty_typedarrays.forEach(function(e) {
   assert(e.includes(5) === false);
 });
