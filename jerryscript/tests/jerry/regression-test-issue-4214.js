@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var called = false; Promise.resolve('d').finally((v) => called = true);
+var called = false;
+Promise.resolve('d').finally((v) => called = true);
 
 function __checkAsync() {
-    assert(called);
+  assert(called);
 }
