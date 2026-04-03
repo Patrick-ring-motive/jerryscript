@@ -12,16 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function check_syntax_error (script)
-{
-  try
-  {
-    eval (script);
-    assert (false);
-  }
-  catch (e)
-  {
-    assert (e instanceof SyntaxError);
+function check_syntax_error(script) {
+  try {
+    eval(script);
+    assert(false);
+  } catch (e) {
+    assert(e instanceof SyntaxError);
   }
 }
 
@@ -34,7 +30,7 @@ var
   protected = 5,
   let = 6,
   yield = 7,
-  static = 8;
+    static = 8;
 
 check_syntax_error("'use strict'\nimplements")
 check_syntax_error("'use strict'\n\\u0069mplements")
