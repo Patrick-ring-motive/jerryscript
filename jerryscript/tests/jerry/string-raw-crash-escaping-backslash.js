@@ -15,12 +15,8 @@
 
 /* This test must be left unchanged - testing JerryScript crash */
 
-try
-{
+try {
   var s = 'print(String.raw`\\`)\n// `';
-  eval (s)
+  eval(s)
   asserts(false)
-}
-catch (error)
-{
-}
+} catch (error) {}
