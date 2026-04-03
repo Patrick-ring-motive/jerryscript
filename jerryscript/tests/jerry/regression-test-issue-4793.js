@@ -32,7 +32,7 @@ assert(result_uint8_array.length === 3);
 try {
   big_array.filter(function(x, idx) {
     if (idx > 10) {
-        throw new Error("Error test magic");
+      throw new Error("Error test magic");
     }
     return x % 4 == 0;
   });
