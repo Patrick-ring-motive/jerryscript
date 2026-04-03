@@ -16,11 +16,11 @@ function Test262Error(message) {
   this.message = message || "";
 }
 
-Test262Error.prototype.toString = function () {
+Test262Error.prototype.toString = function() {
   return "Test262Error: " + this.message;
 };
 
-var newTarget = function () {}.bind(null);
+var newTarget = function() {}.bind(null);
 Object.defineProperty(newTarget, "prototype", {
   get() {
     throw new Test262Error();
