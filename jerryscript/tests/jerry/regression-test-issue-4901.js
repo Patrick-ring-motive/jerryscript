@@ -13,12 +13,12 @@
 // limitations under the License.
 
 function foo() {
-    new foo();
+  new foo();
 }
 
 try {
-    foo();
-    assert(false)
+  foo();
+  assert(false)
 } catch (e) {
-    assert(e instanceof RangeError);
+  assert(e instanceof RangeError);
 }
