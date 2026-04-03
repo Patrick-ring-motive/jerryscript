@@ -16,7 +16,7 @@ function a() {}
 
 try {
   eval('(a()) = a');
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof SyntaxError);
+  assert(e instanceof SyntaxError);
 }
