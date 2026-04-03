@@ -14,11 +14,16 @@
 
 /* Single non-enumerable property leak check with Object.assign, */
 var from = {};
-Object.defineProperty (from, "abc", { enumerable: false, get: function() { return new String ("demo"); }})
-assert ((from.abc + "") === "demo");
+Object.defineProperty(from, "abc", {
+  enumerable: false,
+  get: function() {
+    return new String("demo");
+  }
+})
+assert((from.abc + "") === "demo");
 
-var out = Object.assign ({}, from);
-assert (typeof (out.abc) === "undefined");
+var out = Object.assign({}, from);
+assert(typeof(out.abc) === "undefined");
 
 /* Test with Proxy */
 var called_get = false;
@@ -26,26 +31,27 @@ var called_keys = false;
 var called_desc = false;
 var called_extra_get = false;
 
-var prox = new Proxy (from, {
-  get: function (target, key) {
-    assert (key === "ERR");
+var prox = new Proxy(from, {
+  get: function(target, key) {
+    assert(key === "ERR");
     called_get = true;
     throw new URIError("ERR");
   },
-  ownKeys: function (target) {
+  ownKeys: function(target) {
     called_keys = true;
     return ["abc", "ERR"];
   },
   getOwnPropertyDescriptor: function(target, key) {
     if (key === "ERR") {
       called_desc = true;
-      return { enumerable: true,
-               get: function() {
-                 /* This should never be called! */
-                 called_extra_get = true;
-                 return "ABC";
-               },
-               configurable: true,
+      return {
+        enumerable: true,
+        get: function() {
+          /* This should never be called! */
+          called_extra_get = true;
+          return "ABC";
+        },
+        configurable: true,
       };
     }
     return Reflect.getOwnPropertyDescriptor(target, key);
@@ -53,17 +59,17 @@ var prox = new Proxy (from, {
 });
 
 try {
-  var prox_out = Object.assign ({}, prox);
-  assert (false);
+  var prox_out = Object.assign({}, prox);
+  assert(false);
 } catch (ex) {
-  assert (ex instanceof URIError);
+  assert(ex instanceof URIError);
 }
 
-assert (called_keys === true);
-assert (called_desc === true);
-assert (called_get === true);
+assert(called_keys === true);
+assert(called_desc === true);
+assert(called_get === true);
 
-assert (called_extra_get === false);
+assert(called_extra_get === false);
 
 /* Original test case from the issue report: test if there is a leak on exit. */
 var result = Object.assign({}, RegExp);
