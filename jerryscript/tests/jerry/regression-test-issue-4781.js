@@ -24,8 +24,7 @@ function testAdvanceStringIndex(lastIndex) {
       return lastIndex;
     },
 
-    set lastIndex(value) {
-    },
+    set lastIndex(value) {},
 
     get global() {
       return true;
