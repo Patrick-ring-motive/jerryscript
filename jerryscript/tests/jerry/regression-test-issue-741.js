@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var a = JSON.stringify (b=+'�');
+var a = JSON.stringify(b = +'�');
 
 assert(a === "null");
 
-var b = JSON.stringify (b=-'�0001');
+var b = JSON.stringify(b = -'�0001');
 
 assert(b === "null");
 
-var c = JSON.stringify (b=+'�');
+var c = JSON.stringify(b = +'�');
 
 assert(c === "null");
