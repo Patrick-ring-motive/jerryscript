@@ -14,7 +14,7 @@
 
 try {
   eval('typeof (global.v2) = 123');
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof SyntaxError);
+  assert(e instanceof SyntaxError);
 }
