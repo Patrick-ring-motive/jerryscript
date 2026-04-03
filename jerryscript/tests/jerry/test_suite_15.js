@@ -50,7 +50,7 @@
 
 (function tc_15_02_01__009() {
   var a = new Number(123.5);
-  assert (typeof Object(a) === 'object');
+  assert(typeof Object(a) === 'object');
 })();
 
 (function tc_15_02_01__008() {
@@ -104,7 +104,7 @@
 
 (function tc_15_02_03__001() {
   assert(typeof Object.getPrototypeOf(Object) == "function" &&
-          Object.length == 1);
+    Object.length == 1);
 })();
 
 (function tc_15_02_03__004() {
@@ -118,9 +118,9 @@
   var keys = Object.keys(object);
 
   assert(keys[0] == "prop1" &&
-          keys[1] == "prop2" &&
-          keys[2] == "prop3" &&
-          keys[3] == "prop4");
+    keys[1] == "prop2" &&
+    keys[2] == "prop3" &&
+    keys[3] == "prop4");
 
 })();
 
@@ -172,10 +172,10 @@
   var propertyDescriptor = {
     enumerable: true,
     configurable: true,
-    get: function () {
+    get: function() {
       return myProperty;
     },
-    set: function (newValue) {
+    set: function(newValue) {
       myProperty = newValue;
     }
   }
@@ -210,16 +210,26 @@
 
   assert(names instanceof Array);
 
-  var is_0 = false, is_1 = false, is_2 = false, is_length = false;
-  for (var i = 0; i <= 3; i++)
-  {
-    if (names[i] === "0") { is_0 = true; }
-    if (names[i] === "1") { is_1 = true; }
-    if (names[i] === "2") { is_2 = true; }
-    if (names[i] === "length") { is_length = true; }
+  var is_0 = false,
+    is_1 = false,
+    is_2 = false,
+    is_length = false;
+  for (var i = 0; i <= 3; i++) {
+    if (names[i] === "0") {
+      is_0 = true;
+    }
+    if (names[i] === "1") {
+      is_1 = true;
+    }
+    if (names[i] === "2") {
+      is_2 = true;
+    }
+    if (names[i] === "length") {
+      is_length = true;
+    }
   }
 
-  assert (is_0 && is_1 && is_2 && is_length);
+  assert(is_0 && is_1 && is_2 && is_length);
 })();
 
 (function tc_15_02_03__020() {
@@ -264,8 +274,7 @@
   if (Object.prototype === "qwerty")
     writable = true;
 
-  for (prop in Object)
-  {
+  for (prop in Object) {
     if (Object[prop] == "qwerty")
       enumerable = true;
   }
@@ -280,27 +289,27 @@
   var a = {
     prop1: Number,
     prop2: String,
-    foo: function () {
+    foo: function() {
       return 1;
     },
-    bar: function () {
+    bar: function() {
       return 0;
     }
   };
   names = Object.getOwnPropertyNames(a);
 
   assert(names instanceof Array &&
-          names[0] === "prop1" &&
-          names[1] === "prop2" &&
-          names[2] === "foo" &&
-          names[3] === "bar");
+    names[0] === "prop1" &&
+    names[1] === "prop2" &&
+    names[2] === "foo" &&
+    names[3] === "bar");
 })();
 
 (function tc_15_02_03__013() {
   var niceObject = {
     niceProp1: String,
     niceProp2: Number,
-    niceMeth: function () {
+    niceMeth: function() {
       return true;
     }
   }
@@ -314,14 +323,13 @@
 })();
 
 (function tc_15_02_03__012() {
-  var veryUsefulObject = {
-  }
+  var veryUsefulObject = {}
 
   Object.preventExtensions(veryUsefulObject);
 
   veryUsefulObject.property = "qwerty";
 
-  veryUsefulObject.method = function () {
+  veryUsefulObject.method = function() {
     return "asdf";
   }
 
@@ -390,7 +398,7 @@
 
 (function tc_15_02_03__007() {
   var a = {
-    foo: function () {
+    foo: function() {
       return 1
     }
   }
@@ -676,14 +684,12 @@
 })();
 
 (function tc_15_02_04_06__006() {
-  try
-  {
+  try {
     Object.prototype.isPrototypeOf.call(undefined, {});
 
     assert(false);
-  } catch (e)
-  {
-    assert (e instanceof TypeError);
+  } catch (e) {
+    assert(e instanceof TypeError);
   }
 })();
 
@@ -708,8 +714,8 @@
 (function tc_15_02_02__009() {
   var a = new Object(null);
   assert(typeof a === 'object' &&
-          typeof (Object.getPrototypeOf(a)) === "object" &&
-          Object.isExtensible(a));
+    typeof(Object.getPrototypeOf(a)) === "object" &&
+    Object.isExtensible(a));
 })();
 
 (function tc_15_02_02__002() {
@@ -729,7 +735,7 @@
   var a = {
     field1: Number,
     field2: String,
-    foo: function () {
+    foo: function() {
       return 0;
     }
   }
@@ -740,16 +746,16 @@
 (function tc_15_02_02__008() {
   var a = new Object();
   assert(typeof a === 'object' &&
-          typeof (Object.getPrototypeOf(a)) === "object" &&
-          Object.isExtensible(a));
+    typeof(Object.getPrototypeOf(a)) === "object" &&
+    Object.isExtensible(a));
 
 })();
 
 (function tc_15_02_02__010() {
   var a = new Object(undefined);
   assert(typeof a === 'object' &&
-          typeof (Object.getPrototypeOf(a)) === "object" &&
-          Object.isExtensible(a));
+    typeof(Object.getPrototypeOf(a)) === "object" &&
+    Object.isExtensible(a));
 
 })();
 
@@ -778,25 +784,18 @@
 })();
 
 (function tc_15_03_02_01__002() {
-  try
-  {
+  try {
     Function('a', 'a', '"use strict";');
     assert(false);
-  }
-  catch (e)
-  {
-  }
+  } catch (e) {}
 })();
 
 (function tc_15_03_02_01__005() {
   "use strict";
-  try
-  {
+  try {
     Function('eval', 'return;');
 
-  }
-  catch (e)
-  {
+  } catch (e) {
     assert(false);
   }
 })();
@@ -804,25 +803,18 @@
 (function tc_15_03_02_01__009() {
   "use strict";
 
-  try
-  {
+  try {
     Function('arguments', 'return;');
-  }
-  catch (e)
-  {
+  } catch (e) {
     assert(false);
   }
 })();
 
 (function tc_15_03_02_01__004() {
-  try
-  {
+  try {
     Function('eval', '"use strict";');
     assert(false);
-  }
-  catch (e)
-  {
-  }
+  } catch (e) {}
 })();
 
 (function tc_15_03_02_01__011() {
@@ -847,36 +839,26 @@
 (function tc_15_03_02_01__008() {
   "use strict";
 
-  try
-  {
+  try {
     Function('a,a', 'return a;');
-  }
-  catch (e)
-  {
+  } catch (e) {
     assert(false);
   }
 })();
 
 (function tc_15_03_02_01__007() {
-  try
-  {
+  try {
     Function('a,a', '"use strict";');
     assert(false);
-  }
-  catch (e)
-  {
-  }
+  } catch (e) {}
 })();
 
 (function tc_15_03_02_01__012s() {
   "use strict";
 
-  try
-  {
+  try {
     Function('a', 'a', 'return;');
-  }
-  catch (e)
-  {
+  } catch (e) {
     assert(false);
   }
 })();
@@ -886,7 +868,7 @@
 
   var obj = Function.prototype.toString.length;
 
-  Function.prototype.toString.length = function () {
+  Function.prototype.toString.length = function() {
     return "shifted";
   };
 
@@ -896,21 +878,16 @@
 (function tc_15_03_04_02__002() {
   var FACTORY = Function.prototype.toString;
 
-  try
-  {
+  try {
     var instance = new FACTORY;
     assert(false);
-  }
-  catch (e)
-  {
-  }
+  } catch (e) {}
 })();
 
 (function tc_15_03_04_02__003() {
   assert(Function.prototype.toString.hasOwnProperty('length'));
   assert(!Function.prototype.toString.propertyIsEnumerable('length'));
-  for (p in Function.prototype.toString)
-  {
+  for (p in Function.prototype.toString) {
     assert(p !== "length");
   }
 })();
@@ -932,7 +909,7 @@
 
 (function tc_15_03_03__003() {
   Function.prototype.indicator = 1;
-  assert (Function.indicator === 1);
+  assert(Function.indicator === 1);
 })();
 
 (function tc_15_03_03__001() {
@@ -941,44 +918,36 @@
 
 (function tc_15_03_03_01__001() {
   var obj = Function.prototype;
-  Function.prototype = function () {
+  Function.prototype = function() {
     return "shifted";
   };
 
-  if (Function.prototype !== obj)
-  {
+  if (Function.prototype !== obj) {
     assert(false);
   }
 
-  try
-  {
-    if (Function.prototype() !== undefined)
-    {
+  try {
+    if (Function.prototype() !== undefined) {
       assert(false);
     }
-  }
-  catch (e)
-  {
+  } catch (e) {
     assert(false);
   }
 })();
 
 (function tc_15_03_03_01__002() {
-  if (Function.propertyIsEnumerable('prototype'))
-  {
+  if (Function.propertyIsEnumerable('prototype')) {
     assert(false);
   }
 
   var count = 0;
 
-  for (p in Function)
-  {
+  for (p in Function) {
     if (p === "prototype")
       count++;
   }
 
-  if (count !== 0)
-  {
+  if (count !== 0) {
     assert(false);
   }
 })();
@@ -986,19 +955,19 @@
 (function tc_15_03_03_01__003() {
   delete Function.prototype;
 
-  if (!(Function.hasOwnProperty('prototype')))
-  {
+  if (!(Function.hasOwnProperty('prototype'))) {
     assert(false);
   }
 })();
 
 (function tc_15_03_03_01__004() {
-  function foo() {
-  }
+  function foo() {}
 
-  Object.defineProperty(foo, 'prototype', {value: {}});
+  Object.defineProperty(foo, 'prototype', {
+    value: {}
+  });
   assert(foo.prototype ===
-          Object.getOwnPropertyDescriptor(foo, 'prototype').value);
+    Object.getOwnPropertyDescriptor(foo, 'prototype').value);
 
 })();
 
@@ -1027,11 +996,11 @@
 })();
 
 (function tc_15_07_01__002() {
-  assert (typeof Number("123456") === "number");
+  assert(typeof Number("123456") === "number");
 })();
 
 (function tc_15_07_01__005() {
-  assert (Number() === +0);
+  assert(Number() === +0);
 })();
 
 (function tc_15_07_01__006() {
@@ -1043,7 +1012,7 @@
 })();
 
 (function tc_15_07_01__004() {
-  assert (Number(753) === 753);
+  assert(Number(753) === 753);
 })();
 
 (function tc_15_07_01__001() {
@@ -1059,7 +1028,9 @@
 })();
 
 (function tc_15_07_01__009() {
-  assert(isNaN(Number(function a() {return Infinity})));
+  assert(isNaN(Number(function a() {
+    return Infinity
+  })));
 })();
 
 (function tc_15_07_02__011() {
@@ -1179,7 +1150,7 @@
 })();
 
 (function tc_15_07_04_02__013() {
-  assert ((new Number(Number.NEGATIVE_INFINITY)).toString(undefined) === "-Infinity");
+  assert((new Number(Number.NEGATIVE_INFINITY)).toString(undefined) === "-Infinity");
 })();
 
 (function tc_15_07_04_02__004() {
@@ -1189,7 +1160,7 @@
 
 (function tc_15_07_04_02__009() {
   assert(Number.prototype.hasOwnProperty('toString') &&
-          typeof Number.prototype.toString === "function");
+    typeof Number.prototype.toString === "function");
 })();
 
 (function tc_15_07_03__004() {
@@ -1224,10 +1195,8 @@
 })();
 
 (function tc_15_07_03_02__006() {
-  for (x in Number)
-  {
-    if (x === "MAX_VALUE")
-    {
+  for (x in Number) {
+    if (x === "MAX_VALUE") {
       assert(false);
     }
   }
@@ -1249,8 +1218,8 @@
   var a = Object.getOwnPropertyDescriptor(Number, 'prototype');
 
   assert((a.writable === false &&
-          a.enumerable === false &&
-          a.configurable === false));
+    a.enumerable === false &&
+    a.configurable === false));
 })();
 
 (function tc_15_07_03_01__003() {
@@ -1258,10 +1227,8 @@
 })();
 
 (function tc_15_07_03_01__007() {
-  for (x in Number)
-  {
-    if (x === "prototype")
-    {
+  for (x in Number) {
+    if (x === "prototype") {
       assert(false);
     }
   }
@@ -1280,10 +1247,8 @@
 })();
 
 (function tc_15_07_03_06__006() {
-  for (x in Number)
-  {
-    if (x === "POSITIVE_INFINITY")
-    {
+  for (x in Number) {
+    if (x === "POSITIVE_INFINITY") {
       assert(false);
     }
   }
@@ -1316,10 +1281,8 @@
 })();
 
 (function tc_15_07_03_05__006() {
-  for (x in Number)
-  {
-    if (x === "NEGATIVE_INFINITY")
-    {
+  for (x in Number) {
+    if (x === "NEGATIVE_INFINITY") {
       assert(false);
     }
   }
@@ -1356,10 +1319,8 @@
 })();
 
 (function tc_15_07_03_04__003() {
-  for (x in Number)
-  {
-    if (x === "NaN")
-    {
+  for (x in Number) {
+    if (x === "NaN") {
       assert(false);
     }
   }
@@ -1387,10 +1348,8 @@
 })();
 
 (function tc_15_07_03_03__006() {
-  for (x in Number)
-  {
-    if (x === "MIN_VALUE")
-    {
+  for (x in Number) {
+    if (x === "MIN_VALUE") {
       assert(false);
     }
   }
@@ -1407,9 +1366,9 @@
 })();
 
 (function tc_15_05_02_01__002() {
-  var s = new String ("");
+  var s = new String("");
   s.x = 1;
-  assert (s.x === 1);
+  assert(s.x === 1);
 })();
 
 (function tc_15_05_02_01__001() {
@@ -1430,39 +1389,39 @@
 })();
 
 (function tc_15_05_03_02__001() {
-  assert (String.fromCharCode () === "");
+  assert(String.fromCharCode() === "");
 })();
 
 (function tc_15_05_03_02__002() {
-  assert (String.fromCharCode (65, 66, 67) === "ABC");
+  assert(String.fromCharCode(65, 66, 67) === "ABC");
 })();
 
 (function tc_15_05_01_01__005() {
-  assert (String (false) === "false");
+  assert(String(false) === "false");
 })();
 
 (function tc_15_05_01_01__008() {
-  assert (String (-0) === "0");
+  assert(String(-0) === "0");
 })();
 
 (function tc_15_05_01_01__013() {
-  assert (String (0.111111111111111) === "0.111111111111111");
+  assert(String(0.111111111111111) === "0.111111111111111");
 })();
 
 (function tc_15_05_01_01__010() {
-  assert (String (Infinity) === "Infinity");
+  assert(String(Infinity) === "Infinity");
 })();
 
 (function tc_15_05_01_01__007() {
-  assert (String (+0) === "0");
+  assert(String(+0) === "0");
 })();
 
 (function tc_15_05_01_01__009() {
-  assert (String (-1) === "-" + String (1));
+  assert(String(-1) === "-" + String(1));
 })();
 
 (function tc_15_05_01_01__012() {
-  assert (String (10000000000000000000) === "10000000000000000000");
+  assert(String(10000000000000000000) === "10000000000000000000");
 })();
 
 (function tc_15_05_01_01__006() {
@@ -1470,31 +1429,31 @@
 })();
 
 (function tc_15_05_01_01__001() {
-  assert (String () === String (""));
+  assert(String() === String(""));
 })();
 
 (function tc_15_05_01_01__015() {
-  assert (String (0.000000111111111111111) === "1.11111111111111e-7");
+  assert(String(0.000000111111111111111) === "1.11111111111111e-7");
 })();
 
 (function tc_15_05_01_01__004() {
-  assert (String (true) === "true");
+  assert(String(true) === "true");
 })();
 
 (function tc_15_05_01_01__014() {
-  assert (String (0.00000111111111111111) === "0.00000111111111111111");
+  assert(String(0.00000111111111111111) === "0.00000111111111111111");
 })();
 
 (function tc_15_05_01_01__002() {
-  assert (String (undefined) === "undefined");
+  assert(String(undefined) === "undefined");
 })();
 
 (function tc_15_05_01_01__003() {
-  assert (String (null) === "null");
+  assert(String(null) === "null");
 })();
 
 (function tc_15_05_01_01__011() {
-  assert (String (123000) === "123000");
+  assert(String(123000) === "123000");
 })();
 
 (function tc_15_05_04_07__001() {
@@ -1510,7 +1469,7 @@
 })();
 
 (function tc_15_05_04_01__001() {
-  assert (String.prototype.constructor === String);
+  assert(String.prototype.constructor === String);
 })();
 
 (function tc_15_05_04_05__001() {
@@ -1530,15 +1489,15 @@
 })();
 
 (function tc_15_05_04_03__001() {
-  assert (String ("abc").valueOf () === "abc");
+  assert(String("abc").valueOf() === "abc");
 })();
 
 (function tc_15_05_04_02__001() {
-  assert (String ("abc").toString () === "abc");
+  assert(String("abc").toString() === "abc");
 })();
 
 (function tc_15_05_04_02__002() {
-  assert ("abc".toString () === "abc");
+  assert("abc".toString() === "abc");
 })();
 
 (function tc_15_05_04_04__003() {
@@ -1558,7 +1517,7 @@
 })();
 
 (function tc_15_05_04_06__004() {
-  assert (String ().concat.length === 1);
+  assert(String().concat.length === 1);
 })();
 
 (function tc_15_05_04_06__001() {
@@ -1578,11 +1537,11 @@
 })();
 
 (function tc_15_08_02_06__007() {
-  assert (Math.ceil(-1.3) === -1);
+  assert(Math.ceil(-1.3) === -1);
 })();
 
 (function tc_15_08_02_06__006() {
-  assert(1/Math.ceil(-0.3) === -Infinity);
+  assert(1 / Math.ceil(-0.3) === -Infinity);
 })();
 
 (function tc_15_08_02_06__012() {
@@ -1590,11 +1549,11 @@
 })();
 
 (function tc_15_08_02_06__003() {
-  assert(1/Math.ceil(-0) === -Infinity);
+  assert(1 / Math.ceil(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_06__010() {
-  assert (Math.ceil(1.1) === 2);
+  assert(Math.ceil(1.1) === 2);
 })();
 
 (function tc_15_08_02_06__004() {
@@ -1602,11 +1561,11 @@
 })();
 
 (function tc_15_08_02_06__009() {
-  assert (Math.ceil(1.9) === 2);
+  assert(Math.ceil(1.9) === 2);
 })();
 
 (function tc_15_08_02_06__008() {
-  assert (Math.ceil(-1.9) === -1);
+  assert(Math.ceil(-1.9) === -1);
 })();
 
 (function tc_15_08_02_06__005() {
@@ -1623,23 +1582,23 @@
 })();
 
 (function tc_15_08_02_16__005() {
-  assert (isNaN(Math.sin(-Infinity)));
+  assert(isNaN(Math.sin(-Infinity)));
 })();
 
 (function tc_15_08_02_16__001() {
-  assert (isNaN(Math.sin(NaN)));
+  assert(isNaN(Math.sin(NaN)));
 })();
 
 (function tc_15_08_02_16__003() {
-  assert (1/Math.sin(-0) === -Infinity);
+  assert(1 / Math.sin(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_16__004() {
-  assert (isNaN(Math.sin(Infinity)));
+  assert(isNaN(Math.sin(Infinity)));
 })();
 
 (function tc_15_08_02_16__002() {
-  assert (1/Math.sin(+0) === Infinity);
+  assert(1 / Math.sin(+0) === Infinity);
 })();
 
 (function tc_15_08_02_03__009() {
@@ -1679,23 +1638,23 @@
 })();
 
 (function tc_15_08_02_17__003() {
-  assert (1/Math.sqrt(+0) === Infinity);
+  assert(1 / Math.sqrt(+0) === Infinity);
 })();
 
 (function tc_15_08_02_17__005() {
-  assert (Math.sqrt(Infinity) === Infinity);
+  assert(Math.sqrt(Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_17__004() {
-  assert (1/Math.sqrt(-0) === -Infinity);
+  assert(1 / Math.sqrt(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_17__002() {
-  assert (isNaN(Math.sqrt(-2)));
+  assert(isNaN(Math.sqrt(-2)));
 })();
 
 (function tc_15_08_02_17__001() {
-  assert (isNaN(Math.sqrt(NaN)));
+  assert(isNaN(Math.sqrt(NaN)));
 })();
 
 (function tc_15_08_02_01__002() {
@@ -1755,7 +1714,7 @@
 })();
 
 (function tc_15_08_02_11__014() {
-  assert(1/Math.max(-0, +0) === Infinity);
+  assert(1 / Math.max(-0, +0) === Infinity);
 })();
 
 (function tc_15_08_02_11__005() {
@@ -1775,23 +1734,23 @@
 })();
 
 (function tc_15_08_02_07__003() {
-  assert (Math.cos(+0) === 1);
+  assert(Math.cos(+0) === 1);
 })();
 
 (function tc_15_08_02_07__006() {
-  assert (isNaN(Math.cos(-Infinity)));
+  assert(isNaN(Math.cos(-Infinity)));
 })();
 
 (function tc_15_08_02_07__001() {
-  assert (isNaN(Math.cos(NaN)));
+  assert(isNaN(Math.cos(NaN)));
 })();
 
 (function tc_15_08_02_07__004() {
-  assert (Math.cos(-0) === 1);
+  assert(Math.cos(-0) === 1);
 })();
 
 (function tc_15_08_02_07__007() {
-  assert (Math.cos(Math.PI) === -1);
+  assert(Math.cos(Math.PI) === -1);
 })();
 
 (function tc_15_08_02_07__002() {
@@ -1799,15 +1758,15 @@
 })();
 
 (function tc_15_08_02_07__005() {
-  assert (isNaN(Math.cos(Infinity)));
+  assert(isNaN(Math.cos(Infinity)));
 })();
 
 (function tc_15_08_02_10__002() {
-  assert (isNaN(Math.log(-0.00001)));
+  assert(isNaN(Math.log(-0.00001)));
 })();
 
 (function tc_15_08_02_10__004() {
-  assert (Math.log(-0) === -Infinity);
+  assert(Math.log(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_10__001() {
@@ -1815,7 +1774,7 @@
 })();
 
 (function tc_15_08_02_10__005() {
-  assert (1/Math.log(1) === Infinity);
+  assert(1 / Math.log(1) === Infinity);
 })();
 
 (function tc_15_08_02_10__003() {
@@ -1823,15 +1782,15 @@
 })();
 
 (function tc_15_08_02_10__006() {
-  assert (Math.log(Infinity) === Infinity);
+  assert(Math.log(Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_13__029() {
-  assert (Math.pow(2,2) === 4);
+  assert(Math.pow(2, 2) === 4);
 })();
 
 (function tc_15_08_02_13__022() {
-  assert (1/Math.pow(+0, 5.2) === Infinity);
+  assert(1 / Math.pow(+0, 5.2) === Infinity);
 })();
 
 (function tc_15_08_02_13__010() {
@@ -1844,11 +1803,11 @@
 })();
 
 (function tc_15_08_02_13__017() {
-  assert (1/Math.pow(Infinity, -3) === Infinity);
+  assert(1 / Math.pow(Infinity, -3) === Infinity);
 })();
 
 (function tc_15_08_02_13__024() {
-  assert (1/Math.pow(-0, 12) === Infinity);
+  assert(1 / Math.pow(-0, 12) === Infinity);
 })();
 
 (function tc_15_08_02_13__031() {
@@ -1856,11 +1815,11 @@
 })();
 
 (function tc_15_08_02_13__007() {
-  assert (1/Math.pow(5, -Infinity) === Infinity);
+  assert(1 / Math.pow(5, -Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_13__027() {
-  assert (Math.pow(-0, -1) === -Infinity);
+  assert(Math.pow(-0, -1) === -Infinity);
 })();
 
 (function tc_15_08_02_13__014() {
@@ -1868,7 +1827,7 @@
 })();
 
 (function tc_15_08_02_13__003() {
-  assert (Math.pow(NaN, +0, 5, "qeqegfhb") === 1);
+  assert(Math.pow(NaN, +0, 5, "qeqegfhb") === 1);
 })();
 
 (function tc_15_08_02_13__002() {
@@ -1880,7 +1839,7 @@
 })();
 
 (function tc_15_08_02_13__021() {
-  assert (1/Math.pow(-Infinity, -5) === -Infinity);
+  assert(1 / Math.pow(-Infinity, -5) === -Infinity);
 })();
 
 (function tc_15_08_02_13__001() {
@@ -1888,15 +1847,15 @@
 })();
 
 (function tc_15_08_02_13__025() {
-  assert (1/Math.pow(-0, 7) === -Infinity);
+  assert(1 / Math.pow(-0, 7) === -Infinity);
 })();
 
 (function tc_15_08_02_13__012() {
-  assert (isNaN(Math.pow(-1, -Infinity)));
+  assert(isNaN(Math.pow(-1, -Infinity)));
 })();
 
 (function tc_15_08_02_13__016() {
-  assert (Math.pow(Infinity, 3) === Infinity);
+  assert(Math.pow(Infinity, 3) === Infinity);
 })();
 
 (function tc_15_08_02_13__013() {
@@ -1904,11 +1863,11 @@
 })();
 
 (function tc_15_08_02_13__011() {
-  assert (isNaN(Math.pow(-1, Infinity)));
+  assert(isNaN(Math.pow(-1, Infinity)));
 })();
 
 (function tc_15_08_02_13__015() {
-  assert (Math.pow(-0.3, -Infinity) === Infinity);
+  assert(Math.pow(-0.3, -Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_13__028() {
@@ -1916,67 +1875,67 @@
 })();
 
 (function tc_15_08_02_13__008() {
-  assert (1/Math.pow(-5, -Infinity) === Infinity);
+  assert(1 / Math.pow(-5, -Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_13__006() {
-  assert (Math.pow(5, Infinity) === Infinity);
+  assert(Math.pow(5, Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_13__026() {
-  assert (Math.pow(-0, -100) === Infinity);
+  assert(Math.pow(-0, -100) === Infinity);
 })();
 
 (function tc_15_08_02_13__004() {
-  assert (Math.pow("qeqegfhb", -0) === 1);
+  assert(Math.pow("qeqegfhb", -0) === 1);
 })();
 
 (function tc_15_08_02_13__030() {
-  assert (Math.pow("2   ","2.0") === 4);
+  assert(Math.pow("2   ", "2.0") === 4);
 })();
 
 (function tc_15_08_02_13__005() {
-  assert (isNaN(Math.pow("qeqegfhb", 1)));
+  assert(isNaN(Math.pow("qeqegfhb", 1)));
 })();
 
 (function tc_15_08_02_13__020() {
-  assert (1/Math.pow(-Infinity, -6) === Infinity);
+  assert(1 / Math.pow(-Infinity, -6) === Infinity);
 })();
 
 (function tc_15_08_02_13__019() {
-  assert (Math.pow(-Infinity, 5) === -Infinity);
+  assert(Math.pow(-Infinity, 5) === -Infinity);
 })();
 
 (function tc_15_08_02_13__018() {
-  assert (Math.pow(-Infinity, 6) === Infinity);
+  assert(Math.pow(-Infinity, 6) === Infinity);
 })();
 
 (function tc_15_08_02_15__006() {
-  assert (1/Math.round(0.2) === Infinity);
+  assert(1 / Math.round(0.2) === Infinity);
 })();
 
 (function tc_15_08_02_15__003() {
-  assert (1/Math.round(-0) === -Infinity);
+  assert(1 / Math.round(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_15__007() {
-  assert (1/Math.round(-0.3) === -Infinity);
+  assert(1 / Math.round(-0.3) === -Infinity);
 })();
 
 (function tc_15_08_02_15__005() {
-  assert (Math.round(-Infinity) === -Infinity);
+  assert(Math.round(-Infinity) === -Infinity);
 })();
 
 (function tc_15_08_02_15__001() {
-  assert (isNaN(Math.round(NaN)));
+  assert(isNaN(Math.round(NaN)));
 })();
 
 (function tc_15_08_02_15__004() {
-  assert (Math.round(Infinity) === Infinity);
+  assert(Math.round(Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_15__002() {
-  assert (1/Math.round(+0) === Infinity);
+  assert(1 / Math.round(+0) === Infinity);
 })();
 
 (function tc_15_08_02_05__003() {
@@ -1996,11 +1955,11 @@
 })();
 
 (function tc_15_08_02_05__029() {
-  assert(Math.atan2(-Infinity, -Infinity) === -3*Math.PI / 4);
+  assert(Math.atan2(-Infinity, -Infinity) === -3 * Math.PI / 4);
 })();
 
 (function tc_15_08_02_05__016() {
-  assert(Math.atan2(-99999999, +0) === -Math.PI/2);
+  assert(Math.atan2(-99999999, +0) === -Math.PI / 2);
 })();
 
 (function tc_15_08_02_05__028() {
@@ -2068,7 +2027,7 @@
 })();
 
 (function tc_15_08_02_05__027() {
-  assert(Math.atan2(Infinity, -Infinity) === 3*Math.PI / 4);
+  assert(Math.atan2(Infinity, -Infinity) === 3 * Math.PI / 4);
 })();
 
 (function tc_15_08_02_05__001() {
@@ -2080,7 +2039,7 @@
 })();
 
 (function tc_15_08_02_05__017() {
-  assert(Math.atan2(-99999999, -0) === -Math.PI/2);
+  assert(Math.atan2(-99999999, -0) === -Math.PI / 2);
 })();
 
 (function tc_15_08_02_05__005() {
@@ -2132,7 +2091,7 @@
 })();
 
 (function tc_15_08_02_12__014() {
-  assert(1/Math.min(+0, -0) === -Infinity);
+  assert(1 / Math.min(+0, -0) === -Infinity);
 })();
 
 (function tc_15_08_02_12__005() {
@@ -2176,31 +2135,31 @@
 })();
 
 (function tc_15_08_02_18__007() {
-  assert (isNaN(Math.tan(undefined)));
+  assert(isNaN(Math.tan(undefined)));
 })();
 
 (function tc_15_08_02_18__001() {
-  assert (isNaN(Math.tan(NaN)));
+  assert(isNaN(Math.tan(NaN)));
 })();
 
 (function tc_15_08_02_18__006() {
-  assert (1/Math.tan(-0, NaN) === -Infinity);
+  assert(1 / Math.tan(-0, NaN) === -Infinity);
 })();
 
 (function tc_15_08_02_18__005() {
-  assert (1/Math.tan(-0) === -Infinity);
+  assert(1 / Math.tan(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_18__002() {
-  assert (isNaN(Math.tan(Infinity)));
+  assert(isNaN(Math.tan(Infinity)));
 })();
 
 (function tc_15_08_02_18__003() {
-  assert (isNaN(Math.tan(-Infinity)));
+  assert(isNaN(Math.tan(-Infinity)));
 })();
 
 (function tc_15_08_02_18__004() {
-  assert (1/Math.tan(+0) === Infinity);
+  assert(1 / Math.tan(+0) === Infinity);
 })();
 
 (function tc_15_08_02_04__002() {
@@ -2240,43 +2199,43 @@
 })();
 
 (function tc_15_08_02_09__001() {
-  assert (isNaN(Math.floor(NaN)));
+  assert(isNaN(Math.floor(NaN)));
 })();
 
 (function tc_15_08_02_09__006() {
-  assert (1/Math.floor(0.2) === Infinity);
+  assert(1 / Math.floor(0.2) === Infinity);
 })();
 
 (function tc_15_08_02_09__008() {
-  assert (Math.floor(1.9) === -Math.ceil(-1.9));
+  assert(Math.floor(1.9) === -Math.ceil(-1.9));
 })();
 
 (function tc_15_08_02_09__007() {
-  assert (Math.floor(1.2) === -Math.ceil(-1.2));
+  assert(Math.floor(1.2) === -Math.ceil(-1.2));
 })();
 
 (function tc_15_08_02_09__002() {
-  assert (1/Math.floor(+0) === Infinity);
+  assert(1 / Math.floor(+0) === Infinity);
 })();
 
 (function tc_15_08_02_09__003() {
-  assert(1/Math.floor(-0) === -Infinity);
+  assert(1 / Math.floor(-0) === -Infinity);
 })();
 
 (function tc_15_08_02_09__005() {
-  assert (Math.floor(-Infinity) === -Infinity);
+  assert(Math.floor(-Infinity) === -Infinity);
 })();
 
 (function tc_15_08_02_09__004() {
-  assert (Math.floor(Infinity) === Infinity);
+  assert(Math.floor(Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_08__004() {
-  assert (Math.exp(Infinity) === Infinity);
+  assert(Math.exp(Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_08__002() {
-  assert (Math.exp(+0) === 1);
+  assert(Math.exp(+0) === 1);
 })();
 
 (function tc_15_08_02_08__003() {
@@ -2284,15 +2243,15 @@
 })();
 
 (function tc_15_08_02_08__001() {
-  assert (isNaN(Math.exp(NaN)));
+  assert(isNaN(Math.exp(NaN)));
 })();
 
 (function tc_15_08_02_08__006() {
-  assert (1/Math.exp(-Infinity) === Infinity);
+  assert(1 / Math.exp(-Infinity) === Infinity);
 })();
 
 (function tc_15_08_02_08__005() {
-  assert (Math.exp(Infinity) === Infinity);
+  assert(Math.exp(Infinity) === Infinity);
 })();
 
 (function tc_15_06_01_01__005() {
@@ -2344,9 +2303,9 @@
 })();
 
 (function tc_15_06_02_01__002() {
-  var b = new Boolean (true);
+  var b = new Boolean(true);
   b.x = 1;
-  assert (b.x === 1);
+  assert(b.x === 1);
 })();
 
 (function tc_15_06_02_01__001() {
