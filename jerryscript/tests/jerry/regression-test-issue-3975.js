@@ -14,7 +14,10 @@
 
 a = 10
 b = new Uint8Array(a)
-function c() { d }
+
+function c() {
+  d
+}
 
 try {
   b.sort(c);
