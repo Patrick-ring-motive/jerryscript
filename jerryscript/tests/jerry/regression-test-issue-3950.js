@@ -13,7 +13,9 @@
 // limitations under the License.
 
 function a() {
-  this[2] = new Proxy(new function() { return new Array }, {})
+  this[2] = new Proxy(new function() {
+    return new Array
+  }, {})
   return {}
 }
 
