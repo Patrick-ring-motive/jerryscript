@@ -23,30 +23,29 @@ var normal_typedarrays = [
   new Int32Array([1, 2, 3, 4, 5, 6, 7, 8])
 ];
 
-normal_typedarrays.forEach (function(e){
+normal_typedarrays.forEach(function(e) {
   try {
-    e.prototype.entries.call (undefined);
-    assert (false);
-  }
-  catch (e) {
-    assert (e instanceof TypeError)
+    e.prototype.entries.call(undefined);
+    assert(false);
+  } catch (e) {
+    assert(e instanceof TypeError)
   }
 });
 
-normal_typedarrays.forEach(function(e){
-  var iterator = e.entries ();
-  var current_item = iterator.next ();
+normal_typedarrays.forEach(function(e) {
+  var iterator = e.entries();
+  var current_item = iterator.next();
 
   for (var i = 0; i < e.length; i++) {
-    assert (current_item.value[0] === i);
-    assert (current_item.value[1] === e[i]);
-    assert (current_item.done === false);
+    assert(current_item.value[0] === i);
+    assert(current_item.value[1] === e[i]);
+    assert(current_item.done === false);
 
-    current_item = iterator.next ();
+    current_item = iterator.next();
   }
 
-  assert (current_item.value === undefined);
-  assert (current_item.done === true);
+  assert(current_item.value === undefined);
+  assert(current_item.done === true);
 });
 
 var empty_typedarrays = [
@@ -60,15 +59,15 @@ var empty_typedarrays = [
   new Int32Array([])
 ];
 
-empty_typedarrays.forEach(function (e){
-  iterator = e.entries ();
-  current_item = iterator.next ();
+empty_typedarrays.forEach(function(e) {
+  iterator = e.entries();
+  current_item = iterator.next();
 
-  assert (current_item.value === undefined);
-  assert (current_item.done === true);
+  assert(current_item.value === undefined);
+  assert(current_item.done === true);
 });
 
-assert ([].entries ().toString () === "[object Array Iterator]");
+assert([].entries().toString() === "[object Array Iterator]");
 
 var bigint_array = new BigInt64Array([1n, 2n, 3n, 4n]);
 var entries = bigint_array.entries();
