@@ -19,7 +19,7 @@ switch (a) {
   case 2:
     break;
   case 3:
-    assert (0);
+    assert(0);
 }
 
 switch (a) {
@@ -27,17 +27,17 @@ switch (a) {
     break;
   case 2:
   case 3:
-    assert (0);
+    assert(0);
 }
 
 switch (a) {
   default:
-    assert (0);
+    assert(0);
   case 1:
     break;
   case 2:
   case 3:
-    assert (0);
+    assert(0);
 }
 
 switch (a) {
@@ -45,14 +45,14 @@ switch (a) {
     break;
   case 2:
   case 3:
-    assert (0);
+    assert(0);
 }
 
 switch (a) {
   case 3:
-    assert (0);
+    assert(0);
   default:
-    assert (0);
+    assert(0);
   case 1:
 }
 
@@ -65,7 +65,7 @@ switch (a) {
     executed_case = 'case 2';
     break;
 }
-assert (executed_case === 'default');
+assert(executed_case === 'default');
 
 var counter = 0;
 
@@ -80,7 +80,7 @@ switch ("var") {
     counter++;
 }
 
-assert (counter === 4);
+assert(counter === 4);
 
 var flow = '';
 
@@ -93,16 +93,24 @@ switch ("var") {
     flow += '3';
     switch (flow) {
       case '123':
-       flow += 'a';
-       break;
+        flow += 'a';
+        break;
       default:
-       flow += 'b';
+        flow += 'b';
     }
   default:
     flow += '4';
 }
 
-assert (flow === '123a4');
+assert(flow === '123a4');
 
-switch (0) { case 0: for (;false;); case 1: }
-switch (0) { case 0: while (false); case 1: }
+switch (0) {
+  case 0:
+    for (; false;);
+  case 1:
+}
+switch (0) {
+  case 0:
+    while (false);
+  case 1:
+}
