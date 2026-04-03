@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function demo() {
-}
+function demo() {}
 
 var proxy = new Proxy(demo, {});
 var weakset = new WeakSet();
