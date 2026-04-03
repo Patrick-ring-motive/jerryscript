@@ -13,13 +13,15 @@
 // limitations under the License.
 
 var v138 = {
-    ownKeys: function() { return []; },
+  ownKeys: function() {
+    return [];
+  },
 };
 
-var v140 = new Proxy ({}, v138);
+var v140 = new Proxy({}, v138);
 
 /* expected an empty array */
-var result = Object.getOwnPropertyNames (v140);
+var result = Object.getOwnPropertyNames(v140);
 
-assert (result instanceof Array);
-assert (result.length === 0);
+assert(result instanceof Array);
+assert(result.length === 0);
