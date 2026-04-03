@@ -17,19 +17,19 @@ var not_target_obj = {};
 var weak_ref = new WeakRef(target_obj);
 var weak_ref2 = new WeakRef(target_obj);
 
-assert (weak_ref.deref() === target_obj);
-assert (weak_ref.deref() === weak_ref2.deref());
-assert (weak_ref.deref() !== not_target_obj);
+assert(weak_ref.deref() === target_obj);
+assert(weak_ref.deref() === weak_ref2.deref());
+assert(weak_ref.deref() !== not_target_obj);
 
-assert (weak_ref2.deref() === target_obj);
-assert (weak_ref2.deref() !== not_target_obj);
-assert (weak_ref2.deref() === weak_ref2.deref());
+assert(weak_ref2.deref() === target_obj);
+assert(weak_ref2.deref() !== not_target_obj);
+assert(weak_ref2.deref() === weak_ref2.deref());
 
 target_obj = undefined;
 gc();
 
-assert (weak_ref.deref() === undefined);
-assert (weak_ref2.deref() === undefined);
+assert(weak_ref.deref() === undefined);
+assert(weak_ref2.deref() === undefined);
 
 var key_obj_1 = {};
 var key_obj_2 = {};
