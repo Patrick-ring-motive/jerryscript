@@ -12,4 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function g() {};for (B in Boolean) print(f);
+function g() {};
+for (B in Boolean) print(f);
