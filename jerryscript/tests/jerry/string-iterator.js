@@ -31,7 +31,7 @@ var iterator = str[Symbol.iterator]();
 
 try {
   iterator.next.call(5);
-  assert (false);
+  assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
 }
