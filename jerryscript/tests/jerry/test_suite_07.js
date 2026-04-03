@@ -13,9 +13,9 @@
 // limitations under the License.
 
 (function tc_07_09__002() {
-  function test()
-  {
-    var a = 1, b = 2;
+  function test() {
+    var a = 1,
+      b = 2;
 
     return
     a + b
@@ -29,9 +29,9 @@
 })();
 
 (function tc_07_09__008() {
-  function test()
-  {
-    var a = 10, b = 5;
+  function test() {
+    var a = 10,
+      b = 5;
     var c = a + b
 
     return c;
@@ -43,42 +43,41 @@
 (function tc_07_09__004() {
   var obj = new Object();
 
-  function c(arg)
-  {
+  function c(arg) {
     var obj = new Object();
     obj.par = arg;
-    obj.print = function () {
+    obj.print = function() {
       return arg;
     }
     return obj;
   }
 
-  var a, b = 1, d = 2, e = 3;
+  var a, b = 1,
+    d = 2,
+    e = 3;
 
-  a = b + c
-          (d + e).print()
+  a = b + c(d + e).print()
 
   assert(a === 6);
 })();
 
 (function tc_07_09__005() {
-  var b = 4, c = 5;
+  var b = 4,
+    c = 5;
 
   a = b
-  --c
+    --c
 
   assert(a === 4 && c === 4);
 })();
 
 (function tc_07_09__007() {
-  var mainloop = 1, cnt = 0;
+  var mainloop = 1,
+    cnt = 0;
 
-  for (var i = 0; i < 10; ++i)
-  {
-    for (var j = 0; j < 10; ++j)
-    {
-      if (j == 6)
-      {
+  for (var i = 0; i < 10; ++i) {
+    for (var j = 0; j < 10; ++j) {
+      if (j == 6) {
         break
         mainloop
       }
@@ -92,43 +91,47 @@
 
 (function tc_07_09__009() {
   {
-    var a, b = 3, c = 30;
-    a = b + c}
+    var a, b = 3,
+      c = 30;
+    a = b + c
+  }
 
-  assert (a == 33);
+  assert(a == 33);
 })();
 
 (function tc_07_09__010() {
-  assert (glob === undefined);
+  assert(glob === undefined);
 
   var glob = 34
 
-  assert (glob === 34);
+  assert(glob === 34);
 })();
 
 (function tc_07_09__003() {
-  var b = 4, c = 5;
+  var b = 4,
+    c = 5;
 
   a = b
-  ++c
+    ++c
 
   assert(a === 4 && c === 6);
 })();
 
 (function tc_07_09__001() {
-  { 1
-  2 } 3
+  {
+    1
+    2
+  }
+  3
 })();
 
 (function tc_07_09__006() {
-  var mainloop = 1, cnt = 0;
+  var mainloop = 1,
+    cnt = 0;
 
-  for (var i = 0; i < 10; ++i)
-  {
-    for (var j = 0; j < 10; ++j)
-    {
-      if (j == 6)
-      {
+  for (var i = 0; i < 10; ++i) {
+    for (var j = 0; j < 10; ++j) {
+      if (j == 6) {
         continue
         mainloop
       }
