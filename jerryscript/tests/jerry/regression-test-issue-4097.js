@@ -13,8 +13,8 @@
 // limitations under the License.
 
 function* g(a) {
-    yield* a;
-    return -3.14;
+  yield* a;
+  return -3.14;
 }
 
 try {
