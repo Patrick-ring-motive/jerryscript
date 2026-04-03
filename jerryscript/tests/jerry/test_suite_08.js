@@ -21,7 +21,7 @@
 })();
 
 (function tc_08_05__002() {
-  assert(typeof -Infinity == 'number');
+  assert(typeof - Infinity == 'number');
 })();
 
 (function tc_08_05__001() {
@@ -142,11 +142,10 @@
 })();
 
 (function tc_08_01__011() {
-  assert (test ());
+  assert(test());
 
-  function test (arg)
-  {
-    if (typeof (arg) === "undefined")
+  function test(arg) {
+    if (typeof(arg) === "undefined")
       return true;
     else
       return false;
@@ -168,11 +167,10 @@
 })();
 
 (function tc_08_01__010() {
-  assert (test ());
+  assert(test());
 
-  function test (arg)
-  {
-    if (typeof (arg) === "undefined")
+  function test(arg) {
+    if (typeof(arg) === "undefined")
       return true;
     else
       return false;
@@ -181,17 +179,17 @@
 
 (function tc_08_01__001() {
   var a;
-  assert(typeof (a) === "undefined");
+  assert(typeof(a) === "undefined");
 })();
 
 (function tc_08_01__006() {
-  assert(typeof (void 0) === "undefined");
+  assert(typeof(void 0) === "undefined");
 })();
 
 (function tc_08_01__002() {
   var o = {};
 
-  assert(typeof (o.empty) === "undefined");
+  assert(typeof(o.empty) === "undefined");
 })();
 
 (function tc_08_01__003() {
@@ -204,10 +202,9 @@
 (function tc_08_01__005() {
   a = foo();
 
-  assert(typeof (a) === "undefined");
+  assert(typeof(a) === "undefined");
 
-  function foo() {
-  }
+  function foo() {}
 })();
 
 (function tc_08_01__007() {
@@ -242,8 +239,7 @@
     b: 3
   };
 
-  function Custom() {
-  }
+  function Custom() {}
 
   Custom.prototype = prot;
 
