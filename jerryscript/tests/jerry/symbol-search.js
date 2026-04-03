@@ -15,36 +15,36 @@
 var search = RegExp.prototype[Symbol.search];
 
 try {
-  search.call (0, "string");
-  assert (false);
+  search.call(0, "string");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  search.call (new RegExp(), {
+  search.call(new RegExp(), {
     toString: () => {
       throw "abrupt string"
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt string");
+  assert(e === "abrupt string");
 }
 
 try {
-  search.call ({
+  search.call({
     get lastIndex() {
       throw "abrupt get lastIndex"
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt get lastIndex");
+  assert(e === "abrupt get lastIndex");
 }
 
 try {
-  search.call ({
+  search.call({
     get lastIndex() {
       return 3;
     },
@@ -52,64 +52,64 @@ try {
       throw "abrupt set lastIndex"
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt set lastIndex");
+  assert(e === "abrupt set lastIndex");
 }
 
 try {
-  search.call ({
+  search.call({
     get exec() {
       throw "abrupt exec"
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt exec");
+  assert(e === "abrupt exec");
 }
 
 try {
-  search.call ({
+  search.call({
     exec: RegExp.prototype.exec
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  search.call ({
+  search.call({
     exec: 42
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  search.call ({
+  search.call({
     exec: () => {
       throw "abrupt exec result"
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt exec result");
+  assert(e === "abrupt exec result");
 }
 
 try {
-  search.call ({
+  search.call({
     exec: () => {
       return 1
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  search.call ({
+  search.call({
     exec: () => {
       return {
         get index() {
@@ -118,14 +118,14 @@ try {
       }
     }
   }, "string");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt index");
+  assert(e === "abrupt index");
 }
 
-assert (search.call (/abc/, "abc") === 0);
-assert (search.call (/abc/, "strabc") === 3);
-assert (search.call (/abc/, "bcd") === -1);
+assert(search.call(/abc/, "abc") === 0);
+assert(search.call(/abc/, "strabc") === 3);
+assert(search.call(/abc/, "bcd") === -1);
 
 class Regexplike {
   constructor() {
@@ -149,24 +149,24 @@ class Regexplike {
 }
 
 re = new Regexplike();
-assert (search.call (re, "str") === 42);
+assert(search.call(re, "str") === 42);
 
 /* Object with custom @@search method */
 var o = {}
-o[Symbol.search] = function () {
+o[Symbol.search] = function() {
   return 4;
 };
-assert ("string".search (o) === 4);
+assert("string".search(o) === 4);
 
 o[Symbol.search] = 42;
 try {
-  "string".search (o);
-  assert (false);
+  "string".search(o);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-Object.defineProperty (o, Symbol.search, {
+Object.defineProperty(o, Symbol.search, {
   get: () => {
     throw "abrupt @@search get"
   },
@@ -174,30 +174,34 @@ Object.defineProperty (o, Symbol.search, {
 });
 
 try {
-  "string".search (o);
-  assert (false);
+  "string".search(o);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt @@search get");
+  assert(e === "abrupt @@search get");
 }
 
 o = {};
-o[Symbol.search] = function () {
+o[Symbol.search] = function() {
   throw "abrupt @@search"
 };
 try {
-  "string".search (o);
-  assert (false);
+  "string".search(o);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt @@search")
+  assert(e === "abrupt @@search")
 }
 
 o = {
-  exec: function () { return {index: "Duck"}; },
+  exec: function() {
+    return {
+      index: "Duck"
+    };
+  },
 };
-assert ("string".search (o) === 1);
+assert("string".search(o) === 1);
 
 o[Symbol.search] = RegExp.prototype[Symbol.search];
-assert ("string".search (o) === "Duck");
+assert("string".search(o) === "Duck");
 
 o = {
   lastIndex: "Duck",
@@ -207,25 +211,28 @@ o = {
 }
 
 try {
-  RegExp.prototype[Symbol.search].call (o, "Duck");
-  assert (false);
+  RegExp.prototype[Symbol.search].call(o, "Duck");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 o = {
   exec: () => {
-    return { 0: "Duck", index: 0 };
+    return {
+      0: "Duck",
+      index: 0
+    };
   },
-  get lastIndex () {
+  get lastIndex() {
     return "Duck";
   },
-  set lastIndex (v) {
+  set lastIndex(v) {
     return "Duck";
   }
 }
 
-assert (RegExp.prototype[Symbol.search].call (o, "str") === 0);
+assert(RegExp.prototype[Symbol.search].call(o, "str") === 0);
 
 var r = /a/;
 r.lastIndex = 3.14;
@@ -252,31 +259,35 @@ var handler = {
 var p = new Proxy(r, handler);
 try {
   search.call(p, "bba");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-assert (get_calls.join(",") === "lastIndex");
-assert (set_calls.join(",") === "lastIndex");
-assert (r.lastIndex === 0);
+assert(get_calls.join(",") === "lastIndex");
+assert(set_calls.join(",") === "lastIndex");
+assert(r.lastIndex === 0);
 
 var o = {
   get lastIndex() {
     Object.defineProperty(o, "lastIndex", {
-      get: function () { throw "abrupt get second lastIndex"; }
+      get: function() {
+        throw "abrupt get second lastIndex";
+      }
     });
     return 1;
   },
   set lastIndex(v) {},
-  exec: () => { return null; }
+  exec: () => {
+    return null;
+  }
 }
 
 try {
   search.call(o, "str");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt get second lastIndex");
+  assert(e === "abrupt get second lastIndex");
 }
 
 var index = 1;
@@ -286,15 +297,19 @@ var o = {
   },
   set lastIndex(v) {
     Object.defineProperty(o, "lastIndex", {
-      set: function (v) { throw "abrupt set second lastIndex"; }
+      set: function(v) {
+        throw "abrupt set second lastIndex";
+      }
     });
   },
-  exec: () => { return null; }
+  exec: () => {
+    return null;
+  }
 }
 
 try {
   search.call(o, "str");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt set second lastIndex");
+  assert(e === "abrupt set second lastIndex");
 }
