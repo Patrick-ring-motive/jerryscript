@@ -23,12 +23,12 @@ var normal_typedarrays = [
   new Int32Array([0, 1, 2, 3, 0, 5, 6])
 ];
 
-normal_typedarrays.forEach(function(e){
-  try{
-    e.prototype.lastIndexOf.call (undefined);
-    assert (false);
+normal_typedarrays.forEach(function(e) {
+  try {
+    e.prototype.lastIndexOf.call(undefined);
+    assert(false);
   } catch (e) {
-    assert (e instanceof TypeError);
+    assert(e instanceof TypeError);
   }
 
   var index = e.lastIndexOf(0);
@@ -66,11 +66,11 @@ normal_typedarrays.forEach(function(e){
   assert(e.lastIndexOf(44, 8) === 3);
 
   var fromIndex = {
-    toString: function () {
+    toString: function() {
       return {};
     },
 
-    valueOf: function () {
+    valueOf: function() {
       return {};
     }
   };
@@ -97,6 +97,6 @@ var empty_typedarrays = [
   new Int32Array([])
 ];
 
-empty_typedarrays.forEach(function(e){
+empty_typedarrays.forEach(function(e) {
   assert(e.lastIndexOf(0) === -1);
 });
