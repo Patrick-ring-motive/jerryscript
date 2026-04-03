@@ -88,7 +88,8 @@ if (check.toString() !== "function () { /* ecmascript */ }") {
 
   o = {
     f: function(a) {
-      /**/ }
+      /**/
+    }
   }
   assert(o.f.toString() === "function(a){/**/}")
 
@@ -155,7 +156,8 @@ if (check.toString() !== "function () { /* ecmascript */ }") {
 
   o = {
     set a(v) {
-      /**/ }
+      /**/
+    }
   }
   assert(Object.getOwnPropertyDescriptor(o, "a").set.toString() === "set a(v) {/**/}")
 
@@ -164,7 +166,8 @@ if (check.toString() !== "function () { /* ecmascript */ }") {
     set /**/ [function() {
       return 'a'
     }()] /**/ (v) {
-      /**/ } /**/
+      /**/
+    } /**/
   }
   assert(Object.getOwnPropertyDescriptor(o, "a").set.toString() === "set/**/[function(){ return 'a' }()]/**/(v) {/**/}")
 
@@ -204,7 +207,8 @@ if (check.toString() !== "function () { /* ecmascript */ }") {
     static async [function() {
       return 'f'
     }()]() {
-      /**/ }
+      /**/
+    }
   }
   assert(c.f.toString() === "async[function(){ return 'f' }()]() {/**/}")
 
