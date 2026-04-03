@@ -80,7 +80,9 @@ try {
 }
 
 var regexp = /a/g;
-Object.defineProperty(regexp, 'flags', { value: undefined });
+Object.defineProperty(regexp, 'flags', {
+  value: undefined
+});
 
 try {
   "foo".replaceAll(regexp);
@@ -119,7 +121,7 @@ assert('a'.replaceAll('', '_') === '_a_');
 
 // test with replacement string
 var str = 'Ninguém é igual a ninguém. Todo o ser humano é um estranho ímpar.';
-assert(str.replaceAll('ninguém', '$$') ==='Ninguém é igual a $. Todo o ser humano é um estranho ímpar.');
+assert(str.replaceAll('ninguém', '$$') === 'Ninguém é igual a $. Todo o ser humano é um estranho ímpar.');
 assert(str.replaceAll('é', '$$') === 'Ningu$m $ igual a ningu$m. Todo o ser humano $ um estranho ímpar.');
 assert(str.replaceAll('é', '$$ -') === 'Ningu$ -m $ - igual a ningu$ -m. Todo o ser humano $ - um estranho ímpar.');
 assert(str.replaceAll('é', '$$&') === 'Ningu$&m $& igual a ningu$&m. Todo o ser humano $& um estranho ímpar.');
@@ -165,7 +167,7 @@ function symbol() {
     }
   }
 }
-  
+
 try {
   'a'.replaceAll('a', symbol);
   assert(false);
