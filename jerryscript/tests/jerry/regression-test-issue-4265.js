@@ -13,7 +13,7 @@
 // limitations under the License.
 
 try {
-    eval ("export class Dog {constructor() {}}; for (var a")
+  eval("export class Dog {constructor() {}}; for (var a")
 } catch (e) {
-    assert (e instanceof SyntaxError)
+  assert(e instanceof SyntaxError)
 }
