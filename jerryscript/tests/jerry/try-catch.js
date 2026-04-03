@@ -15,8 +15,7 @@
 
 var e = -1
 
-function f1()
-{
+function f1() {
   assert(e === undefined)
   try {
     throw 0
@@ -28,8 +27,7 @@ function f1()
 }
 f1()
 
-function f2()
-{
+function f2() {
   assert(e === undefined)
   try {
     throw 0
@@ -44,8 +42,7 @@ function f2()
 }
 f2()
 
-function f3()
-{
+function f3() {
   assert(e === -1)
   try {
     throw [0]
@@ -64,14 +61,15 @@ function f3()
 }
 f3()
 
-function f4()
-{
+function f4() {
   assert(e === undefined)
   try {
     throw 0
   } catch (e) {
     {
-      function e() { return 3 }
+      function e() {
+        return 3
+      }
       assert(e() === 3)
     }
     assert(e === 0)
@@ -80,8 +78,7 @@ function f4()
 }
 f4()
 
-function f5()
-{
+function f5() {
   assert(e === -1)
   try {
     throw 0
@@ -96,15 +93,16 @@ function f5()
 }
 f5()
 
-function f6()
-{
+function f6() {
   let e = 4;
   assert(e === 4)
   try {
     throw 0
   } catch (e) {
     {
-      function e() { return 5 }
+      function e() {
+        return 5
+      }
       assert(e() === 5)
     }
     assert(e === 0)
@@ -113,8 +111,7 @@ function f6()
 }
 f6()
 
-function f7()
-{
+function f7() {
   let e = 6;
   assert(e === 6)
   try {
@@ -129,8 +126,7 @@ function f7()
 }
 f7()
 
-function f8()
-{
+function f8() {
   var cnt = 0;
 
   try {
