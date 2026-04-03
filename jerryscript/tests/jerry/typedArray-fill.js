@@ -44,7 +44,9 @@ assert(a.fill(15, a.length, a.length).toString() === '11,12,11,11,10');
 assert(a.toString() === '11,12,11,11,10');
 assert(a.fill(NaN).toString() === '0,0,0,0,0'); // NaN gets coerced into an integer.
 assert(a.toString() === '0,0,0,0,0');
-assert(a.fill({ valueOf: () => 16 }).toString() === '16,16,16,16,16');
+assert(a.fill({
+  valueOf: () => 16
+}).toString() === '16,16,16,16,16');
 assert(a.toString() === '16,16,16,16,16');
 
 var b = new Uint8Array();
