@@ -55,11 +55,29 @@ let str = String.raw({
 }, 2 + 3, 'Java' + 'Script');
 assert(str === "foo5barJavaScriptbaz");
 
-assert(String.raw({ raw: 'test' }, 0, 1, 2) === "t0e1s2t");
+assert(String.raw({
+  raw: 'test'
+}, 0, 1, 2) === "t0e1s2t");
 
 var get = [];
-var raw = new Proxy({length: 2, 0: '', 1: ''}, { get: function(o, k) { get.push(k); return o[k]; }});
-var p = new Proxy({raw: raw}, { get: function(o, k) { get.push(k); return o[k]; }});
+var raw = new Proxy({
+  length: 2,
+  0: '',
+  1: ''
+}, {
+  get: function(o, k) {
+    get.push(k);
+    return o[k];
+  }
+});
+var p = new Proxy({
+  raw: raw
+}, {
+  get: function(o, k) {
+    get.push(k);
+    return o[k];
+  }
+});
 String.raw(p);
 assert(get + '' === "raw,length,0,1");
 
@@ -68,4 +86,5 @@ assert(String.raw`\`` == "\\`")
 assert(String.raw`\
 \
 ` == "\\\n\\\n")
-assert(String.raw`\ ` == "\\\u2029")
+assert(String.raw`\
+` == "\\\u2029")
