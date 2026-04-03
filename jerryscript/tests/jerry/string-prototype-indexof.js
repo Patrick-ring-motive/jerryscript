@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -35,9 +36,9 @@ assert("Hello world, welcome to the universe.".indexOf("welcome") === 13);
 
 assert("Hello world, welcome to the universe.".indexOf("Hello world, welcome to the universe.") === 0);
 
-assert("Hello world, welcome to the universe.".indexOf("welcome",10) == 13);
+assert("Hello world, welcome to the universe.".indexOf("welcome", 10) == 13);
 
-assert("Hello world, welcome to the universe.".indexOf("welcome",-100) == 13);
+assert("Hello world, welcome to the universe.".indexOf("welcome", -100) == 13);
 
 assert("Hello world, welcome to the universe.".indexOf("welcome", 15) === -1);
 
@@ -66,12 +67,12 @@ assert("aaaabaaa".indexOf("aaaba") === 1);
 // check empty string
 assert(String.prototype.indexOf.call(new String()) === -1);
 
-assert(String.prototype.indexOf.call("","") === 0);
+assert(String.prototype.indexOf.call("", "") === 0);
 
 // check NaN
 assert("Hello world, welcome to the universe.".indexOf(NaN) === -1);
 
-assert("Hello world, welcome to the universe.".indexOf("welcome",NaN) === 13);
+assert("Hello world, welcome to the universe.".indexOf("welcome", NaN) === 13);
 
 // check Object
 assert(String.prototype.indexOf.call({}) === -1);
@@ -99,7 +100,7 @@ assert("true".indexOf(true, false) === 0);
 try {
   String.prototype.indexOf.call(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -107,7 +108,7 @@ try {
 try {
   String.prototype.indexOf.call(null);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -116,7 +117,10 @@ assert(String.prototype.indexOf.call(true, "e") === 3);
 assert(String.prototype.indexOf.call(false, "e") === 4);
 
 // check coercible - Object
-var test_object = {firstName:"John", lastName:"Doe"};
+var test_object = {
+  firstName: "John",
+  lastName: "Doe"
+};
 assert(String.prototype.indexOf.call(test_object, "Obj") === 8);
 
 // check coercible - Number
