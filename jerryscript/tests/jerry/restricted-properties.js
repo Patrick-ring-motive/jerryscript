@@ -13,20 +13,16 @@
  * limitations under the License.
  */
 
-function must_throw (str) {
+function must_throw(str) {
   try {
-    eval ("switch (1) { default: " + str + "}");
-    assert (false);
-  }
-  catch (e) {
-  }
+    eval("switch (1) { default: " + str + "}");
+    assert(false);
+  } catch (e) {}
 
   try {
-    eval (str);
-    assert (false);
-  }
-  catch (e) {
-  }
+    eval(str);
+    assert(false);
+  } catch (e) {}
 }
 
 // strict functions created using the Function constructor
@@ -41,7 +37,7 @@ must_throw("strictF.caller = 1")
 must_throw("strictF.arguments = 2")
 
 // generator functions created using the Generator constructor
-var GeneratorFunction = Object.getPrototypeOf(function*(){}).constructor
+var GeneratorFunction = Object.getPrototypeOf(function*() {}).constructor
 var generatorF = new GeneratorFunction()
 
 assert(generatorF.hasOwnProperty('caller') === false);
@@ -64,7 +60,7 @@ must_throw("asyncF.caller = 1")
 must_throw("asyncF.arguments = 2")
 
 // functions created using the bind method
-var f = function () {};
+var f = function() {};
 var boundF = f.bind();
 
 assert(boundF.hasOwnProperty('caller') === false);
