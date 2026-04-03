@@ -14,7 +14,7 @@
 
 var a = new Proxy(eval, {});
 var b = {
-    y : 2
+  y: 2
 };
 b.__proto__ = a;
 
@@ -25,7 +25,6 @@ d.__proto__ = b;
 a.__proto__ = f;
 
 c.__proto__ = d;
-
 
 var a1 = new String();
 a1.__proto__ = c;
