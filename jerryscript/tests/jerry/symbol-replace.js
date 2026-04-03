@@ -15,110 +15,110 @@
 var replace = RegExp.prototype[Symbol.replace];
 
 try {
-  replace.call (0, "string", "replace");
-  assert (false);
+  replace.call(0, "string", "replace");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  replace.call (new RegExp(), {
+  replace.call(new RegExp(), {
     toString: () => {
       throw "abrupt string"
     }
   }, "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt string");
+  assert(e === "abrupt string");
 }
 
 try {
-  replace.call (new RegExp(), "string", {
+  replace.call(new RegExp(), "string", {
     toString: () => {
       throw "abrupt replace"
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt replace");
+  assert(e === "abrupt replace");
 }
 
 try {
-  replace.call ({
+  replace.call({
     get global() {
       throw "abrupt global"
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt global");
+  assert(e === "abrupt global");
 }
 
 try {
-  replace.call ({
+  replace.call({
     global: true,
     set lastIndex(idx) {
       throw "abrupt lastIndex"
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt lastIndex");
+  assert(e === "abrupt lastIndex");
 }
 
 try {
-  replace.call ({
+  replace.call({
     get exec() {
       throw "abrupt exec"
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt exec");
+  assert(e === "abrupt exec");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: RegExp.prototype.exec
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: 42
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       throw "abrupt exec result"
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt exec result");
+  assert(e === "abrupt exec result");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return 1
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         get length() {
@@ -127,13 +127,13 @@ try {
       }
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt result length");
+  assert(e === "abrupt result length");
 }
 
 try {
-  replace.call ({
+  replace.call({
       global: true,
       exec: () => {
         return {
@@ -146,13 +146,13 @@ try {
     },
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt match");
+  assert(e === "abrupt match");
 }
 
 try {
-  replace.call ({
+  replace.call({
       global: true,
       exec: () => {
         return {
@@ -169,14 +169,14 @@ try {
     },
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt match toString");
+  assert(e === "abrupt match toString");
 }
 
 var result_obj = {
   toString: () => {
-    Object.defineProperty (result_obj, 'toString', {
+    Object.defineProperty(result_obj, 'toString', {
       value: () => {
         throw "abrupt match toString delayed";
       }
@@ -187,7 +187,7 @@ var result_obj = {
 
 var first = true;
 try {
-  replace.call ({
+  replace.call({
       global: true,
       exec: () => {
         if (!first) {
@@ -205,13 +205,13 @@ try {
     },
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt match toString delayed");
+  assert(e === "abrupt match toString delayed");
 }
 
 try {
-  replace.call ({
+  replace.call({
       global: true,
       get lastIndex() {
         throw "abrupt lastIndex get"
@@ -232,13 +232,13 @@ try {
     },
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt lastIndex get");
+  assert(e === "abrupt lastIndex get");
 }
 
 try {
-  replace.call ({
+  replace.call({
       global: true,
       get lastIndex() {
         return {
@@ -263,9 +263,9 @@ try {
     },
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt lastIndex toNumber");
+  assert(e === "abrupt lastIndex toNumber");
 }
 
 var o = {
@@ -283,10 +283,10 @@ var o = {
     }
   }
 }
-Object.defineProperty (o, 'lastIndex', {
+Object.defineProperty(o, 'lastIndex', {
   configurable: true,
   get: () => {
-    Object.defineProperty (o, 'lastIndex', {
+    Object.defineProperty(o, 'lastIndex', {
       get: () => {
         return {
           valueOf: () => {
@@ -309,12 +309,12 @@ Object.defineProperty (o, 'lastIndex', {
 });
 
 try {
-  replace.call (o,
+  replace.call(o,
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt lastIndex put");
+  assert(e === "abrupt lastIndex put");
 }
 
 o = {
@@ -332,9 +332,9 @@ o = {
     }
   },
 };
-Object.defineProperty (o, 'lastIndex', {
+Object.defineProperty(o, 'lastIndex', {
   get: () => {
-    Object.defineProperty (o, 'lastIndex', {
+    Object.defineProperty(o, 'lastIndex', {
       value: 0,
       writable: false
     });
@@ -344,21 +344,21 @@ Object.defineProperty (o, 'lastIndex', {
 });
 
 try {
-  replace.call (o,
+  replace.call(o,
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
 o = {
   global: true
 };
-Object.defineProperty (o, 'exec', {
+Object.defineProperty(o, 'exec', {
   configurable: true,
   value: () => {
-    Object.defineProperty (o, 'exec', {
+    Object.defineProperty(o, 'exec', {
       get: () => {
         throw "abrupt exec"
       },
@@ -372,16 +372,16 @@ Object.defineProperty (o, 'exec', {
 });
 
 try {
-  replace.call (o,
+  replace.call(o,
     "string",
     "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt exec");
+  assert(e === "abrupt exec");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 1,
@@ -392,13 +392,13 @@ try {
       }
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt index");
+  assert(e === "abrupt index");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 1,
@@ -413,13 +413,13 @@ try {
       }
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt index toNumber");
+  assert(e === "abrupt index toNumber");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 2,
@@ -431,13 +431,13 @@ try {
       }
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt capture");
+  assert(e === "abrupt capture");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 2,
@@ -451,13 +451,13 @@ try {
       }
     }
   }, "string", "replace");
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt capture toString");
+  assert(e === "abrupt capture toString");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 2,
@@ -469,13 +469,13 @@ try {
   }, "string", () => {
     throw "abrupt replace"
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt replace");
+  assert(e === "abrupt replace");
 }
 
 try {
-  replace.call ({
+  replace.call({
     exec: () => {
       return {
         length: 2,
@@ -491,74 +491,74 @@ try {
       }
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt replace toString");
+  assert(e === "abrupt replace toString");
 }
 
 try {
-  replace.call (/abc/, "abc", () => {
+  replace.call(/abc/, "abc", () => {
     throw "fastpath abrupt replace"
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "fastpath abrupt replace");
+  assert(e === "fastpath abrupt replace");
 }
 
 try {
-  replace.call (/abc/, "abc", () => {
+  replace.call(/abc/, "abc", () => {
     return {
       toString: () => {
         throw "fastpath abrupt replace"
       }
     }
   });
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e === "fastpath abrupt replace");
+  assert(e === "fastpath abrupt replace");
 }
 
-assert (replace.call (/abc/, "abc", "xyz") === "xyz");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "xyz") === "abxyzfg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$$-") === "ab-$-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$&-") === "ab-cde-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$`-") === "ab-ab-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$'-") === "ab-fg-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$0-") === "ab-$0-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$1-") === "ab-c-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$2-") === "ab-d-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$3-") === "ab-d-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$4-") === "ab--fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$5-") === "ab-e-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$6-") === "ab-$6-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$00-") === "ab-$00-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$01-") === "ab-c-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$10-") === "ab-c0-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$99-") === "ab-$99-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "-$$1-") === "ab-$1-fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "$") === "ab$fg");
-assert (replace.call (/(c)((d)|(x))(e)/, "abcdefg", "$@") === "ab$@fg");
+assert(replace.call(/abc/, "abc", "xyz") === "xyz");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "xyz") === "abxyzfg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$$-") === "ab-$-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$&-") === "ab-cde-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$`-") === "ab-ab-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$'-") === "ab-fg-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$0-") === "ab-$0-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$1-") === "ab-c-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$2-") === "ab-d-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$3-") === "ab-d-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$4-") === "ab--fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$5-") === "ab-e-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$6-") === "ab-$6-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$00-") === "ab-$00-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$01-") === "ab-c-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$10-") === "ab-c0-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$99-") === "ab-$99-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "-$$1-") === "ab-$1-fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "$") === "ab$fg");
+assert(replace.call(/(c)((d)|(x))(e)/, "abcdefg", "$@") === "ab$@fg");
 
-replace.call (/(c)((d)|(x))(e)/, "abcdefg", function () {
-  assert (arguments[0] === "cde");
-  assert (arguments[1] === "c");
-  assert (arguments[2] === "d");
-  assert (arguments[3] === "d");
-  assert (arguments[4] === undefined);
-  assert (arguments[5] === "e");
-  assert (arguments[6] === 2);
-  assert (arguments[7] === "abcdefg");
+replace.call(/(c)((d)|(x))(e)/, "abcdefg", function() {
+  assert(arguments[0] === "cde");
+  assert(arguments[1] === "c");
+  assert(arguments[2] === "d");
+  assert(arguments[3] === "d");
+  assert(arguments[4] === undefined);
+  assert(arguments[5] === "e");
+  assert(arguments[6] === 2);
+  assert(arguments[7] === "abcdefg");
 });
 
 var re = /ab/g;
-assert (replace.call (re, "-ab-ab-ab-ab-", "cd") === "-cd-cd-cd-cd-");
-assert (re.lastIndex === 0);
+assert(replace.call(re, "-ab-ab-ab-ab-", "cd") === "-cd-cd-cd-cd-");
+assert(re.lastIndex === 0);
 
 re.lastIndex = 5;
-assert (replace.call (re, "-ab-ab-ab-ab-", "cd") === "-cd-cd-cd-cd-");
-assert (re.lastIndex === 0);
+assert(replace.call(re, "-ab-ab-ab-ab-", "cd") === "-cd-cd-cd-cd-");
+assert(re.lastIndex === 0);
 
-assert (replace.call (/(?:)/g, "string", "Duck") === "DucksDucktDuckrDuckiDucknDuckgDuck");
+assert(replace.call(/(?:)/g, "string", "Duck") === "DucksDucktDuckrDuckiDucknDuckgDuck");
 
 class Regexplike {
   constructor() {
@@ -584,7 +584,7 @@ class Regexplike {
 re = new Regexplike();
 
 /* Well-behaved RegExp-like object. */
-assert (replace.call (re, "What have you brought upon this cursed land", "$&") === "What have you brought upon this cursed Duck");
+assert(replace.call(re, "What have you brought upon this cursed land", "$&") === "What have you brought upon this cursed Duck");
 
 var replace_count = 0;
 
@@ -594,7 +594,7 @@ function replacer() {
 }
 
 re.index = 0;
-re.exec = function () {
+re.exec = function() {
   if (this.index > 3) {
     return null;
   }
@@ -608,39 +608,51 @@ re.exec = function () {
 }
 
 /* Mis-behaving RegExp-like object, replace function is called on each match, but the result is ignored for inconsistent matches. */
-assert (replace.call (re, "Badger", replacer) === "Ducker");
-assert (replace_count === 4);
+assert(replace.call(re, "Badger", replacer) === "Ducker");
+assert(replace_count === 4);
 
 re.index = 0;
-assert (replace.call (re, "Badger", "Ord") === "Order");
+assert(replace.call(re, "Badger", "Ord") === "Order");
 
 try {
-  replace.call (RegExp.prototype, "string", "replace");
-  assert (false);
+  replace.call(RegExp.prototype, "string", "replace");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-assert(replace.call({ exec : ( ) => { return {  } } }, 'һ', "a") === "a");
-assert(replace.call({ exec : ( ) => { return {  } } }, 'һһһһһһһһһ', "a") === "a");
-assert(replace.call({ exec : ( ) => { return {  } } }, 'һһһһһһһһһһ', "a") === "aһ");
+assert(replace.call({
+  exec: () => {
+    return {}
+  }
+}, 'һ', "a") === "a");
+assert(replace.call({
+  exec: () => {
+    return {}
+  }
+}, 'һһһһһһһһһ', "a") === "a");
+assert(replace.call({
+  exec: () => {
+    return {}
+  }
+}, 'һһһһһһһһһһ', "a") === "aһ");
 
 /* Object with custom @@replace method */
 var o = {}
-o[Symbol.replace] = function () {
+o[Symbol.replace] = function() {
   return "Duck"
 };
-assert ("string".replace (o, "Mallard") === "Duck");
+assert("string".replace(o, "Mallard") === "Duck");
 
 o[Symbol.replace] = 42;
 try {
-  "string".replace (o, "Duck");
-  assert (false);
+  "string".replace(o, "Duck");
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
 
-Object.defineProperty (o, Symbol.replace, {
+Object.defineProperty(o, Symbol.replace, {
   get: () => {
     throw "abrupt @@replace get"
   },
@@ -648,30 +660,30 @@ Object.defineProperty (o, Symbol.replace, {
 });
 
 try {
-  "string".replace (o, "Duck");
-  assert (false);
+  "string".replace(o, "Duck");
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt @@replace get");
+  assert(e === "abrupt @@replace get");
 }
 
 o = {};
-o[Symbol.replace] = function () {
+o[Symbol.replace] = function() {
   throw "abrupt @@replace"
 };
 try {
-  "string".replace (o, "str");
-  assert (false);
+  "string".replace(o, "str");
+  assert(false);
 } catch (e) {
-  assert (e === "abrupt @@replace")
+  assert(e === "abrupt @@replace")
 }
 
 class Regexplike2 {
-    exec() {
-        return {}
-    }
+  exec() {
+    return {}
+  }
 }
 re = new Regexplike2();
-assert (replace.call (re, "1") === "undefined");
+assert(replace.call(re, "1") === "undefined");
 
 var abruptStickyRegexp = /./;
 Object.defineProperty(abruptStickyRegexp, 'sticky', {
@@ -698,16 +710,16 @@ try {
 
 var r = /a/y;
 r.lastIndex = 3;
-assert (r[Symbol.replace]("aaaaa", "b") === "aaaba");
-assert (r.lastIndex === 4);
+assert(r[Symbol.replace]("aaaaa", "b") === "aaaba");
+assert(r.lastIndex === 4);
 
-assert (r[Symbol.replace]("ccccc", "b") === "ccccc");
-assert (r.lastIndex === 0);
+assert(r[Symbol.replace]("ccccc", "b") === "ccccc");
+assert(r.lastIndex === 0);
 
 var r = /a/yg;
 r.lastIndex = 3;
-assert (r[Symbol.replace]("aaaaa", "b") === "bbbbb");
-assert (r.lastIndex === 0);
+assert(r[Symbol.replace]("aaaaa", "b") === "bbbbb");
+assert(r.lastIndex === 0);
 
 var replaceCalled = false;
 var r = /a/
@@ -715,15 +727,15 @@ r.lastIndex = 2;
 
 assert(r[Symbol.replace]("aaaa", function(match, index) {
   replaceCalled = true;
-  assert (match === "a");
-  assert (index === 0);
+  assert(match === "a");
+  assert(index === 0);
   return "b";
 }) === "baaa");
 
-assert (replaceCalled);
-assert (r.lastIndex === 2);
+assert(replaceCalled);
+assert(r.lastIndex === 2);
 
-(function () {
+(function() {
   var r = /./g;
   var execWasCalled = false;
   var coercibleIndex = {
