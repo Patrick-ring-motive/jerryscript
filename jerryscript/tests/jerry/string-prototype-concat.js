@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -50,7 +51,9 @@ assert("Check ".concat(y) === "Check undefined");
 
 // check toString error in this object
 var y = {};
-y.toString = function () { throw new ReferenceError ("foo");}
+y.toString = function() {
+  throw new ReferenceError("foo");
+}
 y.concat = String.prototype.concat;
 try {
   y.concat("cat");
@@ -61,7 +64,9 @@ try {
 
 // check toString error in arguments
 var x = {};
-x.toString = function () { throw new ReferenceError ("foo");}
+x.toString = function() {
+  throw new ReferenceError("foo");
+}
 try {
   "a".concat(x);
   assert(false);
