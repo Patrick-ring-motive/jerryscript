@@ -19,14 +19,15 @@ Promise.race([a, b]);
 Promise.race([b, a]);
 Promise.race([, b, a]);
 Promise.race().then(function() {}, function() {
-    let str;
-    function getStr() {
-        return $ `$`
-    }
-    var $ = getStr()
+  let str;
+
+  function getStr() {
+    return $ `$`
+  }
+  var $ = getStr()
 }).catch(e => {
   called = true;
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 })
 
 function __checkAsync() {
