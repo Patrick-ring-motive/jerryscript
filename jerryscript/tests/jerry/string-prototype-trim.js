@@ -14,11 +14,12 @@
 
 // check properties
 
-function length_configurable()
-{
+function length_configurable() {
   function is_es51() {
     return (typeof g === "function");
-    { function g() {} }
+    {
+      function g() {}
+    }
   }
   return is_es51() ? false : true;
 }
@@ -40,7 +41,7 @@ assert(String.prototype.trim.call({}) === "[object Object]");
 try {
   String.prototype.trim.call(undefined);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -48,7 +49,7 @@ try {
 try {
   String.prototype.trim.call(null);
   assert(false);
-} catch(e) {
+} catch (e) {
   assert(e instanceof TypeError);
 }
 
@@ -86,9 +87,9 @@ assert("\u000A\u000D\u2028\u202911".trim() === "11");
 assert("\u0009\u000B\u000C\u0020\u00A01\u0009\u000B\u000C\u0020\u00A0".trim() === "1");
 assert("\u000A\u000D\u2028\u202911\u000A\u000D\u2028\u2029".trim() === "11");
 
-assert ("\u200B".trim() === '\u200B')
-assert ("\u200A".trim() === '')
-assert ("\u00A0".trim() === '')
+assert("\u200B".trim() === '\u200B')
+assert("\u200A".trim() === '')
+assert("\u00A0".trim() === '')
 
 var test = "  asd  ";
 assert(test.trimStart() === "asd  ")
