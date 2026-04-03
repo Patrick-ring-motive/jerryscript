@@ -19,5 +19,5 @@ try {
     });`);
   assert(false);
 } catch (e) {
-  assert (e instanceof SyntaxError);
+  assert(e instanceof SyntaxError);
 }
