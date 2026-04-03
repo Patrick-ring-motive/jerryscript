@@ -20,7 +20,7 @@ try {
     sharedProto = Object.getPrototypeOf(ownProto)
     propertyIsEnumerable(sharedProto)
   })()
-  assert (false);
+  assert(false);
 } catch (e) {
-  assert (e instanceof TypeError);
+  assert(e instanceof TypeError);
 }
