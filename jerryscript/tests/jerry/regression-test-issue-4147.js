@@ -12,5 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var asyncFunProto = Object.getPrototypeOf (async function() {});
-assert (Object.prototype.toString.call (asyncFunProto) === "[object AsyncFunction]")
+var asyncFunProto = Object.getPrototypeOf(async function() {});
+assert(Object.prototype.toString.call(asyncFunProto) === "[object AsyncFunction]")
