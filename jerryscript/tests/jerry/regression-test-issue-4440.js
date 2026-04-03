@@ -30,7 +30,7 @@ try {
 }
 
 try {
-  throw new Proxy(EvalError(), { });
+  throw new Proxy(EvalError(), {});
 } catch (ex) {
   assert(ex instanceof EvalError);
 }
