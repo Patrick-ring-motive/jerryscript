@@ -14,12 +14,13 @@
 
 (function tc_06__004() {
   var arg = 3;
+
   function a() {
     return 5 + arg;
   }
 
   arg = 4;
-  var b = function () {
+  var b = function() {
     return 6 + arg;
   };
 
@@ -41,11 +42,10 @@
 (function tc_06__003() {
   var obj = new Object();
 
-  function c(arg)
-  {
+  function c(arg) {
     var obj = new Object();
     obj.par = arg;
-    obj.print = function () {
+    obj.print = function() {
       return arg;
     };
     return obj;
@@ -62,10 +62,9 @@
 })();
 
 (function tc_06__002() {
-  function c(arg)
-  {
+  function c(arg) {
     var obj = new Object();
-    obj.print = function () {
+    obj.print = function() {
       f = arg;
     };
     return obj;
