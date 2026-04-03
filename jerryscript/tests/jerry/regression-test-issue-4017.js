@@ -13,7 +13,7 @@
 // limitations under the License.
 
 try {
-  var v0 = Object.freeze (RegExp ("foo", "g")).compile ();
+  var v0 = Object.freeze(RegExp("foo", "g")).compile();
   assert(false);
 } catch (e) {
   assert(e instanceof TypeError);
