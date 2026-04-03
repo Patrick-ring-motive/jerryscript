@@ -13,8 +13,8 @@
 // limitations under the License.
 
 class Outer {
-    static {
-        eval(`
+  static {
+    eval(`
             function staticfunc() {
                 arguments;
             }
@@ -22,5 +22,5 @@ class Outer {
             class Inner {
             }
         `);
-    }
+  }
 }
