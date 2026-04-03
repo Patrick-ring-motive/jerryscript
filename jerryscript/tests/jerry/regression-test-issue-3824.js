@@ -18,4 +18,3 @@ try {
 } catch (e) {
   assert(e instanceof SyntaxError);
 }
-
